@@ -63,7 +63,7 @@ module.exports = [
     explicacion: 'Un drenaje inicial de 1500 ml o más, o un tercio de la volemia, define el hemotórax masivo.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué indicás?',
-    opciones: ['Toracotomía de urgencia', 'Segundo tubo de tórax de mayor calibre', 'Observación con control del débito', 'Fibrinolíticos intrapleurales'],
+    opciones: ['Toracotomía de urgencia en quirófano', 'Segundo tubo de tórax de mayor calibre', 'Observación con control del débito', 'Fibrinolíticos intrapleurales'],
     explicacion: 'Un drenaje inmediato de 1500 ml o más, o más de 200 ml/h durante 2 a 4 horas, o la necesidad persistente de transfusión indican toracotomía.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Medidas generales', pregunta: 'Si el drenaje hubiera sido de 400 ml y luego mínimo, ¿qué harías con el tubo?',

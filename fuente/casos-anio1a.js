@@ -107,7 +107,7 @@ module.exports = [
     explicacion: 'Compromiso cutáneo, respiratorio y cardiovascular minutos después de un fármaco es anafilaxia. En quirófano los desencadenantes más frecuentes son relajantes musculares, antibióticos, clorhexidina y látex.',
     fuente: 'WAO, guía de anafilaxia 2020' },
   { tipo: 'Fármaco', pregunta: '¿Cuál es el fármaco de primera línea?',
-    opciones: ['Adrenalina', 'Difenhidramina', 'Hidrocortisona', 'Salbutamol inhalado'],
+    opciones: ['Adrenalina', 'Difenhidramina', 'Hidrocortisona', 'Salbutamol'],
     explicacion: 'La adrenalina es el único fármaco que revierte la anafilaxia y no debe demorarse. Antihistamínicos y corticoides son coadyuvantes que no tratan el shock.',
     fuente: 'WAO, guía de anafilaxia 2020' },
   { tipo: 'Dosis', pregunta: '¿Qué dosis inicial de adrenalina si no tiene vía de infusión titulada?',
@@ -444,7 +444,7 @@ module.exports = [
     explicacion: 'La ASA permite líquidos claros hasta 2 horas antes y comida liviana hasta 6 horas antes (8 horas para comidas grasas). El ayuno prolongado aumenta la resistencia a la insulina y el malestar sin reducir la aspiración.',
     fuente: 'ASA 2017, ayuno preoperatorio' },
   { tipo: 'Fármaco', pregunta: '¿Qué hacés con la aspirina de prevención primaria?',
-    opciones: ['Suspenderla al menos 3 días antes de operar', 'Seguirla sin cambios, como si fuera prevención secundaria', 'Reemplazarla por clopidogrel hasta el día de la cirugía', 'Suspenderla y agregar heparina de bajo peso como puente'],
+    opciones: ['Suspenderla al menos 3 días antes de operar', 'Seguirla sin cambios, como si fuera prevención secundaria', 'Reemplazarla por clopidogrel hasta el día de la cirugía', 'Suspenderla y dar heparina como puente'],
     explicacion: 'ESC 2022 recomienda suspender la aspirina de prevención primaria antes de la cirugía no cardíaca; cuando se interrumpe, al menos 3 días antes y 7 en cirugías de alto riesgo de sangrado. En prevención secundaria, sobre todo con angioplastia previa, suele mantenerse si el riesgo de sangrado es bajo.',
     fuente: 'ESC 2022, evaluación cardiovascular para cirugía no cardíaca' }
  ]
@@ -463,7 +463,7 @@ module.exports = [
     explicacion: 'Máxima barrera (gorro, barbijo, camisolín, guantes y campo grande), clorhexidina alcohólica y retiro temprano reducen la bacteriemia. No se recomiendan antibióticos profilácticos ni recambios programados.',
     fuente: 'CDC 2011, prevención de infecciones de catéteres intravasculares' },
   { tipo: 'Técnica', pregunta: '¿Qué sitio tiene menor riesgo de infección?',
-    opciones: ['Subclavio', 'Femoral común', 'Yugular interno', 'Es similar en los tres sitios'],
+    opciones: ['Subclavio', 'Femoral', 'Yugular interno', 'Es similar en los tres sitios'],
     explicacion: 'En el estudio 3SITES el acceso subclavio tuvo menos infecciones y trombosis que el yugular y el femoral, a costa de más neumotórax. La elección integra experiencia, coagulación y anatomía.',
     fuente: 'Estudio 3SITES (Parienti, 2015)' },
   { tipo: 'Estudios', pregunta: 'Colocaste un catéter subclavio. ¿Qué controlás antes de usarlo para vasopresores?',

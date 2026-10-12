@@ -41,7 +41,7 @@ module.exports = [
     explicacion: 'El cólico salival con las comidas y un cálculo indican sialolitiasis; la submaxilar es la glándula más afectada por su saliva más viscosa y su conducto ascendente.',
     fuente: 'Hermes: Cirugía submandibular y sublingual' },
   { tipo: 'Conducta quirúrgica', pregunta: 'El cálculo es intraglandular y las crisis se repiten. ¿Qué indicás?',
-    opciones: ['Submaxilectomía', 'Extracción transoral del cálculo', 'Parotidectomía superficial', 'Antibióticos de por vida'],
+    opciones: ['Submaxilectomía', 'Extracción transoral del cálculo', 'Parotidectomía', 'Antibióticos de por vida'],
     explicacion: 'Los cálculos distales del conducto se extraen por vía oral, pero los intraglandulares con sialoadenitis recurrente se tratan con resección de la glándula (o sialendoscopia donde esté disponible).',
     fuente: 'Hermes: Cirugía submandibular y sublingual' },
   { tipo: 'Técnica', pregunta: '¿Qué nervios debés proteger en la submaxilectomía?',

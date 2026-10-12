@@ -46,7 +46,7 @@ module.exports = [
     explicacion: 'La resonancia es el mapa preferido para fístulas complejas, recurrentes o en Crohn. En una fístula simple baja puede bastar el examen bajo anestesia.',
     fuente: 'Hermes: Absceso y fístula anorrectal' },
   { tipo: 'Conducta quirúrgica', pregunta: 'En el examen bajo anestesia es interesfinteriana baja. ¿Qué hacés?',
-    opciones: ['Fistulotomía', 'Colgajo de avance rectal', 'Colostomía de protección', 'Antibióticos prolongados'],
+    opciones: ['Fistulotomía (puesta a plano)', 'Colgajo de avance rectal', 'Colostomía de protección', 'Antibióticos prolongados'],
     explicacion: 'La fistulotomía cura la fístula simple baja con mínimo riesgo para la continencia. Las técnicas que preservan el esfínter (sedal, colgajo, LIFT) se reservan para fístulas que comprometen más esfínter.',
     fuente: 'Hermes: Absceso y fístula anorrectal' },
   { tipo: 'Técnica', pregunta: 'Si comprometiera más de un tercio del esfínter externo, ¿qué harías en un primer tiempo?',
@@ -168,7 +168,7 @@ module.exports = [
  vineta: 'Varón de 64 años, 3 semanas después de una fractura de cadera. Disnea súbita, presión 78/50 mmHg pese a líquidos, ventrículo derecho dilatado en la ecografía. No operado recientemente ni con sangrado activo.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué riesgo tiene?',
-    opciones: ['Riesgo alto', 'Riesgo intermedio-bajo', 'Riesgo bajo, por la edad', 'Riesgo intermedio-alto'],
+    opciones: ['Riesgo alto', 'Riesgo intermedio-bajo', 'Riesgo bajo', 'Riesgo intermedio-alto'],
     explicacion: 'La hipotensión persistente o el shock definen la embolia de riesgo alto, con mortalidad elevada a corto plazo.',
     fuente: 'ESC 2019, embolia pulmonar' },
   { tipo: 'Fármaco', pregunta: '¿Qué tratamiento indicás?',
