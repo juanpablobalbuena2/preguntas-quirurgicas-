@@ -1,0 +1,250 @@
+<title>Pase de sala</title>
+<meta name="theme-color" content="#0F5C52">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: historia clínica de guardia. Una columna angosta; cada paso es una hoja con su margen rotulado por tipo. */
+:root {
+  --bg: #EEF3F1;
+  --sheet: #FFFFFF;
+  --ink: #142320;
+  --muted: #586A66;
+  --line: #CBD8D4;
+  --scrub: #0F5C52;
+  --scrub-soft: #DCEBE7;
+  --iodine: #B8661A;
+  --ok: #2D7A4B;
+  --ok-soft: #E1F1E7;
+  --bad: #B3261E;
+  --bad-soft: #F8E2DF;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
+  --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
+  --bad: #F08A80; --bad-soft: #3A1C1A; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
+  --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
+  --bad: #F08A80; --bad-soft: #3A1C1A; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.5 var(--f-body); margin: 0 }
+.app { max-width: 620px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); padding-block: calc(18px + env(safe-area-inset-top)) calc(48px + env(safe-area-inset-bottom)); display: grid; gap: 18px }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15 }
+h1 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.01em }
+h2 { font-size: 1.35rem; font-weight: 800 }
+h3 { font-size: 1.05rem; font-weight: 600 }
+p { margin: 0 }
+.eyebrow { font: 600 0.75rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted) }
+.muted { color: var(--muted) }
+button { font: inherit; color: inherit; cursor: pointer }
+button:focus-visible, summary:focus-visible { outline: 3px solid var(--iodine); outline-offset: 2px }
+.btn { border: 0; border-radius: 10px; padding: 14px 18px; font-weight: 700; background: var(--scrub); color: var(--sheet); width: 100% }
+.btn.sec { background: transparent; color: var(--scrub); box-shadow: inset 0 0 0 2px var(--scrub) }
+.btn[disabled] { opacity: .45; cursor: default }
+.row { display: flex; gap: 10px; flex-wrap: wrap }
+.row > * { flex: 1 1 160px }
+
+/* Encabezado */
+.top { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap }
+.badge { font: 500 0.8rem/1 var(--f-mono); color: var(--scrub); background: var(--scrub-soft); padding: 6px 9px; border-radius: 6px; white-space: nowrap }
+
+/* Resumen de progreso */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
+.stat { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 2px }
+.stat b { font: 800 1.6rem/1 var(--f-display); font-variant-numeric: tabular-nums }
+.stat span { font-size: .82rem; color: var(--muted) }
+.bars { display: grid; gap: 12px }
+.bar { display: grid; gap: 5px }
+.bar-head { display: flex; justify-content: space-between; gap: 8px; font-size: .92rem }
+.bar-head span:last-child { font: 500 .82rem var(--f-mono); color: var(--muted); white-space: nowrap }
+.track { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; display: flex }
+.track i { display: block; height: 100% }
+.track .dom { background: var(--scrub) }
+.track .vis { background: var(--iodine); opacity: .55 }
+.legend { display: flex; gap: 14px; font-size: .8rem; color: var(--muted); flex-wrap: wrap }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px }
+.panel { background: var(--sheet); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 14px }
+.temas { display: grid; gap: 8px }
+.tema { display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px }
+.tema small { display: block; color: var(--muted); font-size: .8rem }
+.tema .badge { flex: none }
+
+/* Caso */
+.vineta { background: var(--sheet); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 10px; border-top: 6px solid var(--scrub) }
+.pasos { display: flex; gap: 5px }
+.pasos i { flex: 1; height: 5px; border-radius: 3px; background: var(--line) }
+.pasos i.ok { background: var(--ok) } .pasos i.no { background: var(--bad) } .pasos i.act { background: var(--iodine) }
+.hoja { background: var(--sheet); border: 1px solid var(--line); border-radius: 14px; display: grid; grid-template-columns: 30px 1fr; overflow: hidden }
+.margen { background: var(--scrub-soft); color: var(--scrub); writing-mode: vertical-rl; transform: rotate(180deg); font: 700 .72rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; padding: 10px 0 }
+.hoja-body { padding: 16px; display: grid; gap: 12px; min-width: 0 }
+.ops { display: grid; gap: 8px }
+.op { text-align: left; border: 1.5px solid var(--line); background: var(--bg); border-radius: 10px; padding: 12px 14px; line-height: 1.35 }
+.op.dosis { font-family: var(--f-mono); font-size: .92rem }
+.op:not([disabled]):hover { border-color: var(--scrub) }
+.op.ok { border-color: var(--ok); background: var(--ok-soft) }
+.op.no { border-color: var(--bad); background: var(--bad-soft) }
+.op[disabled] { cursor: default }
+.feedback { border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; background: var(--bg); border-left: 4px solid var(--ok) }
+.feedback.no { border-left-color: var(--bad) }
+.feedback strong { font-family: var(--f-display) }
+.fuente { font-size: .85rem; color: var(--muted) }
+.fuente::before { content: "Fuente: "; font-weight: 700; color: var(--ink) }
+
+/* Resumen del caso */
+.res-list { display: grid; gap: 6px; padding: 0; margin: 0; list-style: none }
+.res-list li { display: flex; gap: 10px; align-items: baseline }
+.res-list .m { font: 500 .82rem var(--f-mono); flex: none; width: 1.4em }
+.res-list .ok { color: var(--ok) } .res-list .no { color: var(--bad) }
+.next-review { font: 500 .9rem var(--f-mono); color: var(--scrub) }
+details { font-size: .9rem }
+summary { cursor: pointer; color: var(--muted) }
+textarea { width: 100%; min-height: 80px; font: .8rem var(--f-mono); background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px }
+.msg { font-size: .85rem; color: var(--scrub) }
+@media (prefers-reduced-motion: no-preference) { .hoja, .feedback { animation: in .18s ease-out } @keyframes in { from { transform: translateY(4px); opacity: .6 } to { transform: none; opacity: 1 } } }
+</style>
+
+<main class="app" id="app" aria-live="polite"></main>
+
+<script>
+const CASOS = /*CASOS*/[];
+const INTERVALOS = [0, 1, 3, 7, 16, 35]; // días por nivel de repetición espaciada
+const DIA = 86400000;
+const CLAVE = 'pase-de-sala-progreso-v1';
+const SESION = 5;
+
+function leer() { try { return JSON.parse(localStorage.getItem(CLAVE)) || {} } catch (e) { return {} } }
+function guardar(p) { try { localStorage.setItem(CLAVE, JSON.stringify(p)) } catch (e) {} }
+let prog = leer();
+let estado = { pantalla: 'inicio' };
+
+const $ = s => document.querySelector(s);
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const ahora = () => Date.now();
+const mezclar = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]] } return b };
+const fecha = t => new Date(t).toLocaleDateString('es-AR', { day: 'numeric', month: 'short' });
+
+function nivel(id) { return (prog[id] && prog[id].nivel) || 0 }
+function pendiente(id) { const p = prog[id]; return p && p.vence <= ahora() }
+function dominado(id) { return nivel(id) >= 3 }
+
+function colaSesion() {
+  const vencidos = CASOS.filter(c => pendiente(c.id)).sort((a, b) => prog[a.id].vence - prog[b.id].vence);
+  const nuevos = CASOS.filter(c => !prog[c.id]);
+  return mezclar(vencidos).concat(mezclar(nuevos)).slice(0, SESION).map(c => c.id);
+}
+
+function agrupar(clave) {
+  const g = {};
+  CASOS.forEach(c => { const k = c[clave]; (g[k] = g[k] || []).push(c) });
+  return g;
+}
+
+function barra(nombre, lista) {
+  const n = lista.length, d = lista.filter(c => dominado(c.id)).length, v = lista.filter(c => prog[c.id] && !dominado(c.id)).length;
+  return `<div class="bar"><div class="bar-head"><span>${esc(nombre)}</span><span>${d}/${n} dominados</span></div>
+  <div class="track" role="img" aria-label="${d} dominados y ${v} en práctica de ${n}"><i class="dom" style="width:${d / n * 100}%"></i><i class="vis" style="width:${v / n * 100}%"></i></div></div>`;
+}
+
+function inicio() {
+  const cola = colaSesion();
+  const vencidos = CASOS.filter(c => pendiente(c.id)).length;
+  const nuevos = CASOS.filter(c => !prog[c.id]).length;
+  const dom = CASOS.filter(c => dominado(c.id)).length;
+  const porAnio = agrupar('anio'), porTema = agrupar('tema');
+  const proximo = CASOS.map(c => prog[c.id]).filter(p => p && p.vence > ahora()).sort((a, b) => a.vence - b.vence)[0];
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">Residencia de cirugía general</p><h1>Pase de sala</h1></div><span class="badge">${CASOS.length} casos</span></header>
+  <div class="stats">
+    <div class="stat"><b>${vencidos}</b><span>para repasar hoy</span></div>
+    <div class="stat"><b>${nuevos}</b><span>sin ver</span></div>
+    <div class="stat"><b>${dom}</b><span>dominados</span></div>
+  </div>
+  <div class="row">
+    <button class="btn" id="b-sesion" ${cola.length ? '' : 'disabled'}>${cola.length ? `Empezar sesión · ${cola.length} caso${cola.length > 1 ? 's' : ''}` : 'Nada pendiente hoy'}</button>
+  </div>
+  ${!cola.length && proximo ? `<p class="muted">El próximo repaso vence el ${fecha(proximo.vence)}. Mientras, podés repasar un tema.</p>` : ''}
+  <section class="panel" aria-labelledby="t-tema"><h2 id="t-tema">Repasar un tema</h2>
+    <div class="temas">${Object.entries(porTema).map(([t, l]) => `<button class="tema" data-tema="${esc(t)}"><span>${esc(t)}<small>${l.length} ${l.length === 1 ? 'caso' : 'casos'} · ${l[0].anio}.º año</small></span><span class="badge">${l.filter(c => dominado(c.id)).length}/${l.length}</span></button>`).join('')}</div>
+  </section>
+  <section class="panel" aria-labelledby="t-av"><h2 id="t-av">Avance por año del programa</h2>
+    <div class="bars">${Object.keys(porAnio).sort().map(a => barra(a + '.º año', porAnio[a])).join('')}</div>
+    <div class="legend"><span><i style="background:var(--scrub)"></i>Dominado (3 aciertos espaciados)</span><span><i style="background:var(--iodine);opacity:.55"></i>En práctica</span></div>
+  </section>
+  <details><summary>Respaldo del progreso</summary>
+    <div style="display:grid;gap:8px;margin-top:10px">
+      <p class="muted">El progreso queda guardado en este teléfono. Copiá este código para respaldarlo o pegá uno anterior para restaurarlo.</p>
+      <textarea id="respaldo" aria-label="Código de respaldo">${esc(JSON.stringify(prog))}</textarea>
+      <div class="row"><button class="btn sec" id="b-copiar">Copiar código</button><button class="btn sec" id="b-restaurar">Restaurar desde el código</button></div>
+      <p class="msg" id="msg-resp"></p>
+    </div></details>`;
+  $('#b-sesion').onclick = () => cola.length && empezar(cola, 'Sesión del día');
+  document.querySelectorAll('.tema').forEach(b => b.onclick = () => empezar(mezclar(CASOS.filter(c => c.tema === b.dataset.tema)).map(c => c.id), b.dataset.tema));
+  $('#b-copiar').onclick = () => { const t = $('#respaldo'); navigator.clipboard && navigator.clipboard.writeText(t.value).then(() => $('#msg-resp').textContent = 'Código copiado.', () => { t.select(); $('#msg-resp').textContent = 'Seleccioné el código: copialo manualmente.' }) || (t.select(), $('#msg-resp').textContent = 'Seleccioné el código: copialo manualmente.') };
+  $('#b-restaurar').onclick = () => { try { const p = JSON.parse($('#respaldo').value); if (typeof p !== 'object' || !p) throw 0; prog = p; guardar(prog); inicio(); $('#msg-resp') && ($('#msg-resp').textContent = 'Progreso restaurado.') } catch (e) { $('#msg-resp').textContent = 'El código no es válido: copiá el texto completo del respaldo.' } };
+}
+
+function empezar(ids, etiqueta) {
+  estado = { pantalla: 'caso', cola: ids, i: 0, etiqueta, paso: 0, res: [], orden: null };
+  caso();
+}
+
+function caso() {
+  const c = CASOS.find(x => x.id === estado.cola[estado.i]);
+  const p = c.pasos[estado.paso];
+  if (!estado.orden) estado.orden = mezclar(p.opciones.map((t, k) => ({ t, k })));
+  const resp = estado.respondido;
+  const pasos = c.pasos.map((_, k) => `<i class="${k < estado.res.length ? (estado.res[k] ? 'ok' : 'no') : k === estado.paso ? 'act' : ''}"></i>`).join('');
+  const esDosis = p.tipo === 'Dosis';
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div><button class="badge" id="b-salir" style="border:0">Salir</button></header>
+  <article class="vineta"><p class="eyebrow">${esc(c.tema)} · ${c.anio}.º año</p><p>${esc(c.vineta)}</p><div class="pasos" aria-label="Paso ${estado.paso + 1} de ${c.pasos.length}">${pasos}</div></article>
+  <section class="hoja"><div class="margen" aria-hidden="true">${esc(p.tipo)}</div><div class="hoja-body">
+    <p class="eyebrow">Paso ${estado.paso + 1} de ${c.pasos.length} · ${esc(p.tipo)}</p>
+    <h3>${esc(p.pregunta)}</h3>
+    <div class="ops">${estado.orden.map(o => {
+      let cl = 'op' + (esDosis ? ' dosis' : '');
+      if (resp) { if (o.k === 0) cl += ' ok'; else if (o.k === resp.k) cl += ' no' }
+      return `<button class="${cl}" data-k="${o.k}" ${resp ? 'disabled' : ''}>${esc(o.t)}</button>`
+    }).join('')}</div>
+    ${resp ? `<div class="feedback ${resp.k === 0 ? '' : 'no'}"><strong>${resp.k === 0 ? 'Correcto.' : 'La respuesta es: ' + esc(p.opciones[0])}</strong><p>${esc(p.explicacion)}</p><p class="fuente">${esc(p.fuente)}</p></div>
+    <button class="btn" id="b-sig">${estado.paso + 1 < c.pasos.length ? 'Siguiente paso' : 'Ver resultado del caso'}</button>` : ''}
+  </div></section>`;
+  $('#b-salir').onclick = () => { estado = { pantalla: 'inicio' }; inicio() };
+  document.querySelectorAll('.op:not([disabled])').forEach(b => b.onclick = () => { estado.respondido = { k: +b.dataset.k }; estado.res.push(+b.dataset.k === 0); caso(); window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) });
+  if (resp) $('#b-sig').onclick = () => {
+    estado.respondido = null; estado.orden = null;
+    if (estado.paso + 1 < c.pasos.length) { estado.paso++; caso(); window.scrollTo(0, 0) } else cierre(c);
+  };
+}
+
+function cierre(c) {
+  const ok = estado.res.filter(Boolean).length, n = estado.res.length, pct = ok / n;
+  const prev = prog[c.id] || { nivel: 0, intentos: 0 };
+  let nivelN = prev.nivel;
+  if (pct >= 0.85) nivelN = Math.min(prev.nivel + 1, INTERVALOS.length - 1);
+  else if (pct < 0.6) nivelN = 1;
+  else nivelN = Math.max(prev.nivel, 1);
+  const vence = ahora() + INTERVALOS[nivelN] * DIA;
+  prog[c.id] = { nivel: nivelN, vence, intentos: prev.intentos + 1, ultimo: Math.round(pct * 100), fallos: c.pasos.map((p, k) => estado.res[k] ? null : p.tipo).filter(Boolean) };
+  guardar(prog);
+  const quedan = estado.i + 1 < estado.cola.length;
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div></header>
+  <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b>${ok}/${n}</b><span>pasos correctos</span></div><div class="stat"><b>${Math.round(pct * 100)}%</b><span>del caso</span></div></div>
+    <ul class="res-list">${c.pasos.map((p, k) => `<li><span class="m ${estado.res[k] ? 'ok' : 'no'}">${estado.res[k] ? '✓' : '✗'}</span><span>${esc(p.tipo)}: ${esc(p.opciones[0])}</span></li>`).join('')}</ul>
+    <p class="next-review">Vuelve ${INTERVALOS[nivelN] === 0 ? 'hoy' : INTERVALOS[nivelN] === 1 ? 'mañana' : 'en ' + INTERVALOS[nivelN] + ' días (' + fecha(vence) + ')'}</p>
+  </section>
+  <div class="row">${quedan ? '<button class="btn" id="b-otro">Siguiente caso</button>' : ''}<button class="btn ${quedan ? 'sec' : ''}" id="b-ini">Volver al inicio</button></div>`;
+  if (quedan) $('#b-otro').onclick = () => { estado.i++; estado.paso = 0; estado.res = []; caso(); window.scrollTo(0, 0) };
+  $('#b-ini').onclick = () => { estado = { pantalla: 'inicio' }; inicio(); window.scrollTo(0, 0) };
+}
+
+function arrancar(datos) {
+  if (datos && datos.estado && datos.estado.pantalla === 'caso') { estado = datos.estado; caso() } else inicio();
+}
+window.claude?.hot?.snapshot?.(() => ({ estado }));
+window.claude?.hot?.ready ? window.claude.hot.ready(arrancar) : arrancar(window.claude?.hot?.data ?? {});
+</script>

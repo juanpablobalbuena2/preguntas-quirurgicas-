@@ -1,0 +1,692 @@
+[
+ {
+  "anio": "Primer",
+  "t": "Respuesta a la injuria",
+  "c": [
+   "Respuesta inflamatoria a la agresión quirúrgica",
+   "Fisiopatología isquemia reperfusión",
+   "Recuperación perioperatoria en cirugía digestiva"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Desequilibrio hidroelectrolítico",
+  "c": [
+   "Fluidoterapia y trastornos hidroelectrolíticos en cirugía"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Shock",
+  "c": [
+   "Shock en el paciente quirúrgico",
+   "Monitorización fisiológica del paciente quirúrgico"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Infección en cirugía",
+  "c": [
+   "Infección del sitio quirúrgico",
+   "Infecciones necrosantes de tejidos blandos",
+   "Infecciones de piel y partes blandas no necrosantes",
+   "Absceso intraabdominal",
+   "Infección intraabdominal y peritonitis",
+   "Tratamiento antimicrobiano en cirugía",
+   "Profilaxis antibiótica perioperatoria"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Soporte nutricional del paciente quirúrgico",
+  "c": [
+   "Soporte nutricional del paciente quirúrgico",
+   "Recuperación perioperatoria en cirugía digestiva",
+   "Soporte nutricional en trauma grave",
+   "Yeyunostomía de alimentación"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Hemostasia y trombosis en cirugía",
+  "c": [
+   "Hemostasia y transfusión perioperatoria",
+   "Trombosis venosa profunda",
+   "Tratamiento antitrombótico en cirugía vascular"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Anestesiología",
+  "c": [
+   "Anestesia perioperatoria",
+   "Monitorización fisiológica del paciente quirúrgico",
+   "Anestesia en cirugía de pared abdominal"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Dolor en cirugía",
+  "c": [
+   "Dolor perioperatorio"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Heridas y cicatrización",
+  "c": [
+   "Histología quirúrgica de epitelios, matriz y serosas",
+   "Anatomía y fisiología quirúrgica de la piel",
+   "Cicatrización de heridas quirúrgicas",
+   "Cicatrización y prevención de la hernia incisional",
+   "Dehiscencia aguda de la pared abdominal",
+   "Atención integral de las heridas",
+   "Evaluación clínica de heridas",
+   "Diagnóstico diferencial de úlceras cutáneas",
+   "Desbridamiento de heridas",
+   "Infección de heridas crónicas",
+   "Selección de apósitos y control del exudado",
+   "Terapia de presión negativa"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Bioseguridad",
+  "c": []
+ },
+ {
+  "anio": "Primer",
+  "t": "Principios de oncología quirúrgica",
+  "c": [
+   "Principios de oncología quirúrgica",
+   "Biología tumoral y biomarcadores",
+   "Biología molecular y genómica aplicada a la cirugía",
+   "Inmunoterapia antitumoral"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Instrumental quirúrgico",
+  "c": [
+   "Principios de técnica quirúrgica"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Aspectos médico legales en la práctica quirúrgica",
+  "c": [
+   "Ética y profesionalismo quirúrgico",
+   "Consentimiento y documentación en cirugía de pared abdominal"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Preoperatorio y postoperatorio normal y patológico. Valoración prequirúrgica",
+  "c": [
+   "Evaluación preoperatoria del paciente quirúrgico",
+   "Recuperación perioperatoria en cirugía digestiva",
+   "Profilaxis antibiótica perioperatoria"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Manejo inicial del politraumatizado",
+  "c": [
+   "Atención inicial del paciente traumatizado",
+   "Scores y registro de trauma",
+   "Trauma torácico",
+   "Traumatismo abdominal",
+   "Manejo no operatorio del trauma abdominal",
+   "Laparoscopia en cirugía de urgencia y trauma abdominal",
+   "Trauma musculoesquelético agudo"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Abdomen agudo. Tipos, metodología de estudio y manejo inicial",
+  "c": [
+   "Abdomen agudo",
+   "Abdomen agudo en el adulto mayor",
+   "Abdomen agudo en el paciente inmunocomprometido",
+   "Anatomía quirúrgica del peritoneo y retroperitoneo",
+   "Oclusión intestinal aguda",
+   "Oclusión por bridas",
+   "Obstrucción aguda del intestino grueso",
+   "Seudoobstrucción colónica aguda",
+   "Isquemia mesentérica",
+   "Complicaciones de la úlcera gastroduodenal",
+   "Hemorragia digestiva aguda",
+   "Cuerpos extraños anorrectales",
+   "Apendicitis aguda",
+   "Diverticulitis aguda"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Canalizaciones venosas. Tipos, indicaciones y técnicas",
+  "c": []
+ },
+ {
+  "anio": "Primer",
+  "t": "Traqueostomías. Indicaciones, técnica quirúrgica y complicaciones",
+  "c": [
+   "Anatomía quirúrgica del cuello",
+   "Traqueotomía"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Manejo del espacio pleural",
+  "c": [
+   "Anatomía y accesos de cirugía torácica",
+   "Derrame pleural",
+   "Empiema pleural",
+   "Quilotórax",
+   "Neumotórax espontáneo",
+   "Mesotelioma pleural",
+   "Tumor fibroso solitario de la pleura",
+   "Trauma torácico",
+   "Control de daños en trauma torácico"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Pared abdominal. Anatomía, incisiones y laparotomías",
+  "c": [
+   "Embriología quirúrgica del tubo intestinal y las cavidades corporales",
+   "Principios de técnica quirúrgica",
+   "Anatomía funcional de la pared abdominal",
+   "Anatomía quirúrgica del peritoneo y retroperitoneo",
+   "Anatomía quirúrgica de la región inguinocrural",
+   "Eventración de la pared abdominal",
+   "Hernia ventral complicada y de urgencia",
+   "Malla en reparación de pared abdominal"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Apendicitis aguda y apendicectomía abierta o laparoscópica",
+  "c": [
+   "Anatomía quirúrgica del apéndice",
+   "Apendicitis aguda",
+   "Neoplasias del apéndice"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Hernia inguinal en el adulto",
+  "c": [
+   "Hernia inguinal",
+   "Anatomía quirúrgica de la región inguinocrural",
+   "Reparación anterior de la hernia inguinal",
+   "Reparación preperitoneal de hernia inguinal",
+   "Dolor crónico después de hernioplastia inguinal",
+   "Hernia inguinal estrangulada"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Hernia umbilical y epigástrica",
+  "c": [
+   "Hernia umbilical del adulto",
+   "Hernia epigástrica"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Hernias y patología genital en lactantes y niños",
+  "c": [
+   "Embriología quirúrgica del tubo intestinal y las cavidades corporales",
+   "Hernia inguinal en el niño",
+   "Hernia umbilical infantil",
+   "Malformaciones congénitas de la pared abdominal",
+   "Hidrocele del adulto",
+   "Torsión testicular"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Várices de miembros inferiores y safenectomía",
+  "c": [
+   "Várices de miembros inferiores",
+   "Enfermedad venosa crónica",
+   "Clasificación CEAP",
+   "Úlcera venosa"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Anatomía del canal anal, hemorroides y abscesos del margen anal",
+  "c": [
+   "Anatomía quirúrgica del ano",
+   "Anatomía y fisiología quirúrgica del ano",
+   "Enfermedad hemorroidal",
+   "Absceso y fístula anorrectal",
+   "Várices anorrectales",
+   "Estenosis anal",
+   "Prurito anal",
+   "Dolor anorrectal funcional",
+   "Neoplasia intraepitelial anal",
+   "Cáncer anal"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Colostomías. Clasificación, indicaciones, técnica, complicaciones y cierre",
+  "c": [
+   "Colostomía",
+   "Complicaciones de ostomías",
+   "Hernia paraestomal",
+   "Cuidado del estoma"
+  ]
+ },
+ {
+  "anio": "Primer",
+  "t": "Ostomías, gastrostomía y yeyunostomía",
+  "c": [
+   "Ostomías digestivas",
+   "Gastrostomía",
+   "Yeyunostomía de alimentación",
+   "Ileostomía"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Fisuras y fístulas del margen anal",
+  "c": [
+   "Fisura anal",
+   "Absceso y fístula anorrectal"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Quiste sacrococcígeo",
+  "c": [
+   "Quiste pilonidal"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Hernias inguinales y crurales recidivadas",
+  "c": [
+   "Hernia inguinal",
+   "Hernia crural",
+   "Hernia inguinal recurrente",
+   "Reparación preperitoneal de hernia inguinal"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Várices residuales y recidivadas. Sistema profundo y perforantes",
+  "c": [
+   "Enfermedad venosa crónica",
+   "Perforantes venosas incompetentes",
+   "Úlcera venosa"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Vía biliar accesoria, litiasis, colecistitis y colecistectomía convencional",
+  "c": [
+   "Anatomía de las vías biliares extrahepáticas",
+   "Triángulo hepatocístico",
+   "Colelitiasis y cólico biliar",
+   "Colecistitis aguda",
+   "Colecistitis alitiásica",
+   "Técnica de colecistectomía por laparotomía",
+   "Complicaciones de la colecistectomía",
+   "Colecistectomía subtotal",
+   "Signo del fruncido en colecistectomía",
+   "Drenaje de la vesícula biliar"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Eventraciones abdominales y reparación con prótesis",
+  "c": [
+   "Eventración de la pared abdominal",
+   "Malla en reparación de pared abdominal",
+   "Reparación retromuscular de la eventración",
+   "Separación anterior de componentes",
+   "Pérdida de dominio en hernia ventral",
+   "Optimización preoperatoria en hernia ventral",
+   "Complicaciones de la reparación de hernia ventral",
+   "Abdomen abierto y cierre temporal",
+   "Fístula enterocutánea"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Patología mamaria y cirugía de la mama",
+  "c": [
+   "Anatomía quirúrgica de la mama y la axila",
+   "Evaluación de la patología mamaria",
+   "Cáncer de mama",
+   "Cirugía axilar en cáncer de mama",
+   "Reconstrucción mamaria"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Patología arterial periférica, bypass femoropoplíteo y amputaciones",
+  "c": [
+   "Enfermedad arterial periférica",
+   "Isquemia crónica amenazante de la extremidad",
+   "Revascularización arterial periférica",
+   "Evaluación vascular periférica",
+   "Decision endovascular vs abierta",
+   "Pie diabético"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Tromboembolismo pulmonar y paciente de alto riesgo",
+  "c": [
+   "Tromboembolia venosa perioperatoria",
+   "Trombosis venosa profunda",
+   "Tratamiento antitrombótico en cirugía vascular"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Manejo avanzado del politraumatizado y tratamiento definitivo de lesiones",
+  "c": [
+   "Trauma torácico",
+   "Trauma cervical",
+   "Lesión vascular cervical traumática",
+   "Traumatismo abdominal",
+   "Manejo no operatorio del trauma abdominal",
+   "Laparoscopia en cirugía de urgencia y trauma abdominal",
+   "Trauma hepático",
+   "Traumatismo esplénico",
+   "Trauma de intestino delgado",
+   "Trauma duodenopancreático",
+   "Trauma colónico",
+   "Trauma renal",
+   "Trauma de uréter, vejiga y uretra",
+   "Trauma pélvico",
+   "Trauma en el adulto mayor",
+   "Trauma vascular de extremidades",
+   "Trauma musculoesquelético agudo",
+   "Síndrome compartimental agudo de las extremidades"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Pancreatitis aguda y sus complicaciones",
+  "c": [
+   "Pancreatitis aguda",
+   "Pancreatitis aguda necrotizante",
+   "Pseudocisto pancreático",
+   "Manejo de la pancreatitis biliar",
+   "Necrosectomía pancreática",
+   "Síndrome de conducto pancreático desconectado",
+   "Drenaje del absceso pancreático"
+  ]
+ },
+ {
+  "anio": "Segundo",
+  "t": "Pancreatitis crónica y sus complicaciones",
+  "c": [
+   "Pancreatitis crónica",
+   "Derivación del Wirsung en pancreatitis crónica",
+   "Pancreatectomía con conservación duodenal",
+   "Esplacnicectomía para dolor pancreático"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Vía biliar principal, síndrome coledociano y exploración quirúrgica",
+  "c": [
+   "Anatomía de las vías biliares extrahepáticas",
+   "Coledocolitiasis",
+   "Evaluación diagnóstica de la ictericia",
+   "Síndrome de Mirizzi",
+   "Colangiografía peroperatoria en cirugía abierta",
+   "CPRE y esfinterotomía",
+   "Técnica de la anastomosis biliodigestiva"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Cirugía laparoscópica de la vía biliar y neumoperitoneo",
+  "c": [
+   "Principios de cirugía laparoscópica",
+   "Laparoscopia en cirugía de urgencia y trauma abdominal",
+   "Neumoperitoneo con técnica abierta de Hasson",
+   "Técnica de colecistectomía laparoscópica",
+   "Colangiografía peroperatoria por fluoroscopia",
+   "Colangiografía fluorescente con indocianina verde",
+   "Cirugía guiada por fluorescencia con indocianina verde",
+   "Colecistectomía subtotal",
+   "Signo del fruncido en colecistectomía",
+   "Coledocoscopia laparoscópica"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Lesiones quirúrgicas de la vía biliar y prevención",
+  "c": [
+   "Lesión de la vía biliar principal en colecistectomía",
+   "Prevención de lesiones durante la colecistectomía",
+   "Variantes anatómicas biliares en la colecistectomía",
+   "Conversión a laparotomía durante la colecistectomía",
+   "Colecistectomía subtotal",
+   "Signo del fruncido en colecistectomía"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Tratamiento quirúrgico de las lesiones de la vía biliar principal",
+  "c": [
+   "Reparación de la lesión biliar iatrogénica",
+   "Hepaticoyeyunostomía",
+   "Manejo percutáneo de la lesión biliar iatrogénica",
+   "Coledocoyeyunostomía en Y de Roux"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Patología tiroidea, tiroidectomías y vaciamiento ganglionar",
+  "c": [
+   "Anatomía quirúrgica del cuello",
+   "Nódulo tiroideo",
+   "Quiste del conducto tirogloso",
+   "Bocio e hipertiroidismo quirúrgico",
+   "Cáncer de tiroides",
+   "Tiroidectomía",
+   "Vaciamiento ganglionar cervical"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Úlcera gastroduodenal, gastrectomías y vagotomías",
+  "c": [
+   "Enfermedad ulcerosa péptica",
+   "Complicaciones de la úlcera gastroduodenal",
+   "Gastrectomía",
+   "Complicaciones de gastrectomía",
+   "Reconstrucción después de gastrectomía",
+   "Vagotomía gástrica",
+   "Piloroplastia"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Enfermedad por reflujo gastroesofágico y cirugía antirreflujo",
+  "c": [
+   "Enfermedad por reflujo gastroesofágico",
+   "Esófago de Barrett",
+   "Hernia hiatal y paraesofágica",
+   "Fundoplicatura laparoscópica"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Patología mamaria benigna y cáncer de mama",
+  "c": [
+   "Anatomía quirúrgica de la mama y la axila",
+   "Evaluación de la patología mamaria",
+   "Cáncer de mama",
+   "Cirugía axilar en cáncer de mama",
+   "Reconstrucción mamaria"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Nefrectomías",
+  "c": [
+   "Anatomía urológica para el cirujano general",
+   "Lesión iatrogénica de la vía urinaria",
+   "Nefrectomía",
+   "Nefroureterectomía"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Histerectomías",
+  "c": [
+   "Anatomía quirúrgica de la pelvis y el periné",
+   "Lesión iatrogénica de la vía urinaria",
+   "Histerectomía",
+   "Anatomía quirúrgica ginecológica",
+   "Cáncer de endometrio",
+   "Cáncer de cuello uterino",
+   "Leiomiomas uterinos y miomectomía"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Cáncer de colon y colectomías",
+  "c": [
+   "Anatomía quirúrgica del colon",
+   "Cirugía del cáncer de colon",
+   "Colectomía derecha",
+   "Colectomía izquierda",
+   "Pólipos colorrectales",
+   "Poliposis adenomatosa familiar",
+   "Poliposis asociada a MUTYH",
+   "Síndrome de Lynch",
+   "Síndromes de poliposis hamartomatosa"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Cáncer de recto y cirugía oncológica rectal",
+  "c": [
+   "Cirugía del cáncer de recto",
+   "Escisión total del mesorrecto",
+   "Preservación esfinteriana en cáncer de recto",
+   "Amputación abdominoperineal",
+   "Vigilancia y espera en cáncer de recto",
+   "Anatomía quirúrgica del recto"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Cáncer gástrico",
+  "c": [
+   "Cáncer gástrico",
+   "Linfadenectomía D2 gástrica",
+   "Gastrectomía"
+  ]
+ },
+ {
+  "anio": "Tercer",
+  "t": "Cáncer esofágico",
+  "c": [
+   "Esófago de Barrett",
+   "Cirugía del cáncer de esófago",
+   "Esofagectomía",
+   "Reconstrucción esofágica"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Patología de glándulas salivales, parotidectomía y submaxilectomía",
+  "c": [
+   "Anatomía quirúrgica del cuello",
+   "Parotidectomía",
+   "Cirugía submandibular y sublingual",
+   "Fístula salival cervicofacial"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Cáncer de cavidad oral y lesiones precancerosas",
+  "c": [
+   "Cáncer del piso de la boca",
+   "Cáncer de mucosa yugal",
+   "Tumores del labio",
+   "Glosectomía"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Vaciamiento ganglionar cervical",
+  "c": [
+   "Vaciamiento ganglionar cervical"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Empiema y decorticación pulmonar",
+  "c": [
+   "Empiema pleural"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Cáncer de pulmón",
+  "c": [
+   "Anatomía quirúrgica del pulmón y del árbol traqueobronquial",
+   "Anatomía quirúrgica del mediastino",
+   "Cáncer de pulmón",
+   "Evaluación fisiológica para resección pulmonar",
+   "Resección pulmonar anatómica",
+   "Estadificación TNM del cáncer torácico"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Tumores hepáticos y hepatectomías",
+  "c": [
+   "Evaluación y principios de la hepatectomía",
+   "Tumores benignos del hígado",
+   "Carcinoma hepatocelular",
+   "Metástasis hepáticas",
+   "Neoplasias quísticas del hígado"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Quiste hidatídico hepático",
+  "c": [
+   "Equinococosis hepática"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Cáncer de la vía biliar",
+  "c": [
+   "Cáncer de la vía biliar principal",
+   "Cáncer de vesícula biliar",
+   "Paliación de las neoplasias biliopancreáticas",
+   "Hepatectomía derecha ampliada al segmento IV",
+   "Vaciamiento ganglionar en el cáncer de vesícula"
+  ]
+ },
+ {
+  "anio": "Cuarto",
+  "t": "Cáncer de páncreas",
+  "c": [
+   "Adenocarcinoma ductal de páncreas",
+   "Duodenopancreatectomía cefálica",
+   "Paliación del cáncer de páncreas",
+   "Paliación de las neoplasias biliopancreáticas",
+   "Cuidados paliativos en cirugía",
+   "Supervivencia del cáncer de páncreas resecable",
+   "Riesgo vascular en DPC"
+  ]
+ }
+]
