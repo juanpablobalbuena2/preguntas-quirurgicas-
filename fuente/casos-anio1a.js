@@ -11,11 +11,11 @@ module.exports = [
  vineta: 'Varón de 61 años sin diabetes conocida, en el día 1 de una hemicolectomía derecha. Glucemias capilares de 220 y 245 mg/dl. Hemodinámicamente estable, tolera líquidos.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Cómo interpretás la hiperglucemia?',
-    opciones: ['Hiperglucemia de estrés por la respuesta a la agresión quirúrgica', 'Diabetes tipo 1 de debut desencadenada por la cirugía', 'Un valor esperable sin importancia clínica en el posoperatorio', 'Efecto de la solución glucosada de mantenimiento que recibe'],
+    opciones: ['Hiperglucemia de estrés por la respuesta a la agresión quirúrgica', 'Diabetes tipo 1 de debut desencadenada por la cirugía', 'Un valor esperable y sin importancia clínica en el posoperatorio inmediato', 'Efecto de la solución glucosada de mantenimiento que recibe'],
     explicacion: 'La cirugía activa el eje hipotálamo-hipofisario-suprarrenal y la respuesta inflamatoria: suben cortisol, catecolaminas y glucagón, y aparece resistencia a la insulina. La hiperglucemia resultante se asocia con más infección y complicaciones aunque el paciente no sea diabético.',
     fuente: 'Hermes: Respuesta inflamatoria a la agresión quirúrgica' },
   { tipo: 'Fármaco', pregunta: '¿Cómo la tratás?',
-    opciones: ['Insulina basal con correcciones, con objetivo de 140 a 180 mg/dl', 'Metformina oral desde hoy y control con endocrinología al alta', 'Escala de insulina corriente sola, cuando supere 300 mg/dl', 'Infusión de insulina para mantener entre 80 y 110 mg/dl'],
+    opciones: ['Insulina basal con correcciones, con objetivo de 140 a 180 mg/dl', 'Metformina oral desde hoy y control con endocrinología después del alta', 'Escala de insulina corriente sola, cuando supere 300 mg/dl', 'Infusión de insulina para mantener entre 80 y 110 mg/dl'],
     explicacion: 'En pacientes internados no críticos el objetivo es 140 a 180 mg/dl con insulina basal y correcciones. Las escalas reactivas solas tienen peor control, la metformina no se usa en el posoperatorio inmediato y el control estricto (80 a 110) aumentó la hipoglucemia y la mortalidad en el ensayo NICE-SUGAR.',
     fuente: 'ADA Standards of Care, atención hospitalaria; ensayo NICE-SUGAR' },
   { tipo: 'Medidas generales', pregunta: '¿Qué medida perioperatoria contribuye a limitar la respuesta metabólica?',
@@ -30,7 +30,7 @@ module.exports = [
  vineta: 'Mujer de 74 años con insuficiencia renal crónica, en el día 2 de una laparotomía por oclusión. Diuresis 15 ml/h en las últimas 6 horas, debilidad. Potasio 7,1 mEq/l; el ECG muestra ondas T picudas y QRS ensanchado.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué tiene y qué urgencia tiene?',
-    opciones: ['Hiperpotasemia grave con cambios en el ECG: emergencia', 'Hiperpotasemia leve: repetir el ionograma en 24 horas', 'Probable muestra hemolizada: repetir antes de tratar', 'Hipopotasemia por pérdidas digestivas posoperatorias'],
+    opciones: ['Hiperpotasemia grave con cambios en el ECG: emergencia', 'Hiperpotasemia leve: repetir el ionograma de control en 24 horas', 'Probable muestra hemolizada: repetir antes de tratar', 'Hipopotasemia por pérdidas digestivas posoperatorias'],
     explicacion: 'Un potasio de 6,5 mEq/l o más, o cualquier valor elevado con cambios en el ECG (T picudas, QRS ancho), es una emergencia por riesgo de arritmia. Se trata sin esperar una nueva muestra, aunque se puede confirmar en paralelo.',
     fuente: 'UK Kidney Association, hiperpotasemia aguda en adultos' },
   { tipo: 'Fármaco', pregunta: '¿Qué indicás primero para proteger el miocardio?',
@@ -42,7 +42,7 @@ module.exports = [
     explicacion: 'La guía británica indica 30 ml de gluconato de calcio al 10 % IV en 10 minutos, repetible si persisten los cambios del ECG. La vía oral no sirve y un bolo masivo rápido arriesga arritmia.',
     fuente: 'UK Kidney Association, hiperpotasemia aguda en adultos' },
   { tipo: 'Fármaco', pregunta: '¿Cómo bajás el potasio rápidamente?',
-    opciones: ['10 U de insulina corriente con 25 g de glucosa IV, controlando glucemias', '10 U de insulina corriente IV sin glucosa, para no elevar la glucemia', '100 U de insulina corriente IV en bolo, con controles horarios', '25 g de glucosa IV sola, para estimular la insulina endógena'],
+    opciones: ['10 U de insulina corriente con 25 g de glucosa IV, controlando glucemias', '10 U de insulina corriente IV sin glucosa, para no elevar todavía más la glucemia', '100 U de insulina corriente IV en bolo, con controles horarios', '25 g de glucosa IV sola, para estimular la insulina endógena'],
     explicacion: 'La insulina mete el potasio en la célula; la glucosa evita la hipoglucemia. Si la glucemia previa es menor de 7 mmol/l (126 mg/dl), se continúa con glucosa al 10 % a 50 ml/h durante 5 horas. Con oliguria y falla renal, planificar diálisis.',
     fuente: 'UK Kidney Association, hiperpotasemia aguda en adultos' }
  ]
@@ -61,11 +61,11 @@ module.exports = [
     explicacion: 'Con síntomas graves se usa solución al 3 % en bolos. La restricción hídrica o la solución fisiológica son lentas e insuficientes, y los vaptanes no están indicados en la emergencia. Suspendé las soluciones hipotónicas.',
     fuente: 'Guía europea de hiponatremia (ESE y ERA-EDTA, 2014)' },
   { tipo: 'Dosis', pregunta: '¿Con qué esquema?',
-    opciones: ['150 ml al 3 % en 20 minutos, repetible según el sodio', '500 ml al 3 % en 1 hora y control a las 6 horas', '1000 ml al 3 % en infusión continua de 24 horas', '50 ml al 3 % por día hasta normalizar el sodio'],
+    opciones: ['150 ml al 3 % en 20 minutos, repetible según el sodio', '500 ml al 3 % en 1 hora y control a las 6 horas', '1000 ml al 3 % en infusión continua durante las próximas 24 horas', '50 ml al 3 % por día hasta normalizar el sodio'],
     explicacion: 'Se administran bolos de 150 ml de solución al 3 % en 20 minutos, controlando el sodio entre bolos, hasta lograr una suba de 5 mEq/l o mejoría de los síntomas.',
     fuente: 'Guía europea de hiponatremia (ESE y ERA-EDTA, 2014)' },
   { tipo: 'Medidas generales', pregunta: '¿Cuál es el límite de corrección?',
-    opciones: ['No más de 10 mEq/l en 24 horas y 8 mEq/l en las 24 siguientes', 'Normalizar el sodio dentro de las primeras 6 horas', 'No hay límite porque la hiponatremia es aguda', 'Hasta 20 mEq/l en las primeras 24 horas si hay síntomas'],
+    opciones: ['No más de 10 mEq/l en 24 horas y 8 mEq/l en las 24 siguientes', 'Normalizar el sodio dentro de las primeras 6 horas', 'No hay límite porque la hiponatremia es aguda', 'Hasta 20 mEq/l en las primeras 24 horas si persisten los síntomas graves'],
     explicacion: 'Superar 10 mEq/l en 24 horas aumenta el riesgo de desmielinización osmótica. Tras la mejoría se mantiene una vía con solución fisiológica mínima y se trata la causa.',
     fuente: 'Guía europea de hiponatremia (ESE y ERA-EDTA, 2014)' }
  ]
@@ -107,7 +107,7 @@ module.exports = [
     explicacion: 'Compromiso cutáneo, respiratorio y cardiovascular minutos después de un fármaco es anafilaxia. En quirófano los desencadenantes más frecuentes son relajantes musculares, antibióticos, clorhexidina y látex.',
     fuente: 'WAO, guía de anafilaxia 2020' },
   { tipo: 'Fármaco', pregunta: '¿Cuál es el fármaco de primera línea?',
-    opciones: ['Adrenalina (epinefrina)', 'Difenhidramina', 'Hidrocortisona', 'Salbutamol inhalado'],
+    opciones: ['Adrenalina', 'Difenhidramina', 'Hidrocortisona', 'Salbutamol'],
     explicacion: 'La adrenalina es el único fármaco que revierte la anafilaxia y no debe demorarse. Antihistamínicos y corticoides son coadyuvantes que no tratan el shock.',
     fuente: 'WAO, guía de anafilaxia 2020' },
   { tipo: 'Dosis', pregunta: '¿Qué dosis inicial de adrenalina si no tiene vía de infusión titulada?',
@@ -130,7 +130,7 @@ module.exports = [
     explicacion: 'Pus en la piel y el celular subcutáneo dentro de los 30 días, con fascia íntegra, define la infección incisional superficial. Si se sospecha disrupción de la fascia o colección profunda, hay que estudiarla.',
     fuente: 'Hermes: Infección del sitio quirúrgico; WSES/SIS-E 2018' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué hacés?',
-    opciones: ['Abrir la herida, drenar, irrigar y curar', 'Antibióticos orales sin abrir la herida', 'Punzar con aguja y dejar cerrada', 'Reoperar para lavado peritoneal'],
+    opciones: ['Abrir la herida, drenar, irrigar y curar', 'Antibióticos orales sin abrir la herida y control en 48 horas', 'Punzar con aguja y dejar cerrada', 'Reoperar para lavado peritoneal'],
     explicacion: 'La infección superficial se trata abriendo amplia y rápidamente la incisión. Sin la apertura, el antibiótico solo no resuelve la colección.',
     fuente: 'WSES/SIS-E 2018, infecciones de piel y partes blandas' },
   { tipo: 'Fármaco', pregunta: '¿Indicás antibióticos?',
@@ -153,7 +153,7 @@ module.exports = [
     explicacion: 'Dolor desproporcionado, edema más allá del eritema, bullas, crepitación e hipotensión son signos de alarma de infección necrosante. La piel inicial puede parecer una celulitis y la ausencia de gas no la excluye.',
     fuente: 'WSES/SIS-E 2018; Hermes: Infecciones necrosantes de tejidos blandos' },
   { tipo: 'Estudios', pregunta: '¿Necesitás una TC o el puntaje LRINEC antes de operar?',
-    opciones: ['No: la imagen o un puntaje no deben demorar la cirugía', 'Sí, un LRINEC de 6 o más para confirmar la indicación', 'Sí, una TC para buscar gas antes de operar', 'Sí, una resonancia para definir la extensión'],
+    opciones: ['No: la imagen o un puntaje no deben demorar la cirugía', 'Sí, un LRINEC de 6 o más para confirmar la indicación quirúrgica', 'Sí, una TC para buscar gas antes de operar', 'Sí, una resonancia para definir la extensión'],
     explicacion: 'El LRINEC no sirve para descartar (sensibilidad cercana al 68 %) y la imagen solo se usa si no demora la operación. Ante alta sospecha clínica y shock, el diagnóstico se confirma en el quirófano.',
     fuente: 'WSES/SIS-E 2018' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué indicás?',
@@ -211,7 +211,7 @@ module.exports = [
     explicacion: 'Para el paciente quirúrgico ESPEN propone 25 a 30 kcal/kg/día y alrededor de 1,5 g/kg/día de proteínas, ajustando según la respuesta.',
     fuente: 'ESPEN 2021, guía práctica de nutrición en cirugía' },
   { tipo: 'Fármaco', pregunta: 'Lleva 10 días casi sin comer. ¿Qué precaución tomás al iniciar la nutrición?',
-    opciones: ['Aporte inicial bajo, tiamina antes y control de fósforo, potasio y magnesio', 'Empezar directamente con el aporte total calculado para su peso', 'Restringir el fósforo de la fórmula para evitar la hiperfosfatemia', 'Indicar la fórmula completa y controlar electrolitos una vez por semana'],
+    opciones: ['Aporte inicial bajo, tiamina antes y control de fósforo, potasio y magnesio', 'Empezar directamente con el aporte total calculado para su peso', 'Restringir el fósforo de la fórmula para evitar la hiperfosfatemia', 'Indicar la fórmula completa desde el inicio y controlar electrolitos una vez por semana'],
     explicacion: 'La realimentación puede causar hipofosfatemia grave, arritmias y falla cardíaca. En pacientes de alto riesgo NICE sugiere empezar con un máximo de 10 kcal/kg/día, suplementar tiamina antes de alimentar y aumentar progresivamente con control de electrolitos.',
     fuente: 'NICE CG32, soporte nutricional en adultos' }
  ]
@@ -253,7 +253,7 @@ module.exports = [
     explicacion: 'Por su vida media corta, los anticoagulantes directos se suspenden y se reinician sin puente. El puente aumenta el sangrado sin reducir los eventos tromboembólicos.',
     fuente: 'Estudio PAUSE (Douketis, 2019)' },
   { tipo: 'Medidas generales', pregunta: '¿Cuándo lo reiniciás?',
-    opciones: ['A las 48 a 72 horas, con hemostasia asegurada', 'A las 6 horas de terminada la cirugía', 'A los 30 días, con el control de cirugía', 'Lo reemplazo por aspirina tras la cirugía'],
+    opciones: ['A las 48 a 72 horas, con hemostasia asegurada', 'A las 6 horas de terminada la cirugía', 'A los 30 días, cuando vuelva al control posoperatorio', 'Lo reemplazo por aspirina tras la cirugía'],
     explicacion: 'Tras cirugía de alto riesgo de sangrado el anticoagulante se reinicia a las 48 a 72 horas; mientras tanto se usa profilaxis de TEV a dosis profiláctica si corresponde.',
     fuente: 'Estudio PAUSE (Douketis, 2019)' }
  ]
@@ -299,7 +299,7 @@ module.exports = [
     explicacion: 'La dosis profiláctica de ondansetrón es 4 mg IV al final de la cirugía; la de dexametasona, 4 a 8 mg IV en la inducción.',
     fuente: 'Cuarto consenso de náuseas y vómitos posoperatorios (Gan, 2020)' },
   { tipo: 'Fármaco', pregunta: '¿Qué analgesia base indicás?',
-    opciones: ['Paracetamol 1 g cada 6 horas más un AINE, con opioide de rescate', 'Morfina en horario fijo cada 4 horas como analgesia principal', 'Paracetamol 2 g cada 4 horas más tramadol de rescate', 'Sin analgesia pautada: opioides a demanda si refiere dolor'],
+    opciones: ['Paracetamol 1 g cada 6 horas más un AINE, con opioide de rescate', 'Morfina en horario fijo cada 4 horas como analgesia principal del posoperatorio', 'Paracetamol 2 g cada 4 horas más tramadol de rescate', 'Sin analgesia pautada: opioides a demanda si refiere dolor'],
     explicacion: 'La analgesia multimodal combina paracetamol (1 g cada 6 horas, máximo 4 g/día) con AINE y anestesia local en los trocares, dejando los opioides para el rescate; reduce náuseas, íleo y sedación.',
     fuente: 'Hermes: Dolor perioperatorio; ficha técnica de paracetamol' }
  ]
@@ -356,7 +356,7 @@ module.exports = [
  vineta: 'Mujer de 30 años mordida por un perro conocido y vacunado en el dorso de la mano hace 3 horas. Herida punzante de 1 cm, sin compromiso tendinoso.',
  pasos: [
   { tipo: 'Conducta quirúrgica', pregunta: '¿Suturás la herida?',
-    opciones: ['No: es punzante y en la mano; se irriga y se deja abierta', 'Sí, cierre primario para mejorar la cicatriz', 'Sí, con sutura intradérmica y antibiótico', 'Resección de los bordes y cierre primario inmediato'],
+    opciones: ['No: es punzante y en la mano; se irriga y se deja abierta', 'Sí, cierre primario para mejorar la cicatriz', 'Sí, con sutura intradérmica y antibiótico', 'Resección de los bordes de la herida y cierre primario inmediato con nailon'],
     explicacion: 'Las mordeduras punzantes y las de la mano tienen alto riesgo de infección y no se cierran en forma primaria. Se irrigan, se desbrida lo desvitalizado y se cubren.',
     fuente: 'IDSA 2014, infecciones de piel y partes blandas (mordeduras)' },
   { tipo: 'Fármaco', pregunta: '¿Indicás antibiótico?',
@@ -379,7 +379,7 @@ module.exports = [
  vineta: 'Sos residente y te pinchás con la aguja de sutura después de usarla en un paciente con infección por VIH con carga viral desconocida. Tenés el esquema de hepatitis B completo con anticuerpos positivos.',
  pasos: [
   { tipo: 'Medidas generales', pregunta: '¿Qué hacés primero?',
-    opciones: ['Lavar con agua y jabón, sin exprimir, y reportar de inmediato', 'Exprimir la herida y aplicar lavandina antes de reportar', 'Terminar la cirugía y consultar al día siguiente', 'Esperar la serología del paciente antes de consultar'],
+    opciones: ['Lavar con agua y jabón, sin exprimir, y reportar de inmediato', 'Exprimir la herida y aplicar lavandina antes de reportar el accidente', 'Terminar la cirugía y consultar al día siguiente', 'Esperar la serología del paciente antes de consultar'],
     explicacion: 'Se lava con agua y jabón y se informa enseguida al servicio de salud ocupacional. Exprimir o usar cáusticos no reduce la transmisión y daña el tejido. La consulta debe ser inmediata porque la profilaxis tiene una ventana corta.',
     fuente: 'CDC, manejo de la exposición ocupacional a sangre' },
   { tipo: 'Fármaco', pregunta: '¿Qué profilaxis indicás?',
@@ -417,7 +417,7 @@ module.exports = [
  vineta: 'Mujer de 47 años con una masa de 8 cm, profunda a la fascia, en la cara anterior del muslo, que creció en 4 meses. Indolora, sin antecedente traumático.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué sospechás?',
-    opciones: ['Sarcoma de partes blandas hasta demostrar lo contrario', 'Lipoma profundo: observar con control clínico', 'Hematoma organizado por un traumatismo inadvertido', 'Quiste epidermoide de inclusión'],
+    opciones: ['Sarcoma de partes blandas hasta demostrar lo contrario', 'Lipoma profundo: observar con control clínico', 'Hematoma organizado por un traumatismo menor inadvertido', 'Quiste epidermoide de inclusión'],
     explicacion: 'Toda masa de partes blandas de más de 5 cm, profunda a la fascia o que crece debe estudiarse como posible sarcoma antes de cualquier resección.',
     fuente: 'ESMO, guía de sarcomas de partes blandas' },
   { tipo: 'Estudios', pregunta: '¿Qué estudios pedís?',
@@ -459,7 +459,7 @@ module.exports = [
     explicacion: 'La guía ecográfica en tiempo real reduce las punciones arteriales, el neumotórax y los intentos fallidos, sobre todo en la vena yugular interna.',
     fuente: 'CDC 2011, prevención de infecciones de catéteres intravasculares' },
   { tipo: 'Medidas generales', pregunta: '¿Qué medidas previenen la infección del catéter?',
-    opciones: ['Máxima barrera estéril, clorhexidina alcohólica y retiro precoz', 'Antibiótico profiláctico sistémico durante la colocación', 'Recambio rutinario del catéter cada 3 días sobre guía', 'Povidona acuosa y guantes estériles, sin camisolín'],
+    opciones: ['Máxima barrera estéril, clorhexidina alcohólica y retiro precoz', 'Antibiótico profiláctico sistémico durante la colocación y 48 horas después', 'Recambio rutinario del catéter cada 3 días sobre guía', 'Povidona acuosa y guantes estériles, sin camisolín'],
     explicacion: 'Máxima barrera (gorro, barbijo, camisolín, guantes y campo grande), clorhexidina alcohólica y retiro temprano reducen la bacteriemia. No se recomiendan antibióticos profilácticos ni recambios programados.',
     fuente: 'CDC 2011, prevención de infecciones de catéteres intravasculares' },
   { tipo: 'Técnica', pregunta: '¿Qué sitio tiene menor riesgo de infección?',
