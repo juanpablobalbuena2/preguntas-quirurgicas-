@@ -40,7 +40,7 @@ module.exports = [
     explicacion: 'Hipotensión, yugulares ingurgitadas, tráquea desviada al lado contrario y ausencia de murmullo del lado afectado son un neumotórax a tensión, un diagnóstico clínico.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Estudios', pregunta: '¿Pedís una radiografía de tórax antes de tratar?',
-    opciones: ['No: se descomprime de inmediato', 'Sí, para confirmar el lado', 'Sí, una TC de tórax sin contraste', 'Sí, una ecografía formal por radiología'],
+    opciones: ['No: se descomprime de inmediato', 'Sí, para confirmar el lado afectado', 'Sí, una TC de tórax sin contraste', 'Sí, una ecografía formal por radiología'],
     explicacion: 'El neumotórax a tensión se trata antes de cualquier imagen; esperar una radiografía puede llevar al paro.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Técnica', pregunta: '¿Dónde descomprimís con aguja en el adulto?',
@@ -63,7 +63,7 @@ module.exports = [
     explicacion: 'Un drenaje inicial de 1500 ml o más, o un tercio de la volemia, define el hemotórax masivo.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué indicás?',
-    opciones: ['Toracotomía de urgencia', 'Segundo tubo de tórax', 'Observación con control del débito', 'Fibrinolíticos intrapleurales'],
+    opciones: ['Toracotomía de urgencia', 'Segundo tubo de tórax de mayor calibre', 'Observación con control del débito', 'Fibrinolíticos intrapleurales'],
     explicacion: 'Un drenaje inmediato de 1500 ml o más, o más de 200 ml/h durante 2 a 4 horas, o la necesidad persistente de transfusión indican toracotomía.',
     fuente: 'ATLS 10.ª ed., trauma torácico' },
   { tipo: 'Medidas generales', pregunta: 'Si el drenaje hubiera sido de 400 ml y luego mínimo, ¿qué harías con el tubo?',
@@ -151,7 +151,7 @@ module.exports = [
     explicacion: 'Un pH menor de 7,2, glucosa baja, pus o tabiques definen el derrame complicado o empiema y obligan a drenar.',
     fuente: 'BTS 2023, enfermedad pleural' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué indicás?',
-    opciones: ['Drenaje con tubo de tórax y antibióticos', 'Antibióticos solos durante 6 semanas', 'Punciones evacuadoras semanales con antibióticos', 'Decorticación abierta como primera opción'],
+    opciones: ['Drenaje con tubo de tórax y antibióticos', 'Antibióticos solos durante 6 semanas por vía IV', 'Punciones evacuadoras semanales con antibióticos', 'Decorticación abierta como primera opción'],
     explicacion: 'El derrame complicado necesita drenaje además de antibióticos. La cirugía (videotoracoscopia) se reserva para el fracaso del drenaje y del tratamiento intrapleural.',
     fuente: 'BTS 2023, enfermedad pleural' },
   { tipo: 'Fármaco', pregunta: 'El drenaje es insuficiente por los tabiques. ¿Qué tratamiento intrapleural agregás?',
@@ -239,7 +239,7 @@ module.exports = [
     explicacion: 'El lavado no redujo los abscesos frente a la aspiración sola en la apendicitis complicada.',
     fuente: 'WSES 2020, apendicitis aguda' },
   { tipo: 'Fármaco', pregunta: '¿Qué esquema antibiótico indicás?',
-    opciones: ['Ceftriaxona más metronidazol', 'Ampicilina-sulbactam', 'Cefalexina por vía oral', 'Vancomicina sola'],
+    opciones: ['Ceftriaxona más metronidazol', 'Ampicilina-sulbactam en monoterapia', 'Cefalexina por vía oral durante 10 días', 'Vancomicina IV en monoterapia'],
     explicacion: 'La infección intraabdominal comunitaria se cubre contra enterobacterias y anaerobios, por ejemplo con cefalosporina de tercera generación más metronidazol. Ampicilina-sulbactam no se recomienda por la resistencia de E. coli.',
     fuente: 'SIS/IDSA 2010, infección intraabdominal complicada' },
   { tipo: 'Dosis', pregunta: '¿Qué dosis de metronidazol?',
@@ -247,7 +247,7 @@ module.exports = [
     explicacion: 'La dosis IV es 500 mg cada 8 a 12 horas o 1500 mg cada 24 horas.',
     fuente: 'SIS/IDSA 2010, tabla de dosis' },
   { tipo: 'Medidas generales', pregunta: '¿Cuánto dura el antibiótico tras un buen control del foco?',
-    opciones: ['De 3 a 5 días', 'De 14 días', 'Hasta normalizar los leucocitos', 'Una dosis única'],
+    opciones: ['De 3 a 5 días', 'De 14 días completos', 'Hasta normalizar los leucocitos', 'Una dosis única'],
     explicacion: 'Con control adecuado del foco, WSES 2020 propone 3 a 5 días; en el ensayo STOP-IT, 4 días fueron tan efectivos como tratamientos más largos.',
     fuente: 'WSES 2020; ensayo STOP-IT' }
  ]
@@ -361,7 +361,7 @@ module.exports = [
     explicacion: 'Una ecografía normal no descarta la torsión y la demora reduce la viabilidad, que cae mucho después de las 6 horas. Con sospecha alta, el quirófano no espera la imagen.',
     fuente: 'Hermes: Torsión testicular' },
   { tipo: 'Técnica', pregunta: 'El testículo recupera el color tras destorcerlo. ¿Qué hacés?',
-    opciones: ['Orquidopexia bilateral', 'Orquidopexia solo del lado afectado', 'Orquiectomía del lado afectado', 'Destorcer y cerrar sin fijar'],
+    opciones: ['Orquidopexia de ambos testículos', 'Orquidopexia solo del lado afectado', 'Orquiectomía del lado afectado', 'Destorcer y cerrar sin fijar'],
     explicacion: 'La anomalía de fijación (badajo de campana) suele ser bilateral, por lo que se fijan ambos testículos. Si el testículo no es viable, se extirpa y se fija el contralateral.',
     fuente: 'Hermes: Torsión testicular' }
  ]

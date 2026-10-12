@@ -15,7 +15,7 @@ module.exports = [
     explicacion: 'Más de 6 semanas de evolución, colgajo centinela, papila hipertrófica y fibras del esfínter interno expuestas definen la cronicidad. La ubicación posterior en la línea media es típica; las laterales obligan a buscar otra causa.',
     fuente: 'WSES-AAST 2021; Hermes: Fisura anal' },
   { tipo: 'Medidas generales', pregunta: '¿Qué medidas generales indicás?',
-    opciones: ['Fibra, agua, baños de asiento y analgesia', 'Dieta sin residuos para defecar menos veces', 'Laxantes estimulantes diarios por un mes', 'Ir directo a la esfinterotomía sin medidas previas'],
+    opciones: ['Fibra, agua, baños de asiento y analgesia', 'Dieta sin residuos para defecar menos veces', 'Laxantes estimulantes diarios por un mes completo', 'Ir directo a la esfinterotomía sin medidas previas'],
     explicacion: 'Corregir la consistencia fecal es la base de todo tratamiento: las heces duras perpetúan la lesión.',
     fuente: 'WSES-AAST 2021; Hermes: Fisura anal' },
   { tipo: 'Fármaco', pregunta: '¿Qué tratamiento farmacológico de primera línea indicás?',
@@ -46,7 +46,7 @@ module.exports = [
     explicacion: 'La resonancia es el mapa preferido para fístulas complejas, recurrentes o en Crohn. En una fístula simple baja puede bastar el examen bajo anestesia.',
     fuente: 'Hermes: Absceso y fístula anorrectal' },
   { tipo: 'Conducta quirúrgica', pregunta: 'En el examen bajo anestesia es interesfinteriana baja. ¿Qué hacés?',
-    opciones: ['Fistulotomía', 'Colgajo de avance rectal', 'Colostomía', 'Antibióticos prolongados'],
+    opciones: ['Fistulotomía', 'Colgajo de avance rectal', 'Colostomía de protección', 'Antibióticos prolongados'],
     explicacion: 'La fistulotomía cura la fístula simple baja con mínimo riesgo para la continencia. Las técnicas que preservan el esfínter (sedal, colgajo, LIFT) se reservan para fístulas que comprometen más esfínter.',
     fuente: 'Hermes: Absceso y fístula anorrectal' },
   { tipo: 'Técnica', pregunta: 'Si comprometiera más de un tercio del esfínter externo, ¿qué harías en un primer tiempo?',
@@ -61,7 +61,7 @@ module.exports = [
  vineta: 'Varón de 20 años, peludo, con 3 días de dolor y tumefacción fluctuante en el pliegue interglúteo. Se ven dos fositas en la línea media. Afebril.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué tiene?',
-    opciones: ['Absceso pilonidal', 'Absceso perianal', 'Hidradenitis supurativa', 'Quiste dermoide sacro'],
+    opciones: ['Absceso pilonidal', 'Absceso perianal profundo', 'Hidradenitis supurativa', 'Quiste dermoide sacro'],
     explicacion: 'Fositas en la línea media del pliegue con un absceso adyacente son la presentación aguda de la enfermedad pilonidal.',
     fuente: 'Hermes: Quiste pilonidal' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué hacés ahora?',
@@ -168,7 +168,7 @@ module.exports = [
  vineta: 'Varón de 64 años, 3 semanas después de una fractura de cadera. Disnea súbita, presión 78/50 mmHg pese a líquidos, ventrículo derecho dilatado en la ecografía. No operado recientemente ni con sangrado activo.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué riesgo tiene?',
-    opciones: ['Riesgo alto', 'Riesgo intermedio-bajo', 'Riesgo bajo', 'Riesgo intermedio-alto'],
+    opciones: ['Riesgo alto', 'Riesgo intermedio-bajo', 'Riesgo bajo, por la edad', 'Riesgo intermedio-alto'],
     explicacion: 'La hipotensión persistente o el shock definen la embolia de riesgo alto, con mortalidad elevada a corto plazo.',
     fuente: 'ESC 2019, embolia pulmonar' },
   { tipo: 'Fármaco', pregunta: '¿Qué tratamiento indicás?',
@@ -222,7 +222,7 @@ module.exports = [
     explicacion: 'Una extremidad amenazada se revasculariza con urgencia; en una embolia femoral, la embolectomía con Fogarty es rápida y eficaz.',
     fuente: 'ESVS 2020, isquemia aguda de miembros' },
   { tipo: 'Técnica', pregunta: 'Tras revascularizar, la pantorrilla está tensa y duele al estirar los dedos. ¿Qué hacés?',
-    opciones: ['Fasciotomía de los cuatro compartimentos', 'Elevar el miembro y observar la evolución', 'Vendaje compresivo y analgesia', 'Esperar la medición de presiones a las 24 horas'],
+    opciones: ['Fasciotomía de los cuatro compartimentos', 'Elevar el miembro y observar la evolución', 'Vendaje compresivo y analgesia con opioides', 'Esperar la medición de presiones a las 24 horas'],
     explicacion: 'El síndrome compartimental por reperfusión se trata con fasciotomía completa de los cuatro compartimentos, sin esperar déficit motor ni ausencia de pulso.',
     fuente: 'ESVS 2020; Hermes: Síndrome compartimental agudo de las extremidades' }
  ]
@@ -302,11 +302,11 @@ module.exports = [
     explicacion: 'El paciente estable sin otra indicación de laparotomía se maneja sin operar, siempre que haya vigilancia, controles seriados y capacidad de rescate.',
     fuente: 'WSES 2017, trauma esplénico' },
   { tipo: 'Medidas generales', pregunta: '¿Qué controles hacés?',
-    opciones: ['Examen y hemoglobina seriados', 'Sin controles si sigue estable', 'TC de abdomen cada 6 horas', 'Laparoscopia diagnóstica a las 24 h'],
+    opciones: ['Examen y hemoglobina seriados', 'Sin controles si sigue estable', 'TC de abdomen con contraste cada 6 horas', 'Laparoscopia diagnóstica a las 24 h'],
     explicacion: 'Se vigilan los signos vitales, el abdomen y la hemoglobina; ante deterioro se considera angioembolización o cirugía.',
     fuente: 'WSES 2017, trauma esplénico' },
   { tipo: 'Fármaco', pregunta: 'Si terminara esplenectomizado, ¿qué vacunas indicás?',
-    opciones: ['Neumococo, meningococo y Hib', 'Antigripal anual y hepatitis B', 'Antitetánica y antigripal', 'BCG y triple viral de refuerzo'],
+    opciones: ['Neumococo, meningococo y Hib', 'Antigripal anual y hepatitis B', 'Antitetánica y antigripal anual', 'BCG y triple viral de refuerzo'],
     explicacion: 'La asplenia aumenta el riesgo de sepsis fulminante por gérmenes encapsulados; se vacuna contra neumococo, meningococo y Haemophilus, idealmente a partir de las 2 semanas de la cirugía, más antigripal anual.',
     fuente: 'WSES 2017, trauma esplénico' }
  ]
@@ -367,7 +367,7 @@ module.exports = [
     explicacion: 'Ante infección de la necrosis se indican antibióticos que penetren el páncreas, como los carbapenémicos, ajustados a los cultivos obtenidos al drenar.',
     fuente: 'WSES 2019, pancreatitis grave' },
   { tipo: 'Dosis', pregunta: '¿Qué dosis de meropenem?',
-    opciones: ['1 g IV cada 8 horas', '1 g VO cada 24 horas', '100 mg IV cada 12 horas', '6 g IV en bolo'],
+    opciones: ['1 g IV cada 8 horas', '1 g VO cada 24 horas', '100 mg IV cada 12 horas', '6 g IV en bolo único diario'],
     explicacion: 'La dosis de meropenem en infección intraabdominal es 1 g IV cada 8 horas, ajustada a la función renal.',
     fuente: 'SIS/IDSA 2010, tabla de dosis' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Cómo controlás el foco?',
@@ -382,7 +382,7 @@ module.exports = [
  vineta: 'Varón de 48 años con consumo de alcohol de 20 años y tabaquismo. Dolor epigástrico recurrente, pérdida de peso y deposiciones voluminosas, grasas y malolientes. TC: calcificaciones pancreáticas y Wirsung de 9 mm con litiasis cefálica.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué tiene?',
-    opciones: ['Pancreatitis crónica con insuficiencia exocrina', 'Pancreatitis aguda recurrente sin cambios crónicos', 'Adenocarcinoma de cabeza de páncreas con obstrucción', 'Enfermedad celíaca con malabsorción secundaria'],
+    opciones: ['Pancreatitis crónica con insuficiencia exocrina', 'Pancreatitis aguda recurrente sin cambios crónicos', 'Adenocarcinoma de cabeza de páncreas con obstrucción', 'Enfermedad celíaca con malabsorción secundaria grave'],
     explicacion: 'Calcificaciones, dilatación ductal y esteatorrea en un bebedor indican pancreatitis crónica con insuficiencia exocrina. Hay que excluir cáncer si aparece una masa o cambia el cuadro.',
     fuente: 'Hermes: Pancreatitis crónica' },
   { tipo: 'Medidas generales', pregunta: '¿Qué medida es fundamental?',

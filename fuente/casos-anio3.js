@@ -11,7 +11,7 @@ module.exports = [
  vineta: 'Mujer de 58 años con colecistitis crónica reagudizada e ictericia (bilirrubina 4 mg/dl). La colangiorresonancia muestra un cálculo impactado en el bacinete que comprime el hepático común desde afuera, sin litiasis coledociana.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué tiene?',
-    opciones: ['Síndrome de Mirizzi', 'Coledocolitiasis', 'Colangiocarcinoma hiliar', 'Colangitis esclerosante'],
+    opciones: ['Síndrome de Mirizzi', 'Coledocolitiasis impactada', 'Colangiocarcinoma hiliar', 'Colangitis esclerosante'],
     explicacion: 'La compresión extrínseca del hepático común por un cálculo impactado en el bacinete o el cístico, con ictericia, define el Mirizzi. Si hay erosión de la pared y fístula colecistobiliar, se clasifica en tipos más avanzados.',
     fuente: 'Hermes: Síndrome de Mirizzi' },
   { tipo: 'Conducta quirúrgica', pregunta: 'En la cirugía encontrás inflamación densa del triángulo hepatocístico sin poder lograr la visión crítica. ¿Qué hacés?',
@@ -19,7 +19,7 @@ module.exports = [
     explicacion: 'En el Mirizzi el hepático común está pegado al bacinete y es fácil lesionarlo. Sin visión crítica se recurre a una estrategia de rescate: colecistectomía subtotal, conversión o, en tipos con fístula, reparación de la vía biliar.',
     fuente: 'SAGES Safe Cholecystectomy; Hermes: Síndrome de Mirizzi y Colecistectomía subtotal' },
   { tipo: 'Técnica', pregunta: 'Si hubiera una fístula que comprometa más de la mitad de la circunferencia del hepático, ¿qué reparación es la habitual?',
-    opciones: ['Hepaticoyeyunostomía en Y de Roux', 'Sutura primaria del hepático sin tubo', 'Ligadura del hepático y drenaje', 'Drenaje subhepático sin reparar la vía'],
+    opciones: ['Hepaticoyeyunostomía en Y de Roux', 'Sutura primaria del hepático sin tubo', 'Ligadura del hepático y drenaje externo', 'Drenaje subhepático sin reparar la vía'],
     explicacion: 'Las fístulas grandes dejan un defecto que no se cierra sin estenosis; la reconstrucción con hepaticoyeyunostomía es la opción habitual. Los defectos pequeños pueden cerrarse sobre un tubo o con un colgajo de vesícula.',
     fuente: 'Hermes: Síndrome de Mirizzi; Técnica de la anastomosis biliodigestiva' }
  ]
@@ -160,7 +160,7 @@ module.exports = [
     explicacion: 'ATA 2016 indica Lugol 5 a 7 gotas o SSKI 1 a 2 gotas tres veces por día, diluidas en agua o jugo, durante 10 días antes de la operación.',
     fuente: 'ATA 2016, hipertiroidismo' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué cirugía indicás?',
-    opciones: ['Tiroidectomía total', 'Lobectomía unilateral', 'Tiroidectomía subtotal bilateral', 'Istmectomía'],
+    opciones: ['Tiroidectomía total', 'Lobectomía unilateral', 'Tiroidectomía subtotal bilateral', 'Istmectomía con biopsia'],
     explicacion: 'En la enfermedad de Graves se prefiere la tiroidectomía total, porque elimina el riesgo de recurrencia con complicaciones similares a la subtotal.',
     fuente: 'ATA 2016, hipertiroidismo' },
   { tipo: 'Dosis', pregunta: 'Después, ¿con qué dosis inicial de levotiroxina la reemplazás?',
@@ -175,7 +175,7 @@ module.exports = [
  vineta: 'Varón de 67 años que toma ibuprofeno por artrosis. Melena e hipotensión que responde a cristaloides. Hemoglobina 7,8 g/dl. Endoscopia a las 12 horas: úlcera bulbar posterior de 1,5 cm con vaso visible no sangrante.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Qué clasificación de Forrest tiene?',
-    opciones: ['Forrest IIa (vaso visible)', 'Forrest Ia (sangrado en chorro)', 'Forrest IIc (base pigmentada)', 'Forrest III (base limpia)'],
+    opciones: ['Forrest IIa (vaso visible)', 'Forrest Ia (sangrado en chorro)', 'Forrest IIc (base pigmentada)', 'Forrest III (base limpia, sin estigmas)'],
     explicacion: 'El vaso visible no sangrante es Forrest IIa, de alto riesgo de resangrado, por lo que requiere tratamiento endoscópico.',
     fuente: 'ESGE 2021, hemorragia digestiva alta no varicosa; Hermes: Complicaciones de la úlcera gastroduodenal' },
   { tipo: 'Medidas generales', pregunta: '¿Con qué umbral transfundís glóbulos rojos?',
@@ -214,7 +214,7 @@ module.exports = [
     explicacion: 'La úlcera gástrica refractaria se reseca con una gastrectomía distal que la incluya; así se trata y se obtiene diagnóstico histológico completo.',
     fuente: 'Hermes: Gastrectomía; Reconstrucción después de gastrectomía' },
   { tipo: 'Diagnóstico', pregunta: 'Meses después tiene sudoración, palpitaciones y diarrea a los 20 minutos de comer. ¿Qué es?',
-    opciones: ['Síndrome de dumping temprano', 'Dumping tardío por hipoglucemia', 'Síndrome del asa aferente', 'Úlcera de la boca anastomótica'],
+    opciones: ['Síndrome de dumping temprano', 'Dumping tardío por hipoglucemia', 'Síndrome del asa aferente por obstrucción', 'Úlcera de la boca anastomótica'],
     explicacion: 'Los síntomas vasomotores y digestivos en los primeros 30 minutos se deben al paso rápido de contenido hiperosmolar al intestino; el dumping tardío ocurre 1 a 3 horas después por hipoglucemia.',
     fuente: 'Hermes: Complicaciones de gastrectomía' },
   { tipo: 'Medidas generales', pregunta: '¿Qué indicás primero para el dumping?',
@@ -325,7 +325,7 @@ module.exports = [
     explicacion: 'Las lesiones del tercio distal se reparan con reimplante en la vejiga; el psoas hitch o el colgajo de Boari ganan longitud. La anastomosis terminoterminal es para lesiones cortas del tercio medio o superior.',
     fuente: 'AUA 2017, trauma urológico; Hermes: Lesión iatrogénica de la vía urinaria' },
   { tipo: 'Medidas generales', pregunta: '¿Qué principio general guía la reparación?',
-    opciones: ['Repararla en el acto, sin tensión y con drenaje', 'Esperar a que dé síntomas para confirmar la lesión', 'Sutura con material no reabsorbible y sin catéter', 'No drenar el lecho para no favorecer la fístula'],
+    opciones: ['Repararla en el acto, sin tensión y con drenaje', 'Esperar a que dé síntomas para confirmar la lesión', 'Sutura con material no reabsorbible y sin catéter', 'No drenar el lecho para no favorecer la fístula urinaria'],
     explicacion: 'La reparación inmediata tiene mejores resultados; se usan anastomosis sin tensión, espatuladas, con sutura reabsorbible, catéter y drenaje.',
     fuente: 'AUA 2017, trauma urológico' }
  ]
@@ -352,7 +352,7 @@ module.exports = [
     explicacion: 'El estadio III recibe quimioterapia adyuvante con oxaliplatino y fluoropirimidina; reduce la recurrencia y la mortalidad.',
     fuente: 'ESMO 2023, cáncer de colon localizado' },
   { tipo: 'Dosis', pregunta: '¿Cuánto dura en un estadio III de bajo riesgo (T1-3 N1) con CAPOX?',
-    opciones: ['3 meses', '2 semanas', '2 años', '12 meses'],
+    opciones: ['3 meses', '2 semanas', '24 meses', '12 meses'],
     explicacion: 'El análisis IDEA mostró que 3 meses de CAPOX son no inferiores a 6 en el estadio III de bajo riesgo, con mucha menos neuropatía; en alto riesgo (T4 o N2) se prefieren 6 meses.',
     fuente: 'Ensayo IDEA; ESMO 2023' }
  ]
@@ -409,7 +409,7 @@ module.exports = [
     explicacion: 'Con compromiso rectal importante se reseca el recto con reservorio ileal; la ileorrecto anastomosis se reserva para recto con pocos pólipos.',
     fuente: 'Hermes: Poliposis adenomatosa familiar' },
   { tipo: 'Medidas generales', pregunta: '¿Qué vigilancia extracolónica es prioritaria?',
-    opciones: ['Endoscopia alta con visión lateral (duodeno y papila)', 'Mamografía anual desde los 20 años', 'Colangiorresonancia anual por riesgo biliar', 'TC de cerebro anual por meduloblastoma'],
+    opciones: ['Endoscopia alta con visión lateral (duodeno y papila)', 'Mamografía y ecografía mamaria anual desde los 20 años', 'Colangiorresonancia anual por riesgo biliar', 'TC de cerebro anual por meduloblastoma'],
     explicacion: 'Tras la colectomía, el cáncer duodenal o periampular y los desmoides son causas principales de muerte; se vigila el duodeno con endoscopio de visión lateral.',
     fuente: 'Hermes: Poliposis adenomatosa familiar' }
  ]
@@ -451,7 +451,7 @@ module.exports = [
     explicacion: 'La disección que sigue el mesorrecto hasta el elevador deja una pieza con cintura y riesgo de margen positivo y perforación; la técnica extraelevadora incluye los elevadores.',
     fuente: 'Hermes: Amputación abdominoperineal' },
   { tipo: 'Medidas generales', pregunta: 'Antes de la cirugía, ¿qué hacés con la ostomía?',
-    opciones: ['Marcar el sitio sentada y parada, con estomaterapia', 'Elegir el sitio en el quirófano con la paciente acostada', 'Ubicarla en la cicatriz mediana para no abrir otra incisión', 'Esperar a ver la longitud del colon en la cirugía'],
+    opciones: ['Marcar el sitio sentada y parada, con estomaterapia', 'Elegir el sitio en el quirófano con la paciente acostada', 'Ubicarla en la cicatriz mediana para no abrir otra incisión', 'Esperar a ver la longitud del colon disponible en la cirugía'],
     explicacion: 'La marcación preoperatoria por estomaterapia reduce las complicaciones y mejora la calidad de vida.',
     fuente: 'Hermes: Amputación abdominoperineal' }
  ]
@@ -462,7 +462,7 @@ module.exports = [
  vineta: 'Varón de 62 años con pérdida de peso y anemia. Endoscopia: tumor ulcerado de antro. Biopsia: adenocarcinoma. TC: engrosamiento parietal con ganglios perigástricos, sin metástasis visibles.',
  pasos: [
   { tipo: 'Estudios', pregunta: '¿Qué estudio agregás a la estadificación en un tumor avanzado (cT3 o mayor)?',
-    opciones: ['Laparoscopia con citología peritoneal', 'Colonoscopia para descartar tumor sincrónico', 'Centellograma óseo corporal total de rutina', 'Resonancia de cerebro con gadolinio'],
+    opciones: ['Laparoscopia con citología peritoneal', 'Colonoscopia para descartar tumor sincrónico', 'Centellograma óseo corporal total de rutina', 'Resonancia de cerebro con gadolinio de rutina'],
     explicacion: 'La laparoscopia detecta metástasis peritoneales que la TC no ve, evitando laparotomías innecesarias; la citología positiva equivale a enfermedad M1.',
     fuente: 'Hermes: Cáncer gástrico' },
   { tipo: 'Fármaco', pregunta: 'Sin carcinomatosis, ¿qué tratamiento sistémico perioperatorio indicás?',
@@ -501,7 +501,7 @@ module.exports = [
     explicacion: 'Ivor Lewis permite linfadenectomía en dos campos y anastomosis intratorácica para tumores distales; el abordaje en tres campos (McKeown) se prefiere en tumores más altos.',
     fuente: 'Hermes: Esofagectomía' },
   { tipo: 'Diagnóstico', pregunta: 'En el día 6 posoperatorio aparece fiebre, taquicardia y derrame pleural derecho con líquido turbio. ¿Qué sospechás?',
-    opciones: ['Fuga de la anastomosis intratorácica', 'Neumonía aspirativa del lóbulo inferior', 'Quilotórax por lesión del conducto torácico', 'Atelectasia con derrame reactivo'],
+    opciones: ['Fuga de la anastomosis intratorácica', 'Neumonía aspirativa del lóbulo inferior', 'Quilotórax por lesión del conducto torácico', 'Atelectasia del lóbulo inferior con derrame reactivo'],
     explicacion: 'Fiebre, taquicardia y derrame turbio tras una anastomosis intratorácica son fuga hasta demostrar lo contrario; se confirma con endoscopia o TC con contraste oral.',
     fuente: 'Hermes: Esofagectomía' }
  ]
