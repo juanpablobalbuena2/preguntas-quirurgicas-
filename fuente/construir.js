@@ -39,8 +39,7 @@ const completa = '<!doctype html>\n<html lang="es">\n<head>\n<meta charset="utf-
 const APP = path.join(__dirname, '..', 'docs');
 fs.mkdirSync(APP, { recursive: true });
 const cabezaApp = '<link rel="manifest" href="manifest.webmanifest">\n<link rel="apple-touch-icon" href="icono-180.png">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-status-bar-style" content="default">\n<meta name="apple-mobile-web-app-title" content="Pase de sala">\n';
-const pieApp = '<script>\nif (\'serviceWorker\' in navigator && (location.protocol === \'https:\' || location.hostname === \'localhost\')) navigator.serviceWorker.register(\'sw.js\');\nif (navigator.storage && navigator.storage.persist) navigator.storage.persist();\n</script>\n';
-const app = completa.replace('</head>', cabezaApp + '</head>').replace('</body>', pieApp + '</body>');
+const app = completa.replace('</head>', cabezaApp + '</head>'); // el service worker se registra desde la plantilla
 fs.writeFileSync(path.join(APP, 'index.html'), app);
 fs.writeFileSync(path.join(APP, 'manifest.webmanifest'), JSON.stringify({
   name: 'Pase de sala', short_name: 'Pase de sala', lang: 'es', start_url: './', scope: './', display: 'standalone',

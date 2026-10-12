@@ -17,6 +17,8 @@
   --ok-soft: #E1F1E7;
   --bad: #B3261E;
   --bad-soft: #F8E2DF;
+  /* Un color por tipo de paso: son las categorías de la ruleta */
+  --t-dx: #2F6FB0; --t-est: #7A5BB5; --t-med: #2D7A4B; --t-far: #B8661A; --t-dos: #B3261E; --t-cq: #0F5C52; --t-tec: #8A6D1F;
   --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -24,11 +26,13 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
   --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
-  --bad: #F08A80; --bad-soft: #3A1C1A; color-scheme: dark } }
+  --bad: #F08A80; --bad-soft: #3A1C1A;
+  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
   --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
-  --bad: #F08A80; --bad-soft: #3A1C1A; color-scheme: dark }
+  --bad: #F08A80; --bad-soft: #3A1C1A;
+  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font: 400 17px/1.5 var(--f-body); margin: 0 }
 .app { max-width: 620px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); padding-block: calc(18px + env(safe-area-inset-top)) calc(48px + env(safe-area-inset-bottom)); display: grid; gap: 18px }
@@ -40,22 +44,26 @@ p { margin: 0 }
 .eyebrow { font: 600 0.75rem/1.2 var(--f-body); text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted) }
 .muted { color: var(--muted) }
 button { font: inherit; color: inherit; cursor: pointer }
-button:focus-visible, summary:focus-visible { outline: 3px solid var(--iodine); outline-offset: 2px }
+button:focus-visible, summary:focus-visible, textarea:focus-visible { outline: 3px solid var(--iodine); outline-offset: 2px }
 .btn { border: 0; border-radius: 10px; padding: 14px 18px; font-weight: 700; background: var(--scrub); color: var(--sheet); width: 100% }
 .btn.sec { background: transparent; color: var(--scrub); box-shadow: inset 0 0 0 2px var(--scrub) }
 .btn[disabled] { opacity: .45; cursor: default }
+.link { border: 0; background: none; padding: 4px 0; color: var(--scrub); font-weight: 700; text-decoration: underline; text-underline-offset: 3px }
 .row { display: flex; gap: 10px; flex-wrap: wrap }
 .row > * { flex: 1 1 160px }
+svg.ic { width: 1.1em; height: 1.1em; vertical-align: -0.18em; fill: currentColor }
 
 /* Encabezado */
 .top { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap }
 .badge { font: 500 0.8rem/1 var(--f-mono); color: var(--scrub); background: var(--scrub-soft); padding: 6px 9px; border-radius: 6px; white-space: nowrap }
+.banner { background: var(--sheet); border: 1px solid var(--iodine); border-left-width: 6px; border-radius: 12px; padding: 14px; display: grid; gap: 10px }
 
 /* Resumen de progreso */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
 .stat { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 2px }
 .stat b { font: 800 1.6rem/1 var(--f-display); font-variant-numeric: tabular-nums }
 .stat span { font-size: .82rem; color: var(--muted) }
+.stat .fuego { color: var(--iodine) }
 .bars { display: grid; gap: 12px }
 .bar { display: grid; gap: 5px }
 .bar-head { display: flex; justify-content: space-between; gap: 8px; font-size: .92rem }
@@ -71,14 +79,54 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--iodine); 
 .tema { display: flex; justify-content: space-between; align-items: center; gap: 10px; text-align: left; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px }
 .tema small { display: block; color: var(--muted); font-size: .8rem }
 .tema .badge { flex: none }
+.tema .corona { color: var(--iodine) }
+details.panel > summary { font: 800 1.35rem/1.15 var(--f-display); color: var(--ink); list-style-position: inside }
+.rango { display: grid; gap: 6px }
+.rango .track i { background: var(--iodine) }
+.pie { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center }
+
+/* Modos de juego */
+.modos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.modo { text-align: left; border: 1px solid var(--line); background: var(--sheet); border-radius: 14px; padding: 14px; display: grid; gap: 4px; align-content: start; border-top: 5px solid var(--c, var(--scrub)) }
+.modo b { font: 800 1.08rem/1.15 var(--f-display) }
+.modo span { font-size: .85rem; color: var(--muted) }
+.modo.principal { grid-column: 1 / -1; background: var(--scrub); color: var(--sheet); border-color: var(--scrub) }
+.modo.principal span { color: inherit; opacity: .85 }
+.modo[disabled] { opacity: .5; cursor: default }
+@media (max-width: 359px) { .modos { grid-template-columns: 1fr } }
+
+/* Juego: marcador */
+.hud { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px }
+.vidas { display: flex; gap: 4px; color: var(--bad) }
+.vidas .perdida { color: var(--line) }
+.coronas { display: flex; gap: 5px }
+.coronas i { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--c); display: block }
+.coronas i.si { background: var(--c) }
+.medidor { display: flex; gap: 3px }
+.medidor i { width: 18px; height: 8px; border-radius: 2px; background: var(--line); display: block }
+.medidor i.si { background: var(--iodine) }
+.puntos { font: 500 .95rem var(--f-mono); font-variant-numeric: tabular-nums }
+.reloj { font: 800 1.5rem/1 var(--f-display); font-variant-numeric: tabular-nums }
+.reloj.poco { color: var(--bad) }
+.timer { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden }
+.timer i { display: block; height: 100%; background: var(--iodine) }
+.chip-tipo { display: inline-block; font: 700 .75rem/1 var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--sheet); background: var(--tipo); padding: 6px 9px; border-radius: 6px }
+.corona-aviso { background: var(--iodine); color: var(--sheet); border-radius: 12px; padding: 12px 14px; font-weight: 700 }
+.rueda-caja { position: relative; width: min(300px, 82vw); margin: 0 auto }
+.rueda-caja svg.rueda { width: 100%; height: auto; display: block; transition: transform 2.4s cubic-bezier(.17,.67,.16,1) }
+.rueda-caja .flecha { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 22px solid var(--ink); z-index: 1 }
+.cats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+.cat { border: 0; border-radius: 10px; padding: 14px; font-weight: 700; color: var(--sheet); background: var(--tipo) }
 
 /* Caso */
 .vineta { background: var(--sheet); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 10px; border-top: 6px solid var(--scrub) }
 .pasos { display: flex; gap: 5px }
 .pasos i { flex: 1; height: 5px; border-radius: 3px; background: var(--line) }
 .pasos i.ok { background: var(--ok) } .pasos i.no { background: var(--bad) } .pasos i.act { background: var(--iodine) }
+.contexto { margin: 0; padding-left: 18px; font-size: .9rem; color: var(--muted); display: grid; gap: 2px }
+.contexto b { color: var(--ink); font-weight: 600 }
 .hoja { background: var(--sheet); border: 1px solid var(--line); border-radius: 14px; display: grid; grid-template-columns: 30px 1fr; overflow: hidden }
-.margen { background: var(--scrub-soft); color: var(--scrub); writing-mode: vertical-rl; transform: rotate(180deg); font: 700 .72rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; padding: 10px 0 }
+.margen { background: var(--scrub-soft); background: color-mix(in srgb, var(--tipo, var(--scrub)) 16%, var(--sheet)); color: var(--tipo, var(--scrub)); writing-mode: vertical-rl; transform: rotate(180deg); font: 700 .72rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; padding: 10px 0 }
 .hoja-body { padding: 16px; display: grid; gap: 12px; min-width: 0 }
 .ops { display: grid; gap: 8px }
 .op { text-align: left; border: 1.5px solid var(--line); background: var(--bg); border-radius: 10px; padding: 12px 14px; line-height: 1.35 }
@@ -90,56 +138,145 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--iodine); 
 .feedback { border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; background: var(--bg); border-left: 4px solid var(--ok) }
 .feedback.no { border-left-color: var(--bad) }
 .feedback strong { font-family: var(--f-display) }
+.pts { font: 500 .9rem var(--f-mono); color: var(--iodine) }
 .fuente { font-size: .85rem; color: var(--muted) }
 .fuente::before { content: "Fuente: "; font-weight: 700; color: var(--ink) }
+.marca { display: grid; gap: 8px; border-top: 1px dashed var(--line); padding-top: 8px }
 
-/* Resumen del caso */
+/* Resumen del caso y listas */
 .res-list { display: grid; gap: 6px; padding: 0; margin: 0; list-style: none }
 .res-list li { display: flex; gap: 10px; align-items: baseline }
 .res-list .m { font: 500 .82rem var(--f-mono); flex: none; width: 1.4em }
 .res-list .ok { color: var(--ok) } .res-list .no { color: var(--bad) }
 .next-review { font: 500 .9rem var(--f-mono); color: var(--scrub) }
+.item { border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 6px; background: var(--bg) }
+.item .fila { display: flex; justify-content: space-between; gap: 10px; align-items: baseline }
+.logro { display: flex; gap: 12px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: var(--sheet) }
+.logro .ic-logro { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--line); color: var(--muted) }
+.logro.si .ic-logro { background: var(--iodine); color: var(--sheet) }
+.logro:not(.si) { opacity: .7 }
+.opciones-ajuste { display: flex; gap: 8px; flex-wrap: wrap }
+.opciones-ajuste button { border: 1.5px solid var(--line); background: var(--bg); border-radius: 8px; padding: 10px 14px; font-weight: 600 }
+.opciones-ajuste button[aria-pressed="true"] { border-color: var(--scrub); background: var(--scrub-soft); color: var(--scrub) }
 details { font-size: .9rem }
 summary { cursor: pointer; color: var(--muted) }
-textarea { width: 100%; min-height: 80px; font: .8rem var(--f-mono); background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px }
+/* 16 px evita que el iPhone haga zoom al escribir */
+textarea { width: 100%; min-height: 80px; font: 16px/1.4 var(--f-body); background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px }
 .msg { font-size: .85rem; color: var(--scrub) }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 12px 16px; border-radius: 10px; font-weight: 600; max-width: calc(100% - 32px); z-index: 10; box-shadow: 0 6px 20px rgb(0 0 0 / .2) }
+.aviso { position: sticky; top: 0; z-index: 5; background: var(--iodine); color: var(--sheet); padding: 10px 16px; display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; font-weight: 600 }
+.aviso button { border: 0; border-radius: 8px; padding: 8px 12px; font-weight: 700; background: var(--sheet); color: var(--iodine) }
 @media (prefers-reduced-motion: no-preference) { .hoja, .feedback { animation: in .18s ease-out } @keyframes in { from { transform: translateY(4px); opacity: .6 } to { transform: none; opacity: 1 } } }
+@media (prefers-reduced-motion: reduce) { .rueda-caja svg.rueda { transition: none } }
 </style>
 
+<div class="aviso" id="aviso" hidden><span>Hay una versión nueva de los casos.</span><button id="b-actualizar">Actualizar</button></div>
 <main class="app" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status" hidden></div>
 
 <script>
 const CASOS = /*CASOS*/[];
 const INTERVALOS = [0, 1, 3, 7, 16, 35]; // días por nivel de repetición espaciada
 const DIA = 86400000;
-const CLAVE = 'pase-de-sala-progreso-v1';
-const SESION = 5;
+const CLAVE = 'pase-de-sala-progreso-v1'; // repetición espaciada por caso; no cambiar: hay progreso guardado con esta clave
+const CLAVE_JUEGO = 'pase-de-sala-juego-v1'; // puntos, rachas, estadísticas por paso, marcas, ajustes y partida en curso
+const TIPOS = ['Diagnóstico', 'Estudios', 'Medidas generales', 'Fármaco', 'Dosis', 'Conducta quirúrgica', 'Técnica'];
+const VAR_TIPO = { 'Diagnóstico': '--t-dx', 'Estudios': '--t-est', 'Medidas generales': '--t-med', 'Fármaco': '--t-far', 'Dosis': '--t-dos', 'Conducta quirúrgica': '--t-cq', 'Técnica': '--t-tec' };
+const CORTO = { 'Diagnóstico': 'Diagnóstico', 'Estudios': 'Estudios', 'Medidas generales': 'Medidas', 'Fármaco': 'Fármaco', 'Dosis': 'Dosis', 'Conducta quirúrgica': 'Conducta', 'Técnica': 'Técnica' };
+const RANGOS = [[0, 'Estudiante'], [1000, 'Interno'], [3000, 'Residente de 1.er año'], [7000, 'Residente de 2.º año'], [13000, 'Residente de 3.er año'], [21000, 'Residente de 4.º año'], [32000, 'Jefe de residentes'], [50000, 'Cirujano de planta']];
+const LOGROS = [
+  ['primer-caso', 'Primer pase', 'Completar un caso entero.'],
+  ['caso-perfecto', 'Pase impecable', 'Responder bien todos los pasos de un caso.'],
+  ['racha-7', 'Una semana de guardia', 'Jugar 7 días seguidos.'],
+  ['racha-30', 'Un mes de guardia', 'Jugar 30 días seguidos.'],
+  ['corona-1', 'Primera corona', 'Ganar una pregunta corona en la ruleta.'],
+  ['ruleta', 'Las siete coronas', 'Ganar una partida de ruleta.'],
+  ['contrarreloj', 'Contra el reloj', 'Hacer 1.500 puntos en una partida de contrarreloj.'],
+  ['dominados-25', 'Medio programa', 'Dominar 25 casos.'],
+  ['dominados-todos', 'Programa completo', 'Dominar todos los casos.'],
+  ['errores-0', 'Sin pendientes', 'Vaciar la lista de errores.'],
+];
+const RULETA = { vidas: 3, coronas: TIPOS.length, medidor: 3, corona: 300, victoria: 1000 };
+const CONTRARRELOJ = { ms: 90000, castigo: 5000 };
+const MODOS_JUEGO = { ruleta: 'Ruleta', contrarreloj: 'Contrarreloj', errores: 'Mis errores', rapido: 'Pregunta rápida' };
 
-function leer() { try { return JSON.parse(localStorage.getItem(CLAVE)) || {} } catch (e) { return {} } }
-function guardar(p) { try { localStorage.setItem(CLAVE, JSON.stringify(p)) } catch (e) {} }
-let prog = leer();
-let estado = { pantalla: 'inicio' };
+const ICONO = {
+  corona: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l-1.6-10-4.6 4.2L12 5.5 9.2 12.2 4.6 8z"/></svg>',
+  vida: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.6 4.5c2 0 3.4 1.1 4.4 2.6.9-1.5 2.4-2.6 4.4-2.6 3.6 0 5.7 3.8 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>',
+  fuego: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 3.5-1.5 5-1.5 7.5 0 1.4 1 2.5 2.3 2.5 1.6 0 2.7-1.5 2.2-3.5 2.6 1.8 4 4.4 4 7 0 3.9-3.1 6.5-7 6.5s-7-2.6-7-6.5C5 9.5 10.5 7 12 2z"/></svg>',
+  logro: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v4a5 5 0 0 1-10 0zM4 4h3v2a3 3 0 0 1-3-2zm13 0h3a3 3 0 0 1-3 2zM10.5 12.5h3V16H16v3H8v-3h2.5z"/></svg>',
+};
 
+/* ---------- Datos guardados ---------- */
+function leerJSON(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d } catch (e) { return d } }
+function escribirJSON(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) {} }
+function juegoVacio() { return { puntos: 0, pasos: {}, marcas: [], racha: { dias: 0, mejor: 0, ultimo: '' }, record: { ruleta: 0, contrarreloj: 0 }, logros: {}, ajustes: { sesion: 5, tiempo: 30 }, enCurso: null } }
+function normalizarJuego(j) {
+  const v = juegoVacio(), r = Object.assign(v, j || {});
+  r.racha = Object.assign(juegoVacio().racha, r.racha); r.record = Object.assign(juegoVacio().record, r.record); r.ajustes = Object.assign(juegoVacio().ajustes, r.ajustes);
+  if (!Array.isArray(r.marcas)) r.marcas = [];
+  return r;
+}
+let prog = leerJSON(CLAVE, {});
+let juego = normalizarJuego(leerJSON(CLAVE_JUEGO, {}));
+function guardar() { escribirJSON(CLAVE, prog); escribirJSON(CLAVE_JUEGO, juego) }
+
+/* ---------- Utilidades ---------- */
 const $ = s => document.querySelector(s);
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const ahora = () => Date.now();
 const mezclar = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]] } return b };
 const fecha = t => new Date(t).toLocaleDateString('es-AR', { day: 'numeric', month: 'short' });
+const miles = n => Math.round(n).toLocaleString('es-AR');
+const diaISO = t => { const d = new Date(t); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') };
+const varTipo = t => `var(${VAR_TIPO[t] || '--scrub'})`;
+
+const POR_ID = Object.fromEntries(CASOS.map(c => [c.id, c]));
+const PASOS = CASOS.flatMap(c => c.pasos.map((p, k) => ({ c, p, k, clave: c.id + '#' + (k + 1) })));
+const POR_CLAVE = Object.fromEntries(PASOS.map(x => [x.clave, x]));
 
 function nivel(id) { return (prog[id] && prog[id].nivel) || 0 }
 function pendiente(id) { const p = prog[id]; return p && p.vence <= ahora() }
 function dominado(id) { return nivel(id) >= 3 }
+function rachaVisible() { const r = juego.racha; return (r.ultimo === diaISO(ahora()) || r.ultimo === diaISO(ahora() - DIA)) ? r.dias : 0 }
+function clavesConError() { return Object.keys(juego.pasos).filter(k => POR_CLAVE[k] && juego.pasos[k].ultimo === false) }
+function rango() {
+  let i = 0; while (i + 1 < RANGOS.length && juego.puntos >= RANGOS[i + 1][0]) i++;
+  const sig = RANGOS[i + 1];
+  return { nombre: RANGOS[i][1], sig: sig && sig[1], falta: sig ? sig[0] - juego.puntos : 0, pct: sig ? (juego.puntos - RANGOS[i][0]) / (sig[0] - RANGOS[i][0]) : 1 };
+}
+function agrupar(clave) { const g = {}; CASOS.forEach(c => { const k = c[clave]; (g[k] = g[k] || []).push(c) }); return g }
+
+let tToast;
+function aviso(texto) { const t = $('#toast'); t.textContent = texto; t.hidden = false; clearTimeout(tToast); tToast = setTimeout(() => t.hidden = true, 3200) }
+function logro(id) { if (juego.logros[id]) return; juego.logros[id] = ahora(); const l = LOGROS.find(x => x[0] === id); if (l) aviso('Logro desbloqueado: ' + l[1]) }
+function revisarDominados() { const d = CASOS.filter(c => dominado(c.id)).length; if (d >= 25) logro('dominados-25'); if (d === CASOS.length) logro('dominados-todos') }
+
+function registrarRespuesta(clave, acierto) {
+  const r = juego.pasos[clave] || { ok: 0, n: 0 };
+  r.n++; if (acierto) r.ok++; r.ultimo = acierto; r.fecha = ahora();
+  juego.pasos[clave] = r;
+  const hoy = diaISO(ahora()), ayer = diaISO(ahora() - DIA), ra = juego.racha;
+  if (ra.ultimo !== hoy) { ra.dias = ra.ultimo === ayer ? ra.dias + 1 : 1; ra.ultimo = hoy; ra.mejor = Math.max(ra.mejor, ra.dias) }
+  if (ra.dias >= 7) logro('racha-7'); if (ra.dias >= 30) logro('racha-30');
+}
+
+/* ---------- Estado y pantallas ---------- */
+let estado = { pantalla: 'inicio' };
+let reloj = null;
+const PANTALLAS_PARTIDA = ['caso', 'cierre', 'pregunta', 'ruleta', 'corona'];
+function pintar() {
+  clearInterval(reloj); reloj = null;
+  if (PANTALLAS_PARTIDA.includes(estado.pantalla)) juego.enCurso = estado;
+  guardar();
+  ({ inicio, caso: pantallaCaso, cierre: pantallaCierre, pregunta: pantallaPregunta, ruleta: pantallaRuleta, corona: pantallaCorona, fin: pantallaFin, marcas: pantallaMarcas, logros: pantallaLogros, ajustes: pantallaAjustes })[estado.pantalla]();
+}
+function ir(pantalla) { estado = { pantalla }; pintar(); window.scrollTo(0, 0) }
 
 function colaSesion() {
   const vencidos = CASOS.filter(c => pendiente(c.id)).sort((a, b) => prog[a.id].vence - prog[b.id].vence);
   const nuevos = CASOS.filter(c => !prog[c.id]);
-  return mezclar(vencidos).concat(mezclar(nuevos)).slice(0, SESION).map(c => c.id);
-}
-
-function agrupar(clave) {
-  const g = {};
-  CASOS.forEach(c => { const k = c[clave]; (g[k] = g[k] || []).push(c) });
-  return g;
+  return mezclar(vencidos).concat(mezclar(nuevos)).slice(0, juego.ajustes.sesion).map(c => c.id);
 }
 
 function barra(nombre, lista) {
@@ -147,80 +284,120 @@ function barra(nombre, lista) {
   return `<div class="bar"><div class="bar-head"><span>${esc(nombre)}</span><span>${d}/${n} dominados</span></div>
   <div class="track" role="img" aria-label="${d} dominados y ${v} en práctica de ${n}"><i class="dom" style="width:${d / n * 100}%"></i><i class="vis" style="width:${v / n * 100}%"></i></div></div>`;
 }
+function barrasTipo() {
+  const t = {}; TIPOS.forEach(x => t[x] = { ok: 0, n: 0 });
+  Object.entries(juego.pasos).forEach(([k, r]) => { const x = POR_CLAVE[k]; if (x) { t[x.p.tipo].ok += r.ok; t[x.p.tipo].n += r.n } });
+  const con = TIPOS.filter(x => t[x].n);
+  if (!con.length) return '<p class="muted">Todavía no respondiste preguntas. Acá vas a ver qué tipo de paso te cuesta más.</p>';
+  return `<div class="bars">${con.map(x => { const p = Math.round(t[x].ok / t[x].n * 100); return `<div class="bar"><div class="bar-head"><span>${esc(x)}</span><span>${p} % de ${t[x].n}</span></div><div class="track" role="img" aria-label="${p} % de aciertos en ${esc(x)}"><i style="width:${p}%;background:${varTipo(x)}"></i></div></div>` }).join('')}</div>`;
+}
 
 function inicio() {
   const cola = colaSesion();
-  const vencidos = CASOS.filter(c => pendiente(c.id)).length;
-  const nuevos = CASOS.filter(c => !prog[c.id]).length;
   const dom = CASOS.filter(c => dominado(c.id)).length;
+  const errores = clavesConError().length;
   const porAnio = agrupar('anio'), porTema = agrupar('tema');
+  const temasCoronados = Object.values(porTema).filter(l => l.every(c => dominado(c.id))).length;
   const proximo = CASOS.map(c => prog[c.id]).filter(p => p && p.vence > ahora()).sort((a, b) => a.vence - b.vence)[0];
+  const r = rango(), ec = juego.enCurso;
+  const descEnCurso = ec && (ec.modo === 'casos' ? `${esc(ec.etiqueta)}, caso ${ec.i + 1} de ${ec.cola.length}` : `${MODOS_JUEGO[ec.modo]}, ${miles(ec.puntos)} puntos` + (ec.modo === 'ruleta' ? `, ${ec.coronas.length} coronas` : ''));
   $('#app').innerHTML = `
-  <header class="top"><div><p class="eyebrow">Residencia de cirugía general</p><h1>Pase de sala</h1></div><span class="badge">${CASOS.length} casos</span></header>
+  <header class="top"><div><p class="eyebrow">Residencia de cirugía general</p><h1>Pase de sala</h1></div><span class="badge">${esc(r.nombre)}</span></header>
+  ${ec ? `<section class="banner"><p><b>Tenés una partida sin terminar.</b> ${descEnCurso}.</p><div class="row"><button class="btn" id="b-seguir">Continuar</button><button class="btn sec" id="b-descartar">Descartar</button></div></section>` : ''}
   <div class="stats">
-    <div class="stat"><b>${vencidos}</b><span>para repasar hoy</span></div>
-    <div class="stat"><b>${nuevos}</b><span>sin ver</span></div>
-    <div class="stat"><b>${dom}</b><span>dominados</span></div>
+    <div class="stat"><b>${miles(juego.puntos)}</b><span>puntos</span></div>
+    <div class="stat"><b class="fuego">${ICONO.fuego} ${rachaVisible()}</b><span>días seguidos</span></div>
+    <div class="stat"><b>${dom}</b><span>de ${CASOS.length} dominados</span></div>
   </div>
-  <div class="row">
-    <button class="btn" id="b-sesion" ${cola.length ? '' : 'disabled'}>${cola.length ? `Empezar sesión · ${cola.length} caso${cola.length > 1 ? 's' : ''}` : 'Nada pendiente hoy'}</button>
-  </div>
-  ${!cola.length && proximo ? `<p class="muted">El próximo repaso vence el ${fecha(proximo.vence)}. Mientras, podés repasar un tema.</p>` : ''}
-  <section class="panel" aria-labelledby="t-tema"><h2 id="t-tema">Repasar un tema</h2>
-    <div class="temas">${Object.entries(porTema).map(([t, l]) => `<button class="tema" data-tema="${esc(t)}"><span>${esc(t)}<small>${l.length} ${l.length === 1 ? 'caso' : 'casos'} · ${l[0].anio}.º año</small></span><span class="badge">${l.filter(c => dominado(c.id)).length}/${l.length}</span></button>`).join('')}</div>
+  <div class="rango"><div class="bar-head"><span>${esc(r.nombre)}</span><span>${r.sig ? `faltan ${miles(r.falta)} para ${esc(r.sig)}` : 'rango máximo'}</span></div><div class="track" role="img" aria-label="Progreso al próximo rango"><i style="width:${r.pct * 100}%"></i></div></div>
+  <section class="modos" aria-label="Modos de juego">
+    <button class="modo principal" id="m-sesion" ${cola.length ? '' : 'disabled'}><b>Sesión del día</b><span>${cola.length ? `${cola.length} caso${cola.length > 1 ? 's' : ''} completo${cola.length > 1 ? 's' : ''}: ${cola.filter(id => prog[id]).length} para repasar y ${cola.filter(id => !prog[id]).length} nuevo${cola.filter(id => !prog[id]).length === 1 ? '' : 's'}` : proximo ? `Nada pendiente. Próximo repaso: ${fecha(proximo.vence)}` : 'Nada pendiente'}</span></button>
+    <button class="modo" id="m-ruleta" style="--c:var(--iodine)"><b>Ruleta</b><span>7 coronas, 3 vidas. Récord: ${miles(juego.record.ruleta)}</span></button>
+    <button class="modo" id="m-contrarreloj" style="--c:var(--t-dos)"><b>Contrarreloj</b><span>90 segundos. Récord: ${miles(juego.record.contrarreloj)}</span></button>
+    <button class="modo" id="m-errores" style="--c:var(--bad)" ${errores ? '' : 'disabled'}><b>Mis errores</b><span>${errores ? `${errores} pregunta${errores > 1 ? 's' : ''} para corregir` : 'Sin errores pendientes'}</span></button>
+    <button class="modo" id="m-rapido" style="--c:var(--t-dx)"><b>Pregunta rápida</b><span>10 preguntas sueltas, sin reloj</span></button>
   </section>
+  <section class="panel" aria-labelledby="t-tipo"><h2 id="t-tipo">Aciertos por tipo de paso</h2>${barrasTipo()}</section>
+  <details class="panel"><summary>Repasar un tema <span class="badge">${ICONO.corona} ${temasCoronados}/${Object.keys(porTema).length}</span></summary>
+    <p class="muted">Un tema gana la corona cuando dominás todos sus casos.</p>
+    <div class="temas">${Object.entries(porTema).map(([t, l]) => { const d = l.filter(c => dominado(c.id)).length; return `<button class="tema" data-tema="${esc(t)}"><span>${esc(t)}<small>${l.length} ${l.length === 1 ? 'caso' : 'casos'} · ${l[0].anio}.º año</small></span><span class="badge">${d === l.length ? `<span class="corona">${ICONO.corona}</span> ` : ''}${d}/${l.length}</span></button>` }).join('')}</div>
+  </details>
   <section class="panel" aria-labelledby="t-av"><h2 id="t-av">Avance por año del programa</h2>
     <div class="bars">${Object.keys(porAnio).sort().map(a => barra(a + '.º año', porAnio[a])).join('')}</div>
     <div class="legend"><span><i style="background:var(--scrub)"></i>Dominado (3 aciertos espaciados)</span><span><i style="background:var(--iodine);opacity:.55"></i>En práctica</span></div>
   </section>
-  <details><summary>Respaldo del progreso</summary>
-    <div style="display:grid;gap:8px;margin-top:10px">
-      <p class="muted">El progreso queda guardado en este teléfono. Copiá este código para respaldarlo o pegá uno anterior para restaurarlo.</p>
-      <textarea id="respaldo" aria-label="Código de respaldo">${esc(JSON.stringify(prog))}</textarea>
-      <div class="row"><button class="btn sec" id="b-copiar">Copiar código</button><button class="btn sec" id="b-restaurar">Restaurar desde el código</button></div>
-      <p class="msg" id="msg-resp"></p>
-    </div></details>`;
-  $('#b-sesion').onclick = () => cola.length && empezar(cola, 'Sesión del día');
-  document.querySelectorAll('.tema').forEach(b => b.onclick = () => empezar(mezclar(CASOS.filter(c => c.tema === b.dataset.tema)).map(c => c.id), b.dataset.tema));
-  $('#b-copiar').onclick = () => { const t = $('#respaldo'); navigator.clipboard && navigator.clipboard.writeText(t.value).then(() => $('#msg-resp').textContent = 'Código copiado.', () => { t.select(); $('#msg-resp').textContent = 'Seleccioné el código: copialo manualmente.' }) || (t.select(), $('#msg-resp').textContent = 'Seleccioné el código: copialo manualmente.') };
-  $('#b-restaurar').onclick = () => { try { const p = JSON.parse($('#respaldo').value); if (typeof p !== 'object' || !p) throw 0; prog = p; guardar(prog); inicio(); $('#msg-resp') && ($('#msg-resp').textContent = 'Progreso restaurado.') } catch (e) { $('#msg-resp').textContent = 'El código no es válido: copiá el texto completo del respaldo.' } };
+  <nav class="pie" aria-label="Más opciones">
+    <button class="link" id="l-marcas">Preguntas marcadas (${juego.marcas.length})</button>
+    <button class="link" id="l-logros">Logros (${Object.keys(juego.logros).length}/${LOGROS.length})</button>
+    <button class="link" id="l-ajustes">Ajustes y respaldo</button>
+  </nav>`;
+  if (ec) {
+    $('#b-seguir').onclick = () => { estado = ec; estado.deadline = null; if (estado.modo === 'contrarreloj') estado.finEn = null; pintar(); window.scrollTo(0, 0) };
+    $('#b-descartar').onclick = () => { if (confirm('¿Descartar la partida sin terminar?')) { juego.enCurso = null; pintar() } };
+  }
+  $('#m-sesion').onclick = () => cola.length && empezarCasos(cola, 'Sesión del día');
+  $('#m-ruleta').onclick = () => nuevaPartida('ruleta');
+  $('#m-contrarreloj').onclick = () => nuevaPartida('contrarreloj');
+  $('#m-errores').onclick = () => errores && nuevaPartida('errores');
+  $('#m-rapido').onclick = () => nuevaPartida('rapido');
+  document.querySelectorAll('.tema').forEach(b => b.onclick = () => empezarCasos(mezclar(CASOS.filter(c => c.tema === b.dataset.tema)).map(c => c.id), b.dataset.tema));
+  $('#l-marcas').onclick = () => ir('marcas');
+  $('#l-logros').onclick = () => ir('logros');
+  $('#l-ajustes').onclick = () => ir('ajustes');
 }
 
-function empezar(ids, etiqueta) {
-  estado = { pantalla: 'caso', cola: ids, i: 0, etiqueta, paso: 0, res: [], orden: null };
-  caso();
+/* ---------- Hoja de un paso (compartida por todos los modos) ---------- */
+function hojaPaso(c, k, est) {
+  const p = c.pasos[k], r = est.resp, clave = c.id + '#' + (k + 1);
+  if (!est.orden) est.orden = mezclar(p.opciones.map((t, i) => ({ t, i })));
+  const ops = est.orden.map(o => {
+    let cl = 'op' + (p.tipo === 'Dosis' ? ' dosis' : '');
+    if (r) { if (o.i === 0) cl += ' ok'; else if (o.i === r.i) cl += ' no' }
+    return `<button class="${cl}" data-i="${o.i}" ${r ? 'disabled' : ''}>${esc(o.t)}</button>`;
+  }).join('');
+  const marcada = juego.marcas.some(m => m.clave === clave);
+  const titulo = !r ? '' : r.i === 0 ? 'Correcto.' : (r.i === null ? 'Se terminó el tiempo. ' : '') + 'La respuesta es: ' + esc(p.opciones[0]);
+  const fb = r ? `<div class="feedback ${r.i === 0 ? '' : 'no'}"><strong>${titulo}</strong>${r.puntos ? `<span class="pts">+${miles(r.puntos)} puntos</span>` : ''}<p>${esc(p.explicacion)}</p><p class="fuente">${esc(p.fuente)}</p>
+    <div class="marca">${marcada ? '<span class="msg">Marcada como dudosa. Aparece en «Preguntas marcadas».</span>' : `<button class="link" id="b-marcar">Marcar como dudosa</button><div id="form-marca" hidden><textarea id="t-marca" placeholder="Qué te parece mal o dudoso (opcional)"></textarea><button class="btn sec" id="b-guardar-marca">Guardar marca</button></div>`}</div></div>` : '';
+  return `<section class="hoja" style="--tipo:${varTipo(p.tipo)}"><div class="margen" aria-hidden="true">${esc(p.tipo)}</div><div class="hoja-body">
+    <p class="eyebrow">Paso ${k + 1} de ${c.pasos.length} · ${esc(p.tipo)}</p><h3>${esc(p.pregunta)}</h3><div class="ops">${ops}</div>${fb}</div></section>`;
 }
+function enlazarPaso(c, k, alResponder) {
+  document.querySelectorAll('.op:not([disabled])').forEach(b => b.onclick = () => alResponder(+b.dataset.i));
+  const bm = $('#b-marcar');
+  if (bm) bm.onclick = () => { $('#form-marca').hidden = false; bm.hidden = true; $('#t-marca').focus() };
+  const bg = $('#b-guardar-marca');
+  if (bg) bg.onclick = () => { juego.marcas.push({ clave: c.id + '#' + (k + 1), fecha: ahora(), comentario: $('#t-marca').value.trim() }); aviso('Pregunta marcada.'); pintar() };
+}
+function bajar() { requestAnimationFrame(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })) }
 
-function caso() {
-  const c = CASOS.find(x => x.id === estado.cola[estado.i]);
-  const p = c.pasos[estado.paso];
-  if (!estado.orden) estado.orden = mezclar(p.opciones.map((t, k) => ({ t, k })));
-  const resp = estado.respondido;
+/* ---------- Modo casos (repetición espaciada) ---------- */
+function empezarCasos(ids, etiqueta) {
+  estado = { pantalla: 'caso', modo: 'casos', cola: ids, i: 0, etiqueta, paso: 0, res: [], orden: null, resp: null, puntos: 0 };
+  pintar(); window.scrollTo(0, 0);
+}
+function pantallaCaso() {
+  const c = POR_ID[estado.cola[estado.i]];
+  if (!c) { juego.enCurso = null; return ir('inicio') }
   const pasos = c.pasos.map((_, k) => `<i class="${k < estado.res.length ? (estado.res[k] ? 'ok' : 'no') : k === estado.paso ? 'act' : ''}"></i>`).join('');
-  const esDosis = p.tipo === 'Dosis';
   $('#app').innerHTML = `
-  <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div><button class="badge" id="b-salir" style="border:0">Salir</button></header>
+  <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div><button class="badge" id="b-salir" style="border:0">Pausa</button></header>
   <article class="vineta"><p class="eyebrow">${esc(c.tema)} · ${c.anio}.º año</p><p>${esc(c.vineta)}</p><div class="pasos" aria-label="Paso ${estado.paso + 1} de ${c.pasos.length}">${pasos}</div></article>
-  <section class="hoja"><div class="margen" aria-hidden="true">${esc(p.tipo)}</div><div class="hoja-body">
-    <p class="eyebrow">Paso ${estado.paso + 1} de ${c.pasos.length} · ${esc(p.tipo)}</p>
-    <h3>${esc(p.pregunta)}</h3>
-    <div class="ops">${estado.orden.map(o => {
-      let cl = 'op' + (esDosis ? ' dosis' : '');
-      if (resp) { if (o.k === 0) cl += ' ok'; else if (o.k === resp.k) cl += ' no' }
-      return `<button class="${cl}" data-k="${o.k}" ${resp ? 'disabled' : ''}>${esc(o.t)}</button>`
-    }).join('')}</div>
-    ${resp ? `<div class="feedback ${resp.k === 0 ? '' : 'no'}"><strong>${resp.k === 0 ? 'Correcto.' : 'La respuesta es: ' + esc(p.opciones[0])}</strong><p>${esc(p.explicacion)}</p><p class="fuente">${esc(p.fuente)}</p></div>
-    <button class="btn" id="b-sig">${estado.paso + 1 < c.pasos.length ? 'Siguiente paso' : 'Ver resultado del caso'}</button>` : ''}
-  </div></section>`;
-  $('#b-salir').onclick = () => { estado = { pantalla: 'inicio' }; inicio() };
-  document.querySelectorAll('.op:not([disabled])').forEach(b => b.onclick = () => { estado.respondido = { k: +b.dataset.k }; estado.res.push(+b.dataset.k === 0); caso(); window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }) });
-  if (resp) $('#b-sig').onclick = () => {
-    estado.respondido = null; estado.orden = null;
-    if (estado.paso + 1 < c.pasos.length) { estado.paso++; caso(); window.scrollTo(0, 0) } else cierre(c);
+  ${hojaPaso(c, estado.paso, estado)}
+  ${estado.resp ? `<button class="btn" id="b-sig">${estado.paso + 1 < c.pasos.length ? 'Siguiente paso' : 'Ver resultado del caso'}</button>` : ''}`;
+  $('#b-salir').onclick = () => ir('inicio');
+  enlazarPaso(c, estado.paso, i => {
+    const ok = i === 0, pts = ok ? 100 : 0;
+    estado.res.push(ok); registrarRespuesta(c.id + '#' + (estado.paso + 1), ok);
+    juego.puntos += pts; estado.puntos += pts;
+    estado.resp = { i, puntos: pts }; pintar(); bajar();
+  });
+  if (estado.resp) $('#b-sig').onclick = () => {
+    estado.resp = null; estado.orden = null;
+    if (estado.paso + 1 < c.pasos.length) { estado.paso++; pintar(); window.scrollTo(0, 0) } else terminarCaso(c);
   };
 }
-
-function cierre(c) {
+function terminarCaso(c) {
   const ok = estado.res.filter(Boolean).length, n = estado.res.length, pct = ok / n;
   const prev = prog[c.id] || { nivel: 0, intentos: 0 };
   let nivelN = prev.nivel;
@@ -229,22 +406,302 @@ function cierre(c) {
   else nivelN = Math.max(prev.nivel, 1);
   const vence = ahora() + INTERVALOS[nivelN] * DIA;
   prog[c.id] = { nivel: nivelN, vence, intentos: prev.intentos + 1, ultimo: Math.round(pct * 100), fallos: c.pasos.map((p, k) => estado.res[k] ? null : p.tipo).filter(Boolean) };
-  guardar(prog);
-  const quedan = estado.i + 1 < estado.cola.length;
+  const bonus = ok === n ? 200 : 0;
+  juego.puntos += bonus; estado.puntos += bonus;
+  logro('primer-caso'); if (ok === n) logro('caso-perfecto'); revisarDominados();
+  estado.pantalla = 'cierre'; estado.resultado = { ok, n, nivelN, vence, bonus };
+  pintar(); window.scrollTo(0, 0);
+}
+function pantallaCierre() {
+  const c = POR_ID[estado.cola[estado.i]], r = estado.resultado, quedan = estado.i + 1 < estado.cola.length;
   $('#app').innerHTML = `
   <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div></header>
-  <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b>${ok}/${n}</b><span>pasos correctos</span></div><div class="stat"><b>${Math.round(pct * 100)}%</b><span>del caso</span></div></div>
+  <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b>${r.ok}/${r.n}</b><span>pasos correctos</span></div><div class="stat"><b>${miles(r.ok * 100 + r.bonus)}</b><span>puntos${r.bonus ? ' (con bonus por caso perfecto)' : ''}</span></div></div>
     <ul class="res-list">${c.pasos.map((p, k) => `<li><span class="m ${estado.res[k] ? 'ok' : 'no'}">${estado.res[k] ? '✓' : '✗'}</span><span>${esc(p.tipo)}: ${esc(p.opciones[0])}</span></li>`).join('')}</ul>
-    <p class="next-review">Vuelve ${INTERVALOS[nivelN] === 0 ? 'hoy' : INTERVALOS[nivelN] === 1 ? 'mañana' : 'en ' + INTERVALOS[nivelN] + ' días (' + fecha(vence) + ')'}</p>
+    <p class="next-review">Vuelve ${INTERVALOS[r.nivelN] === 0 ? 'hoy' : INTERVALOS[r.nivelN] === 1 ? 'mañana' : 'en ' + INTERVALOS[r.nivelN] + ' días (' + fecha(r.vence) + ')'}</p>
   </section>
   <div class="row">${quedan ? '<button class="btn" id="b-otro">Siguiente caso</button>' : ''}<button class="btn ${quedan ? 'sec' : ''}" id="b-ini">Volver al inicio</button></div>`;
-  if (quedan) $('#b-otro').onclick = () => { estado.i++; estado.paso = 0; estado.res = []; caso(); window.scrollTo(0, 0) };
-  $('#b-ini').onclick = () => { estado = { pantalla: 'inicio' }; inicio(); window.scrollTo(0, 0) };
+  if (quedan) $('#b-otro').onclick = () => { estado.i++; estado.paso = 0; estado.res = []; estado.pantalla = 'caso'; pintar(); window.scrollTo(0, 0) };
+  $('#b-ini').onclick = () => { juego.enCurso = null; ir('inicio') };
 }
 
-function arrancar(datos) {
-  if (datos && datos.estado && datos.estado.pantalla === 'caso') { estado = datos.estado; caso() } else inicio();
+/* ---------- Modos de preguntas sueltas ---------- */
+function elegir(tipo) {
+  let cand = PASOS.filter(x => (!tipo || x.p.tipo === tipo) && !estado.usados.includes(x.clave));
+  if (!cand.length) cand = PASOS.filter(x => !tipo || x.p.tipo === tipo);
+  // Primero las que fallaste, después las nunca vistas, después el resto, con algo de azar
+  const peso = x => { const r = juego.pasos[x.clave]; return (r ? (r.ultimo === false ? 0 : 2) : 1) + Math.random() * 1.6 };
+  return cand.map(x => [peso(x), x.clave]).sort((a, b) => a[0] - b[0])[0][1];
 }
-window.claude?.hot?.snapshot?.(() => ({ estado }));
-window.claude?.hot?.ready ? window.claude.hot.ready(arrancar) : arrancar(window.claude?.hot?.data ?? {});
+function nuevaPartida(modo) {
+  const base = { modo, puntos: 0, aciertos: 0, total: 0, racha: 0, usados: [], resp: null, orden: null };
+  if (modo === 'ruleta') Object.assign(base, { pantalla: 'ruleta', vidas: RULETA.vidas, coronas: [], medidor: 0, giro: 0 });
+  if (modo === 'contrarreloj') Object.assign(base, { pantalla: 'pregunta', restante: CONTRARRELOJ.ms, finEn: null });
+  if (modo === 'errores') Object.assign(base, { pantalla: 'pregunta', cola: mezclar(clavesConError()).slice(0, 15), i: 0 });
+  if (modo === 'rapido') Object.assign(base, { pantalla: 'pregunta', cola: [], i: 0 });
+  estado = base;
+  if (modo === 'rapido') { for (let n = 0; n < 10; n++) { const k = elegir(null); estado.cola.push(k); estado.usados.push(k) } estado.usados = [] }
+  if (modo === 'contrarreloj') estado.clave = elegir(null);
+  if (estado.cola) estado.clave = estado.cola[0];
+  pintar(); window.scrollTo(0, 0);
+}
+function hud() {
+  const e = estado;
+  if (e.modo === 'ruleta') return `<div class="hud">
+    <span class="vidas" aria-label="${e.vidas} vidas">${Array.from({ length: RULETA.vidas }, (_, i) => `<span class="${i < e.vidas ? '' : 'perdida'}">${ICONO.vida}</span>`).join('')}</span>
+    <span class="coronas" aria-label="${e.coronas.length} de ${RULETA.coronas} coronas">${TIPOS.map(t => `<i class="${e.coronas.includes(t) ? 'si' : ''}" style="--c:${varTipo(t)}" title="${esc(t)}"></i>`).join('')}</span>
+    <span class="medidor" aria-label="${e.medidor} de 3 para la pregunta corona">${[0, 1, 2].map(i => `<i class="${i < e.medidor ? 'si' : ''}"></i>`).join('')}</span>
+    <span class="puntos">${miles(e.puntos)} pts</span></div>`;
+  if (e.modo === 'contrarreloj') return `<div class="hud"><span class="reloj" id="reloj">${Math.ceil(e.restante / 1000)} s</span><span class="puntos">${e.aciertos}/${e.total} · ${miles(e.puntos)} pts</span></div>`;
+  return `<div class="hud"><span class="puntos">${esc(MODOS_JUEGO[e.modo])} · pregunta ${e.i + 1} de ${e.cola.length}</span><span class="puntos">${miles(e.puntos)} pts</span></div>`;
+}
+function pantallaPregunta() {
+  const x = POR_CLAVE[estado.clave];
+  if (!x) { juego.enCurso = null; return ir('inicio') }
+  const { c, k, p } = x, e = estado, conReloj = e.modo === 'ruleta' && juego.ajustes.tiempo > 0;
+  const previos = c.pasos.slice(0, k);
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">${esc(MODOS_JUEGO[e.modo])}</p><h2>${esc(c.titulo)}</h2></div><button class="badge" id="b-salir" style="border:0">Pausa</button></header>
+  ${hud()}
+  ${e.esCorona ? `<p class="corona-aviso">${ICONO.corona} Pregunta corona: ${esc(p.tipo)}</p>` : ''}
+  ${conReloj && !e.resp ? `<div class="timer" role="img" aria-label="Tiempo restante"><i id="barra-tiempo" style="width:100%"></i></div>` : ''}
+  <article class="vineta" style="border-top-color:${varTipo(p.tipo)}"><p><span class="chip-tipo" style="--tipo:${varTipo(p.tipo)}">${esc(p.tipo)}</span></p><p class="eyebrow">${esc(c.tema)} · ${c.anio}.º año</p><p>${esc(c.vineta)}</p>
+    ${previos.length ? `<div><p class="eyebrow">Ya resuelto en este caso</p><ul class="contexto">${previos.map(q => `<li>${esc(q.tipo)}: <b>${esc(q.opciones[0])}</b></li>`).join('')}</ul></div>` : ''}</article>
+  ${hojaPaso(c, k, e)}
+  ${e.resp ? `<button class="btn" id="b-sig">${textoSiguiente()}</button>` : ''}`;
+  $('#b-salir').onclick = () => { if (e.modo === 'contrarreloj' && e.finEn && !e.resp) e.restante = Math.max(0, e.finEn - ahora()); e.finEn = null; e.deadline = null; juego.enCurso = e; ir('inicio') };
+  enlazarPaso(c, k, responder);
+  if (e.resp) { $('#b-sig').onclick = siguiente; return }
+  if (e.modo === 'contrarreloj') {
+    e.finEn = ahora() + e.restante;
+    reloj = setInterval(() => {
+      e.restante = Math.max(0, e.finEn - ahora());
+      const r = $('#reloj'); if (r) { r.textContent = Math.ceil(e.restante / 1000) + ' s'; r.classList.toggle('poco', e.restante < 15000) }
+      if (e.restante <= 0) { clearInterval(reloj); terminarJuego('tiempo') }
+    }, 200);
+  } else if (conReloj) {
+    const total = juego.ajustes.tiempo * 1000;
+    if (!e.deadline) e.deadline = ahora() + total;
+    reloj = setInterval(() => {
+      const resta = e.deadline - ahora(), b = $('#barra-tiempo');
+      if (b) b.style.width = Math.max(0, resta / total * 100) + '%';
+      if (resta <= 0) { clearInterval(reloj); responder(null) }
+    }, 100);
+  }
+}
+function textoSiguiente() {
+  const e = estado;
+  if (e.modo === 'ruleta') return e.coronas.length === RULETA.coronas ? 'Ver el resultado' : e.vidas === 0 ? 'Ver el resultado' : e.medidor >= RULETA.medidor ? 'Ir a la pregunta corona' : 'Girar la ruleta';
+  if (e.modo === 'contrarreloj') return e.restante <= 0 ? 'Ver el resultado' : 'Siguiente pregunta';
+  return e.i + 1 < e.cola.length ? 'Siguiente pregunta' : 'Ver el resultado';
+}
+function responder(i) {
+  const e = estado;
+  if (e.resp) return;
+  clearInterval(reloj);
+  const ok = i === 0;
+  let pts = 0;
+  if (e.modo === 'contrarreloj' && e.finEn) e.restante = Math.max(0, e.finEn - ahora());
+  registrarRespuesta(e.clave, ok);
+  e.total++; e.usados.push(e.clave);
+  if (ok) {
+    e.aciertos++; e.racha++;
+    const mult = 1 + Math.min(e.racha - 1, 4) * 0.25;
+    const base = e.modo === 'errores' || e.modo === 'rapido' ? 50 : 100;
+    const extraTiempo = e.modo === 'ruleta' && e.deadline ? Math.ceil(Math.max(0, e.deadline - ahora()) / 1000) * 5 : 0;
+    pts = Math.round(base * mult + extraTiempo + (e.esCorona ? RULETA.corona : 0));
+  } else e.racha = 0;
+  if (e.modo === 'ruleta') {
+    if (e.esCorona) { if (ok) { e.coronas.push(POR_CLAVE[e.clave].p.tipo); logro('corona-1') } else e.vidas--; e.medidor = 0 }
+    else if (ok) e.medidor = Math.min(e.medidor + 1, RULETA.medidor);
+    else { e.vidas--; e.medidor = 0 }
+  }
+  if (e.modo === 'contrarreloj' && !ok) e.restante = Math.max(0, e.restante - CONTRARRELOJ.castigo);
+  e.puntos += pts; juego.puntos += pts;
+  e.resp = { i, puntos: pts }; e.deadline = null; e.finEn = null;
+  pintar(); bajar();
+}
+function siguiente() {
+  const e = estado;
+  e.resp = null; e.orden = null; e.esCorona = false; e.deadline = null;
+  if (e.modo === 'ruleta') {
+    if (e.coronas.length === RULETA.coronas) return terminarJuego('gano');
+    if (e.vidas <= 0) return terminarJuego('vidas');
+    e.pantalla = e.medidor >= RULETA.medidor ? 'corona' : 'ruleta';
+  } else if (e.modo === 'contrarreloj') {
+    if (e.restante <= 0) return terminarJuego('tiempo');
+    e.clave = elegir(null);
+  } else {
+    e.i++;
+    if (e.i >= e.cola.length) return terminarJuego('fin');
+    e.clave = e.cola[e.i];
+  }
+  pintar(); window.scrollTo(0, 0);
+}
+
+/* ---------- Ruleta ---------- */
+function rueda() {
+  const n = TIPOS.length, seg = 360 / n, R = 140, C = 150;
+  const punto = (a, r) => { const rad = (a - 90) * Math.PI / 180; return [C + r * Math.cos(rad), C + r * Math.sin(rad)] };
+  return `<svg class="rueda" id="rueda" viewBox="0 0 300 300" style="transform:rotate(${estado.giro}deg)" role="img" aria-label="Ruleta con los 7 tipos de paso">
+    ${TIPOS.map((t, i) => { const [x1, y1] = punto(i * seg, R), [x2, y2] = punto((i + 1) * seg, R), [tx, ty] = punto((i + 0.5) * seg, R * 0.62);
+      return `<path d="M${C},${C} L${x1.toFixed(1)},${y1.toFixed(1)} A${R},${R} 0 0,1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${varTipo(t)}" stroke="var(--sheet)" stroke-width="2"/>
+      <text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" fill="var(--sheet)" font-size="13" font-weight="700" text-anchor="middle" dominant-baseline="middle" transform="rotate(${(((i + 0.5) * seg) + (((i + 0.5) * seg) > 90 && ((i + 0.5) * seg) < 270 ? 180 : 0)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})">${esc(CORTO[t])}</text>` }).join('')}
+    <circle cx="${C}" cy="${C}" r="22" fill="var(--sheet)" stroke="var(--line)" stroke-width="2"/></svg>`;
+}
+function pantallaRuleta() {
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">Ruleta</p><h2>Girá para elegir la categoría</h2></div><button class="badge" id="b-salir" style="border:0">Pausa</button></header>
+  ${hud()}
+  <p class="muted">Cada acierto llena el medidor; con 3 seguidos jugás una pregunta corona. Un error te cuesta una vida y vacía el medidor.</p>
+  <div class="rueda-caja"><div class="flecha" aria-hidden="true"></div>${rueda()}</div>
+  <button class="btn" id="b-girar">Girar</button>`;
+  $('#b-salir').onclick = () => ir('inicio');
+  $('#b-girar').onclick = () => {
+    $('#b-girar').disabled = true;
+    const n = TIPOS.length, seg = 360 / n, t = Math.floor(Math.random() * n);
+    // La porción t tiene que quedar bajo la flecha (arriba)
+    const destino = 360 - (t * seg + seg / 2) + (Math.random() - 0.5) * seg * 0.6;
+    const actual = ((estado.giro % 360) + 360) % 360;
+    estado.giro += 360 * 5 + ((destino - actual + 360) % 360);
+    $('#rueda').style.transform = `rotate(${estado.giro}deg)`;
+    const espera = matchMedia('(prefers-reduced-motion: reduce)').matches ? 500 : 2500;
+    setTimeout(() => { estado.tipo = TIPOS[t]; estado.clave = elegir(TIPOS[t]); estado.pantalla = 'pregunta'; pintar(); window.scrollTo(0, 0) }, espera);
+  };
+}
+function pantallaCorona() {
+  const faltan = TIPOS.filter(t => !estado.coronas.includes(t));
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">Ruleta</p><h2>Pregunta corona</h2></div><button class="badge" id="b-salir" style="border:0">Pausa</button></header>
+  ${hud()}
+  <p>Elegí la categoría. Si acertás, ganás esa corona y ${RULETA.corona} puntos extra; si fallás, perdés una vida.</p>
+  <div class="cats">${faltan.map(t => `<button class="cat" data-t="${esc(t)}" style="--tipo:${varTipo(t)}">${esc(t)}</button>`).join('')}</div>`;
+  $('#b-salir').onclick = () => ir('inicio');
+  document.querySelectorAll('.cat').forEach(b => b.onclick = () => { estado.tipo = b.dataset.t; estado.esCorona = true; estado.clave = elegir(b.dataset.t); estado.pantalla = 'pregunta'; pintar(); window.scrollTo(0, 0) });
+}
+
+/* ---------- Fin de partida ---------- */
+function terminarJuego(motivo) {
+  clearInterval(reloj);
+  const e = estado;
+  if (motivo === 'gano') { e.puntos += RULETA.victoria; juego.puntos += RULETA.victoria; logro('ruleta') }
+  let nuevo = false;
+  if (e.modo in juego.record && e.puntos > juego.record[e.modo]) { juego.record[e.modo] = e.puntos; nuevo = true }
+  if (e.modo === 'contrarreloj' && e.puntos >= 1500) logro('contrarreloj');
+  if (e.modo === 'errores' && !clavesConError().length) logro('errores-0');
+  estado = { pantalla: 'fin', modo: e.modo, motivo, puntos: e.puntos, aciertos: e.aciertos, total: e.total, coronas: e.coronas ? e.coronas.length : 0, nuevo };
+  juego.enCurso = null;
+  pintar(); window.scrollTo(0, 0);
+}
+function pantallaFin() {
+  const e = estado;
+  const titulo = { gano: '¡Ganaste las siete coronas!', vidas: 'Te quedaste sin vidas', tiempo: 'Se terminó el tiempo', fin: 'Terminaste' }[e.motivo];
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">${esc(MODOS_JUEGO[e.modo])}</p><h1>${titulo}</h1></div></header>
+  <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr">
+    <div class="stat"><b>${miles(e.puntos)}</b><span>puntos${e.nuevo ? ' · nuevo récord' : ''}</span></div>
+    <div class="stat"><b>${e.aciertos}/${e.total}</b><span>aciertos${e.modo === 'ruleta' ? ` · ${e.coronas} ${e.coronas === 1 ? 'corona' : 'coronas'}` : ''}</span></div></div>
+    ${e.modo in juego.record ? `<p class="muted">Récord de ${esc(MODOS_JUEGO[e.modo]).toLowerCase()}: ${miles(juego.record[e.modo])} puntos.</p>` : ''}
+    ${e.modo === 'errores' ? `<p class="muted">Quedan ${clavesConError().length} preguntas en «Mis errores».</p>` : ''}
+  </section>
+  <div class="row"><button class="btn" id="b-otra" ${e.modo === 'errores' && !clavesConError().length ? 'disabled' : ''}>Jugar otra vez</button><button class="btn sec" id="b-ini">Volver al inicio</button></div>`;
+  $('#b-otra').onclick = () => nuevaPartida(e.modo);
+  $('#b-ini').onclick = () => ir('inicio');
+}
+
+/* ---------- Preguntas marcadas ---------- */
+function textoMarcas() {
+  return `Preguntas marcadas en Pase de sala (${juego.marcas.length}), ${new Date().toLocaleDateString('es-AR')}\nCada código es «id del caso#número de paso»; el caso está en fuente/casos-*.js.\n\n` +
+    juego.marcas.map((m, n) => { const x = POR_CLAVE[m.clave]; return `${n + 1}. ${m.clave}${x ? ` (${x.p.tipo})` : ''}\n   Pregunta: ${x ? x.p.pregunta : 'paso no encontrado'}\n   Respuesta del juego: ${x ? x.p.opciones[0] : '-'}\n   Comentario: ${m.comentario || '(sin comentario)'}` }).join('\n\n');
+}
+function pantallaMarcas() {
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">Para corregir</p><h2>Preguntas marcadas</h2></div><button class="badge" id="b-volver" style="border:0">Volver</button></header>
+  ${juego.marcas.length ? `<p class="muted">Compartí la lista con el agente que mantiene los casos para que las revise.</p>
+  <div class="row"><button class="btn" id="b-compartir">Compartir la lista</button><button class="btn sec" id="b-copiar">Copiar la lista</button></div>
+  <section class="panel">${juego.marcas.map((m, n) => { const x = POR_CLAVE[m.clave]; return `<div class="item"><div class="fila"><b>${esc(x ? x.c.titulo : m.clave)}</b><button class="link" data-borrar="${n}">Quitar</button></div>
+    <p class="eyebrow">${esc(m.clave)}${x ? ' · ' + esc(x.p.tipo) : ''} · ${fecha(m.fecha)}</p><p>${esc(x ? x.p.pregunta : '')}</p>${m.comentario ? `<p class="muted">«${esc(m.comentario)}»</p>` : ''}</div>` }).join('')}</section>` : '<p class="muted">No marcaste preguntas. Después de responder, usá «Marcar como dudosa» si algo te parece mal.</p>'}`;
+  $('#b-volver').onclick = () => ir('inicio');
+  if (!juego.marcas.length) return;
+  $('#b-compartir').onclick = () => { const t = textoMarcas(); if (navigator.share) navigator.share({ title: 'Preguntas marcadas', text: t }).catch(() => {}); else copiar(t) };
+  $('#b-copiar').onclick = () => copiar(textoMarcas());
+  document.querySelectorAll('[data-borrar]').forEach(b => b.onclick = () => { juego.marcas.splice(+b.dataset.borrar, 1); pintar() });
+}
+function copiar(t) {
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => aviso('Copiado.'), () => aviso('No se pudo copiar.'));
+  else aviso('Este navegador no permite copiar.');
+}
+
+/* ---------- Logros ---------- */
+function pantallaLogros() {
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">${Object.keys(juego.logros).length} de ${LOGROS.length}</p><h2>Logros</h2></div><button class="badge" id="b-volver" style="border:0">Volver</button></header>
+  <p class="muted">Mejor racha: ${juego.racha.mejor} días seguidos.</p>
+  <section class="temas">${LOGROS.map(([id, nombre, desc]) => `<div class="logro ${juego.logros[id] ? 'si' : ''}"><span class="ic-logro">${ICONO.logro}</span><span><b>${esc(nombre)}</b><br><span class="muted">${esc(desc)}${juego.logros[id] ? ' · ' + fecha(juego.logros[id]) : ''}</span></span></div>`).join('')}</section>`;
+  $('#b-volver').onclick = () => ir('inicio');
+}
+
+/* ---------- Ajustes y respaldo ---------- */
+function respaldo() { const j = Object.assign({}, juego, { enCurso: null }); return { app: 'pase-de-sala', version: 2, fecha: new Date().toISOString(), prog, juego: j } }
+function restaurar(d) {
+  if (d && d.app === 'pase-de-sala' && d.prog) { prog = d.prog; juego = normalizarJuego(d.juego) }
+  else if (d && typeof d === 'object' && Object.values(d).every(v => v && typeof v === 'object' && 'nivel' in v)) prog = d; // respaldo viejo: solo la repetición espaciada
+  else throw new Error('formato');
+  guardar();
+}
+function pantallaAjustes() {
+  const a = juego.ajustes;
+  const opciones = (nombre, valores, actual, rotulo) => `<div class="opciones-ajuste" role="group" aria-label="${rotulo}">${valores.map(([v, t]) => `<button data-${nombre}="${v}" aria-pressed="${v === actual}">${t}</button>`).join('')}</div>`;
+  $('#app').innerHTML = `
+  <header class="top"><div><p class="eyebrow">Configuración</p><h2>Ajustes y respaldo</h2></div><button class="badge" id="b-volver" style="border:0">Volver</button></header>
+  <section class="panel"><h3>Casos por sesión del día</h3>${opciones('sesion', [[5, '5'], [10, '10'], [15, '15']], a.sesion, 'Casos por sesión')}
+    <h3>Tiempo por pregunta en la ruleta</h3>${opciones('tiempo', [[0, 'Sin tiempo'], [30, '30 s'], [20, '20 s']], a.tiempo, 'Tiempo por pregunta')}</section>
+  <section class="panel"><h3>Respaldo del progreso</h3>
+    <p class="muted">El progreso queda guardado en este teléfono, dentro de la app. Guardá una copia en un archivo (por ejemplo en iCloud o en Archivos) para no perderlo si borrás la app o cambiás de teléfono.</p>
+    <div class="row"><button class="btn" id="b-exportar">Guardar copia en un archivo</button><button class="btn sec" id="b-importar">Restaurar desde un archivo</button></div>
+    <input type="file" id="f-importar" accept="application/json,.json" hidden>
+    <details><summary>Copiar o pegar el respaldo como texto</summary>
+      <div style="display:grid;gap:8px;margin-top:10px">
+        <textarea id="respaldo" aria-label="Código de respaldo">${esc(JSON.stringify(respaldo()))}</textarea>
+        <div class="row"><button class="btn sec" id="b-copiar">Copiar el código</button><button class="btn sec" id="b-restaurar">Restaurar desde el código</button></div>
+      </div></details>
+    <p class="msg" id="msg-resp"></p></section>`;
+  $('#b-volver').onclick = () => ir('inicio');
+  document.querySelectorAll('[data-sesion]').forEach(b => b.onclick = () => { a.sesion = +b.dataset.sesion; pintar() });
+  document.querySelectorAll('[data-tiempo]').forEach(b => b.onclick = () => { a.tiempo = +b.dataset.tiempo; pintar() });
+  $('#b-exportar').onclick = async () => {
+    const nombre = 'pase-de-sala-respaldo-' + diaISO(ahora()) + '.json';
+    const archivo = new File([JSON.stringify(respaldo())], nombre, { type: 'application/json' });
+    try { if (navigator.canShare && navigator.canShare({ files: [archivo] })) { await navigator.share({ files: [archivo], title: 'Respaldo de Pase de sala' }); return } } catch (e) { if (e && e.name === 'AbortError') return }
+    const a2 = document.createElement('a'); a2.href = URL.createObjectURL(archivo); a2.download = nombre; document.body.appendChild(a2); a2.click(); a2.remove();
+    setTimeout(() => URL.revokeObjectURL(a2.href), 4000);
+  };
+  $('#b-importar').onclick = () => $('#f-importar').click();
+  $('#f-importar').onchange = ev => {
+    const f = ev.target.files[0]; if (!f) return;
+    f.text().then(t => { if (!confirm('Esto reemplaza el progreso actual por el del archivo. ¿Seguir?')) return; restaurar(JSON.parse(t)); aviso('Progreso restaurado.'); ir('inicio') })
+      .catch(() => { $('#msg-resp').textContent = 'El archivo no es un respaldo válido.' });
+  };
+  $('#b-copiar').onclick = () => copiar($('#respaldo').value);
+  $('#b-restaurar').onclick = () => {
+    try { const d = JSON.parse($('#respaldo').value); if (!confirm('Esto reemplaza el progreso actual. ¿Seguir?')) return; restaurar(d); aviso('Progreso restaurado.'); ir('inicio') }
+    catch (e) { $('#msg-resp').textContent = 'El código no es válido: copiá el texto completo del respaldo.' }
+  };
+}
+
+/* ---------- Arranque ---------- */
+function arrancar() {
+  ir('inicio');
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js').then(reg => reg.addEventListener('updatefound', () => {
+      // Solo avisa si ya había una versión instalada; la primera instalación no es una actualización
+      const nuevo = reg.installing; if (!reg.active || !nuevo) return;
+      nuevo.addEventListener('statechange', () => { if (nuevo.state === 'activated') $('#aviso').hidden = false });
+    })).catch(() => {});
+  }
+  $('#b-actualizar').onclick = () => { guardar(); location.reload() };
+  document.addEventListener('visibilitychange', () => { if (document.hidden) guardar() });
+}
+arrancar();
 </script>
