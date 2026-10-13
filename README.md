@@ -27,7 +27,7 @@ Todo en `SynologyDrive/Pase de sala/`:
 | Qué | Ruta |
 |---|---|
 | **App para el teléfono** (lo que publica GitHub Pages) | `docs/` (generada; no se edita a mano) |
-| Casos | `fuente/casos-piloto.js`, `fuente/casos-anio1a.js`, `fuente/casos-anio1b.js`, `fuente/casos-anio2.js`, `fuente/casos-anio3.js`, `fuente/casos-anio4.js` |
+| Casos | `fuente/casos-*.js`: piloto, `anio1a`, `anio1b`, `anio1c`, `anio2`, `anio2b`, `anio3`, `anio3b`, `anio34c`, `anio4` y `anio4b` |
 | Interfaz y lógica del juego (HTML, CSS y JS sin dependencias) | `fuente/plantilla.html` |
 | Generador y validador | `fuente/construir.js` |
 | Service worker (modo sin conexión) | `fuente/sw.js` |
@@ -40,12 +40,13 @@ Todo en `SynologyDrive/Pase de sala/`:
 
 ## Estado actual
 
-- 113 casos y 435 pasos: 47 de 1.º año, 26 de 2.º, 25 de 3.º y 15 de 4.º.
-- Hay al menos un caso por cada uno de los 63 puntos del programa.
-- Las opciones no tienen pistas de forma: la correcta es la más larga en el 20 % de los pasos, la más corta en el 14 %, y ninguna incorrecta usa palabras absolutas que la delaten.
-- Temas con un solo caso (los primeros para ampliar): cáncer gástrico, cáncer esofágico, cáncer de pulmón, empiema, quiste hidatídico, cavidad oral, vaciamiento cervical, nefrectomías, histerectomías, pancreatitis crónica, quiste pilonidal, enfermedad venosa crónica, canalizaciones venosas, soporte nutricional, traqueostomías, entre otros. Para ver el conteo actualizado, desde `fuente/`:
+- 174 casos y 667 pasos: 69 de 1.º año, 38 de 2.º, 40 de 3.º y 27 de 4.º.
+- Los 57 temas del programa tienen al menos 3 casos.
+- Pasos por tipo: Diagnóstico 134, Conducta quirúrgica 143, Medidas generales 116, Fármaco 80, Técnica 75, Estudios 74 y Dosis 45.
+- Las opciones no tienen pistas de forma: la correcta es la más larga en el 27 % de los pasos, la más corta en el 15 %, y ninguna incorrecta usa palabras absolutas que la delaten.
+- Para ver el conteo por tema, desde `fuente/`:
   ```bash
-  node -e "const fs=require('fs');const c=fs.readdirSync('.').filter(f=>/^casos-.*\.js$/.test(f)).flatMap(f=>require('./'+f));const t={};c.forEach(x=>{const k=x.anio+' | '+x.tema;t[k]=(t[k]||0)+1});Object.keys(t).sort().forEach(k=>console.log(t[k],k))"
+  node -e "const fs=require('fs');const c=fs.readdirSync('.').filter(f=>/^casos-.*.js$/.test(f)).flatMap(f=>require('./'+f));const t={};c.forEach(x=>{const k=x.anio+' | '+x.tema;t[k]=(t[k]||0)+1});Object.keys(t).sort().forEach(k=>console.log(t[k],k))"
   ```
 
 ## Cómo se genera
@@ -149,11 +150,11 @@ Tipografías Bricolage Grotesque, Source Sans 3 e IBM Plex Mono (Google Fonts; e
 
 ## Fuentes verificadas que ya se usaron (para reutilizar)
 
-TG18 (antibióticos en infección biliar, tabla 3 de Gomi 2018), SIS/IDSA 2010 (tabla de dosis), ASHP 2013 (profilaxis), WSES (apendicitis 2020, bazo 2017, hígado 2020, pelvis 2017, pancreatitis grave 2019, lesión biliar 2020, enfermedades anorrectales 2021), ATLS 10.ª ed., CRASH-2, Surviving Sepsis 2021, ESPEN, BTS 2023 y MIST-2, ESC 2019 (embolia pulmonar), ESC/ESVS 2024 (arteriopatía periférica), ESVS 2020 y 2022, IWGDF/IDSA 2023, ASCRS (hemorroides 2018, fisura 2023, pilonidal 2019), HerniaSurge, EHS 2026 (hernia ventral de urgencia), ATA 2015 y 2016, Society for Endocrinology 2016 (hipocalcemia), ESGE 2021, Maastricht VI, Lyon 2.0, ESMO 2023 (colon) e IDEA, RAPIDO y PRODIGE 23, FLOT4, ESOPEC, CROSS, ACOSOG Z0011, JCOG0802, CALGB 140503, BCLC 2022, EORTC 40983, WHO-IWGE 2010, BILCAP, PRODIGE 24, DROP, ISGPS 2016, EAU 2024, AUA 2017, ley 26.529.
+Verificadas para las tandas de octubre de 2026 (en el texto o resumen original vía Europe PMC, la API oficial que da acceso a PubMed y PMC sin pasar por sus verificaciones anti-bot): RTOG 9501 y EORTC 22931, AAO-HNS 2017 (masa cervical), EAST 2021 (hemotórax retenido), WSES-AAST 2025 (trauma torácico), Fleischner 2017, ADAURA, CROSS, JGCA 2021, KATHERINE, WSES 2023 (lesión urinaria), WSES 2020 (lesión biliar y apendicitis), WSES 2019 (pancreatitis grave), WSES 2022 (isquemia mesentérica), ESGAR 2017 (pólipos vesiculares), HerniaSurge 2018, CALISTO, ESCHAR, Caravaggio, Present 1999 (infliximab), RE-VERSE AD, EHS/AHS 2020 y 2022, ESAIC 2024 (delirium), JSA 2025 y EMHG 2024 (hipertermia maligna), Association of Anaesthetists 2025 (acceso vascular), Ley 26.529. Anteriores: TG18 (antibióticos en infección biliar, tabla 3 de Gomi 2018), SIS/IDSA 2010 (tabla de dosis), ASHP 2013 (profilaxis), WSES (apendicitis 2020, bazo 2017, hígado 2020, pelvis 2017, pancreatitis grave 2019, lesión biliar 2020, enfermedades anorrectales 2021), ATLS 10.ª ed., CRASH-2, Surviving Sepsis 2021, ESPEN, BTS 2023 y MIST-2, ESC 2019 (embolia pulmonar), ESC/ESVS 2024 (arteriopatía periférica), ESVS 2020 y 2022, IWGDF/IDSA 2023, ASCRS (hemorroides 2018, fisura 2023, pilonidal 2019), HerniaSurge, EHS 2026 (hernia ventral de urgencia), ATA 2015 y 2016, Society for Endocrinology 2016 (hipocalcemia), ESGE 2021, Maastricht VI, Lyon 2.0, ESMO 2023 (colon) e IDEA, RAPIDO y PRODIGE 23, FLOT4, ESOPEC, CROSS, ACOSOG Z0011, JCOG0802, CALGB 140503, BCLC 2022, EORTC 40983, WHO-IWGE 2010, BILCAP, PRODIGE 24, DROP, ISGPS 2016, EAU 2024, AUA 2017, ley 26.529.
 
 ## Próximos pasos sugeridos
 
-1. Llevar cada tema a 3 casos como mínimo (unos 55 casos nuevos), empezando por 3.º y 4.º año, y sumar pasos de Dosis y Estudios, que son los menos frecuentes.
+1. Seguir sumando casos donde el usuario detecte huecos, y pasos de Dosis, que siguen siendo los menos frecuentes.
 2. Verificar contra la fuente original los pasos de Fármaco y Dosis, sobre todo los que no citan una nota de Hermes.
 3. Revisar las preguntas que el usuario marque como dudosas y corregirlas en el `casos-*.js` que corresponda.
 4. Después de cada cambio: `node construir.js` desde `fuente/`, revisar que no haya `AVISOS` ni pistas, agregar una entrada en `CAMBIOS.md`, y hacer commit y push para publicarlo.

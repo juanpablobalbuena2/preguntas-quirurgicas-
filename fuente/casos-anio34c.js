@@ -75,7 +75,7 @@ module.exports = [
  vineta: 'Mujer de 50 años operada hace 3 semanas de una fundoplicatura de Nissen laparoscópica por reflujo demostrado, con manometría preoperatoria normal. Tiene disfagia a sólidos, tolera líquidos y no perdió peso.',
  pasos: [
   { tipo: 'Diagnóstico', pregunta: '¿Cómo interpretás la disfagia?',
-    opciones: ['Disfagia temprana, en general transitoria', 'Acalasia que no se diagnosticó antes de operar', 'Hernia paraesofágica aguda por la válvula', 'Cáncer de esófago no visto en la endoscopia'],
+    opciones: ['Disfagia temprana, en general transitoria', 'Acalasia que no se diagnosticó antes de operar', 'Hernia paraesofágica aguda por la válvula tensa', 'Cáncer de esófago no visto en la endoscopia'],
     explicacion: 'La disfagia temprana después de una fundoplicatura suele ser transitoria por el edema. La manometría normal previa descarta acalasia; la imposibilidad de tragar líquidos o el dolor intenso obligarían a estudiarla.',
     fuente: 'Hermes: Fundoplicatura laparoscópica' },
   { tipo: 'Medidas generales', pregunta: '¿Qué indicás?',
@@ -87,7 +87,7 @@ module.exports = [
     explicacion: 'Antes de una revisión se reconstruyen la anatomía y la función con endoscopia, estudio contrastado y manometría (y pH-impedancia según el síntoma), porque la reoperación tiene más morbilidad y menos durabilidad.',
     fuente: 'Hermes: Fundoplicatura laparoscópica' },
   { tipo: 'Técnica', pregunta: '¿Qué defecto técnico predispone a la disfagia persistente?',
-    opciones: ['Válvula larga, tensa o torcida', 'Cerrar los pilares diafragmáticos', 'Preservar ambos nervios vagos', 'Usar el fundus gástrico para la válvula'],
+    opciones: ['Válvula larga, tensa o torcida', 'Cerrar los pilares diafragmáticos', 'Preservar ambos nervios vagos en la disección', 'Usar el fundus gástrico para la válvula'],
     explicacion: 'Una válvula tensa, larga, torcida o confeccionada con cuerpo gástrico en vez de fundus, o un cierre crural excesivo, predisponen al fracaso funcional. Cerrar los pilares, usar el fundus y preservar los vagos son pasos correctos.',
     fuente: 'Hermes: Fundoplicatura laparoscópica' },
  ] },
