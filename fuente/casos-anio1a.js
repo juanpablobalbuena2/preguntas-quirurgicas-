@@ -383,7 +383,7 @@ module.exports = [
     explicacion: 'Se lava con agua y jabón y se informa enseguida al servicio de salud ocupacional. Exprimir o usar cáusticos no reduce la transmisión y daña el tejido. La consulta debe ser inmediata porque la profilaxis tiene una ventana corta.',
     fuente: 'CDC, manejo de la exposición ocupacional a sangre' },
   { tipo: 'Fármaco', pregunta: '¿Qué profilaxis indicás?',
-    opciones: ['Profilaxis antirretroviral cuanto antes (idealmente en 2 horas) por 28 días', 'Profilaxis solo si el test del paciente vuelve positivo en 7 días', 'Gammaglobulina contra hepatitis B y vacuna de refuerzo, con control serológico', 'Sin profilaxis: control serológico a las 6 semanas'],
+    opciones: ['Profilaxis antirretroviral cuanto antes (idealmente en horas) por 28 días', 'Profilaxis solo si el test del paciente vuelve positivo en 7 días', 'Gammaglobulina contra hepatitis B y vacuna de refuerzo, con control serológico', 'Sin profilaxis: control serológico a las 6 semanas'],
     explicacion: 'La profilaxis posexposición para VIH se inicia cuanto antes (idealmente en horas) y se mantiene 28 días con controles serológicos. Con anticuerpos contra hepatitis B protectores no hace falta profilaxis para hepatitis B.',
     fuente: 'CDC, profilaxis posexposición ocupacional al VIH' },
   { tipo: 'Medidas generales', pregunta: '¿Qué medida reduce estos accidentes?',

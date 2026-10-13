@@ -155,9 +155,9 @@ module.exports = [
     opciones: ['Yoduro de potasio (Lugol o SSKI)', 'Levotiroxina en dosis supresiva', 'Iodo radiactivo en dosis baja', 'Corticoides en dosis altas'],
     explicacion: 'En la enfermedad de Graves, el yoduro preoperatorio reduce la vascularización de la glándula y el sangrado intraoperatorio.',
     fuente: 'ATA 2016, hipertiroidismo' },
-  { tipo: 'Dosis', pregunta: '¿Con qué esquema?',
-    opciones: ['Lugol 5 a 7 gotas 3 veces por día, 10 días antes', 'Lugol 1 gota por semana durante los 3 meses previos', 'Lugol 20 gotas en dosis única el día de la cirugía', 'Lugol 50 gotas por día durante los 2 días previos'],
-    explicacion: 'ATA 2016 indica Lugol 5 a 7 gotas o SSKI 1 a 2 gotas tres veces por día, diluidas en agua o jugo, durante 10 días antes de la operación.',
+  { tipo: 'Medidas generales', pregunta: '¿En qué momento lo indicás?',
+    opciones: ['En el preoperatorio inmediato, ya eutiroidea', 'Un mes antes, en lugar de los antitiroideos', 'Después de la cirugía, para frenar la tormenta', 'Solo si sigue hipertiroidea el día de la cirugía'],
+    explicacion: 'ATA 2016 indica un preparado con yoduro de potasio en el preoperatorio inmediato, una vez lograda la eutiroidea con antitiroideos: no los reemplaza. Los esquemas clásicos de unos 10 días son práctica histórica y las gotas varían según el preparado.',
     fuente: 'ATA 2016, hipertiroidismo' },
   { tipo: 'Conducta quirúrgica', pregunta: '¿Qué cirugía indicás?',
     opciones: ['Tiroidectomía total', 'Lobectomía unilateral', 'Tiroidectomía subtotal bilateral', 'Istmectomía con biopsia'],
@@ -166,7 +166,7 @@ module.exports = [
   { tipo: 'Dosis', pregunta: 'Después, ¿con qué dosis inicial de levotiroxina la reemplazás?',
     opciones: ['Alrededor de 1,6 µg/kg/día, ajustada por TSH', '10 µg/kg/día desde el primer día', '25 µg por semana, en una sola toma', 'No necesita reemplazo si queda eutiroidea'],
     explicacion: 'La dosis de reemplazo completa es cercana a 1,6 µg/kg/día; se ajusta con la TSH a las 6 a 8 semanas.',
-    fuente: 'ATA 2016, hipertiroidismo' }
+    fuente: 'Revisión de levotiroxina tras tiroidectomía (Front Endocrinol 2020;11:626268): dosis empírica de alrededor de 1,6 µg/kg en enfermedad benigna' }
  ]
 },
 {
@@ -194,9 +194,9 @@ module.exports = [
     opciones: ['Angioembolización o cirugía con ligadura del vaso', 'Tercera endoscopia con clips y adrenalina', 'Duplicar la infusión de inhibidor de bomba', 'Transfundir y esperar que deje de sangrar'],
     explicacion: 'Si falla el segundo intento endoscópico, la embolización de la gastroduodenal o la cirugía con ligadura del vaso son las opciones de rescate.',
     fuente: 'ESGE 2021; Hermes: Complicaciones de la úlcera gastroduodenal' },
-  { tipo: 'Fármaco', pregunta: 'La biopsia muestra Helicobacter pylori. ¿Qué tratamiento de erradicación indicás donde no se conoce la resistencia a la claritromicina?',
+  { tipo: 'Fármaco', pregunta: 'La biopsia muestra Helicobacter pylori. ¿Qué tratamiento de erradicación indicás en una región con resistencia a la claritromicina del 15 % o más?',
     opciones: ['Cuádruple con bismuto durante 14 días', 'Triple con claritromicina durante 7 días', 'Amoxicilina en dosis altas sola por 14 días', 'Inhibidor de bomba sin antibióticos por 8 semanas'],
-    explicacion: 'Maastricht VI recomienda la cuádruple con bismuto durante 14 días cuando la resistencia a la claritromicina es alta o desconocida, y confirmar la erradicación con prueba de aliento.',
+    explicacion: 'Maastricht VI recomienda, donde la resistencia a la claritromicina es del 15 % o más, la cuádruple con bismuto durante 14 días (o la concomitante sin bismuto), y confirmar la erradicación con prueba de aliento.',
     fuente: 'Maastricht VI/Florence 2022' }
  ]
 },
