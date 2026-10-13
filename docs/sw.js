@@ -1,6 +1,6 @@
 // Service worker de la app: guarda el juego para usarlo sin conexión. construir.js pone la versión en CACHE en cada generación,
 // así el teléfono baja la versión nueva la próxima vez que abre la app con conexión.
-const CACHE = 'pase-de-sala-875f9a2794';
+const CACHE = 'pase-de-sala-f4b9f4f2b2';
 const ARCHIVOS = ['./', './index.html', './manifest.webmanifest', './icono-180.png', './icono-192.png', './icono-512.png'];
 
 self.addEventListener('install', e => {
