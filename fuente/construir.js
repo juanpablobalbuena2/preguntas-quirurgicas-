@@ -6,21 +6,29 @@ const casos = archivos.flatMap(f => require('./' + f));
 // Hermes (solo lectura): SynologyDrive/Obsidian/Hermes/wiki/concepts
 const C = path.join(__dirname, '..', '..', 'Obsidian', 'Hermes', 'wiki', 'concepts');
 const hayHermes = fs.existsSync(C);
-const TIPOS = ['Diagnóstico', 'Estudios', 'Medidas generales', 'Fármaco', 'Dosis', 'Conducta quirúrgica', 'Técnica'];
+const TIPOS = ['Diagnóstico', 'Estudios', 'Medidas generales', 'Fármaco', 'Dosis', 'Cálculo', 'Conducta quirúrgica', 'Técnica'];
 // Palabras que, si aparecen solo en las incorrectas, delatan que son falsas
 const ABSOLUTAS = /\b(siempre|nunca|jamás|todos|todas|ninguno|ninguna|nada|únicamente|exclusivamente|solamente|cualquiera|cualquier|obligatori[ao]s?|absolut[ao]s?|absolutamente|sin excepción|en ningún caso|en todos los casos)\b/i;
 const ids = new Set(); const avisos = []; const pistas = [];
-let pasos = 0, masLarga = 0, masCorta = 0;
+let pasos = 0, masLarga = 0, masCorta = 0, calculos = 0, eponimos = 0;
 for (const c of casos) {
   if (ids.has(c.id)) throw new Error('id repetido ' + c.id); ids.add(c.id);
   for (const k of ['tema', 'anio', 'titulo', 'vineta']) if (!c[k]) throw new Error(c.id + ' sin ' + k);
+  if ('eponimos' in c && c.eponimos !== true) throw new Error(c.id + ' eponimos tiene que ser true o no estar');
+  if (c.eponimos) eponimos += c.pasos.length;
   c.pasos.forEach((p, i) => {
     for (const k of ['tipo', 'pregunta', 'explicacion', 'fuente']) if (!p[k]) throw new Error(c.id + ' sin ' + k);
     if (!TIPOS.includes(p.tipo)) throw new Error(c.id + ' tipo de paso desconocido: ' + p.tipo);
-    if (new Set(p.opciones).size !== p.opciones.length || p.opciones.length < 3) throw new Error(c.id + ' opciones inválidas: ' + p.pregunta);
+    // Paso de cálculo: sin opciones; respuesta numérica, unidad y margen aceptado (±), que no puede ser negativo
+    if ((p.tipo === 'Cálculo') !== ('respuesta' in p)) throw new Error(c.id + ' paso ' + (i + 1) + ': el tipo Cálculo y el campo respuesta van juntos');
+    if (p.tipo === 'Cálculo') {
+      if (typeof p.respuesta !== 'number' || !isFinite(p.respuesta) || p.opciones || typeof p.unidad !== 'string' || !(p.margen >= 0)) throw new Error(c.id + ' paso ' + (i + 1) + ': cálculo inválido (respuesta numérica, unidad, margen ≥ 0 y sin opciones)');
+      calculos++; return;
+    }
+    if (!Array.isArray(p.opciones) || new Set(p.opciones).size !== p.opciones.length || p.opciones.length < 3) throw new Error(c.id + ' opciones inválidas: ' + p.pregunta);
     const m = p.fuente.match(/Hermes: ([^;]+)/);
     if (m && hayHermes) { const ex = n => fs.existsSync(path.join(C, n.trim() + '.md')); const t = m[1].trim(); if (!ex(t)) { const partes = t.split(/, | y /); if (!partes.every(ex) && !ex(t)) avisos.push(c.id + ': revisar nota "' + t + '"') } }
-    // Pistas de forma
+    // Pistas de forma (solo en los pasos con opciones)
     pasos++;
     const [ok, ...mal] = p.opciones.map(o => o.length);
     const lugar = c.id + ' paso ' + (i + 1) + ' (' + p.tipo + ')';
@@ -50,9 +58,9 @@ for (const n of [180, 192, 512]) fs.copyFileSync(path.join(__dirname, 'iconos', 
 const version = require('crypto').createHash('sha1').update(app).digest('hex').slice(0, 10);
 fs.writeFileSync(path.join(APP, 'sw.js'), fs.readFileSync(path.join(__dirname, 'sw.js'), 'utf8').replace('__VERSION__', version));
 const porAnio = {}; casos.forEach(c => porAnio[c.anio] = (porAnio[c.anio] || 0) + 1);
-const pct = n => Math.round(n / pasos * 100) + ' %';
+const pct = n => Math.round(n / pasos * 100) + ' %'; // sobre los pasos con opciones
 console.log('archivos', archivos.join(', '));
-console.log('casos', casos.length, 'pasos', pasos, 'por año', JSON.stringify(porAnio));
+console.log('casos', casos.length, 'pasos', pasos + calculos, '(' + calculos + ' de cálculo, ' + eponimos + ' de epónimos)', 'por año', JSON.stringify(porAnio));
 console.log('pistas de forma: correcta más larga', pct(masLarga), '(meta ≤ 30 %), más corta', pct(masCorta), '(meta ≤ 30 %),', pistas.length, 'pasos con pistas' + (process.argv.includes('--pistas') ? '' : ' (detalle con --pistas)'));
 if (process.argv.includes('--pistas') && pistas.length) console.log(pistas.join('\n'));
 if (!hayHermes) console.log('AVISO: no se encontró Hermes en ' + C + '; no se verificaron las notas citadas');

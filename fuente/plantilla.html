@@ -18,7 +18,7 @@
   --bad: #B3261E;
   --bad-soft: #F8E2DF;
   /* Un color por tipo de paso: son las categorías de la ruleta */
-  --t-dx: #2F6FB0; --t-est: #7A5BB5; --t-med: #2D7A4B; --t-far: #B8661A; --t-dos: #B3261E; --t-cq: #0F5C52; --t-tec: #8A6D1F;
+  --t-dx: #2F6FB0; --t-est: #7A5BB5; --t-med: #2D7A4B; --t-far: #B8661A; --t-dos: #B3261E; --t-cq: #0F5C52; --t-tec: #8A6D1F; --t-cal: #A23B72;
   --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -27,12 +27,12 @@
   --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
   --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
   --bad: #F08A80; --bad-soft: #3A1C1A;
-  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; color-scheme: dark } }
+  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; --t-cal: #E58BB8; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0D1513; --sheet: #15201D; --ink: #E3ECE9; --muted: #98ABA6; --line: #2A3A36;
   --scrub: #5FC2B0; --scrub-soft: #1C3530; --iodine: #E8A15A; --ok: #6CCB8E; --ok-soft: #173126;
   --bad: #F08A80; --bad-soft: #3A1C1A;
-  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; color-scheme: dark }
+  --t-dx: #7FB2E8; --t-est: #B79CE8; --t-med: #6CCB8E; --t-far: #E8A15A; --t-dos: #F08A80; --t-cq: #5FC2B0; --t-tec: #D9BC6A; --t-cal: #E58BB8; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font: 400 17px/1.5 var(--f-body); margin: 0 }
 .app { max-width: 620px; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); padding-block: calc(18px + env(safe-area-inset-top)) calc(48px + env(safe-area-inset-bottom)); display: grid; gap: 18px }
@@ -135,6 +135,13 @@ details.panel > summary { font: 800 1.35rem/1.15 var(--f-display); color: var(--
 .op.ok { border-color: var(--ok); background: var(--ok-soft) }
 .op.no { border-color: var(--bad); background: var(--bad-soft) }
 .op[disabled] { cursor: default }
+.calc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px }
+.calc-fila { display: flex; gap: 8px; align-items: center }
+.calc input { flex: 1; width: 0; min-width: 0; font: 500 1.25rem/1.2 var(--f-mono); font-variant-numeric: tabular-nums; background: var(--bg); color: var(--ink); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px }
+.calc input:focus-visible { outline: 3px solid var(--iodine); outline-offset: 2px }
+.calc input.ok { border-color: var(--ok); background: var(--ok-soft) }
+.calc input.no { border-color: var(--bad); background: var(--bad-soft) }
+.calc .unidad { font: 500 1rem var(--f-mono); color: var(--muted); white-space: nowrap }
 .feedback { border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; background: var(--bg); border-left: 4px solid var(--ok) }
 .feedback.no { border-left-color: var(--bad) }
 .feedback strong { font-family: var(--f-display) }
@@ -180,9 +187,9 @@ const INTERVALOS = [0, 1, 3, 7, 16, 35]; // días por nivel de repetición espac
 const DIA = 86400000;
 const CLAVE = 'pase-de-sala-progreso-v1'; // repetición espaciada por caso; no cambiar: hay progreso guardado con esta clave
 const CLAVE_JUEGO = 'pase-de-sala-juego-v1'; // puntos, rachas, estadísticas por paso, marcas, ajustes y partida en curso
-const TIPOS = ['Diagnóstico', 'Estudios', 'Medidas generales', 'Fármaco', 'Dosis', 'Conducta quirúrgica', 'Técnica'];
-const VAR_TIPO = { 'Diagnóstico': '--t-dx', 'Estudios': '--t-est', 'Medidas generales': '--t-med', 'Fármaco': '--t-far', 'Dosis': '--t-dos', 'Conducta quirúrgica': '--t-cq', 'Técnica': '--t-tec' };
-const CORTO = { 'Diagnóstico': 'Diagnóstico', 'Estudios': 'Estudios', 'Medidas generales': 'Medidas', 'Fármaco': 'Fármaco', 'Dosis': 'Dosis', 'Conducta quirúrgica': 'Conducta', 'Técnica': 'Técnica' };
+const TIPOS = ['Diagnóstico', 'Estudios', 'Medidas generales', 'Fármaco', 'Dosis', 'Cálculo', 'Conducta quirúrgica', 'Técnica'];
+const VAR_TIPO = { 'Diagnóstico': '--t-dx', 'Estudios': '--t-est', 'Medidas generales': '--t-med', 'Fármaco': '--t-far', 'Dosis': '--t-dos', 'Cálculo': '--t-cal', 'Conducta quirúrgica': '--t-cq', 'Técnica': '--t-tec' };
+const CORTO = { 'Diagnóstico': 'Diagnóstico', 'Estudios': 'Estudios', 'Medidas generales': 'Medidas', 'Fármaco': 'Fármaco', 'Dosis': 'Dosis', 'Cálculo': 'Cálculo', 'Conducta quirúrgica': 'Conducta', 'Técnica': 'Técnica' };
 const RANGOS = [[0, 'Estudiante'], [1000, 'Interno'], [3000, 'Residente de 1.er año'], [7000, 'Residente de 2.º año'], [13000, 'Residente de 3.er año'], [21000, 'Residente de 4.º año'], [32000, 'Jefe de residentes'], [50000, 'Cirujano de planta']];
 const LOGROS = [
   ['primer-caso', 'Primer pase', 'Completar un caso entero.'],
@@ -190,7 +197,7 @@ const LOGROS = [
   ['racha-7', 'Una semana de guardia', 'Jugar 7 días seguidos.'],
   ['racha-30', 'Un mes de guardia', 'Jugar 30 días seguidos.'],
   ['corona-1', 'Primera corona', 'Ganar una pregunta corona en la ruleta.'],
-  ['ruleta', 'Las siete coronas', 'Ganar una partida de ruleta.'],
+  ['ruleta', 'Todas las coronas', 'Ganar una partida de ruleta.'],
   ['contrarreloj', 'Contra el reloj', 'Hacer 1.500 puntos en una partida de contrarreloj.'],
   ['dominados-25', 'Medio programa', 'Dominar 25 casos.'],
   ['dominados-todos', 'Programa completo', 'Dominar todos los casos.'],
@@ -198,7 +205,7 @@ const LOGROS = [
 ];
 const RULETA = { vidas: 3, coronas: TIPOS.length, medidor: 3, corona: 300, victoria: 1000 };
 const CONTRARRELOJ = { ms: 90000, castigo: 5000 };
-const MODOS_JUEGO = { ruleta: 'Ruleta', contrarreloj: 'Contrarreloj', errores: 'Mis errores', rapido: 'Pregunta rápida' };
+const MODOS_JUEGO = { ruleta: 'Ruleta', contrarreloj: 'Contrarreloj', errores: 'Mis errores', rapido: 'Pregunta rápida', calculos: 'Cálculos', eponimos: 'Epónimos' };
 
 const ICONO = {
   corona: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l-1.6-10-4.6 4.2L12 5.5 9.2 12.2 4.6 8z"/></svg>',
@@ -230,6 +237,13 @@ const fecha = t => new Date(t).toLocaleDateString('es-AR', { day: 'numeric', mon
 const miles = n => Math.round(n).toLocaleString('es-AR');
 const diaISO = t => { const d = new Date(t); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0') };
 const varTipo = t => `var(${VAR_TIPO[t] || '--scrub'})`;
+// Un paso de cálculo no tiene opciones: tiene respuesta (número), unidad y margen aceptado (±)
+const esCalculo = p => typeof p.respuesta === 'number';
+const numero = n => n.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+const respuestaDe = p => esCalculo(p) ? numero(p.respuesta) + (p.unidad ? ' ' + p.unidad : '') : p.opciones[0];
+// Acepta coma o punto decimal ("1,5" o "1.5") y separador de miles con punto ("1.050")
+const leerNumero = s => { const t = String(s).trim().replace(/\s/g, ''); const n = Number(/,/.test(t) ? t.replace(/\./g, '').replace(',', '.') : /^\d{1,3}(\.\d{3})+$/.test(t) ? t.replace(/\./g, '') : t); return t === '' || !isFinite(n) ? null : n };
+const FILTROS = { calculos: x => esCalculo(x.p), eponimos: x => !!x.c.eponimos };
 
 const POR_ID = Object.fromEntries(CASOS.map(c => [c.id, c]));
 const PASOS = CASOS.flatMap(c => c.pasos.map((p, k) => ({ c, p, k, clave: c.id + '#' + (k + 1) })));
@@ -312,10 +326,12 @@ function inicio() {
   <div class="rango"><div class="bar-head"><span>${esc(r.nombre)}</span><span>${r.sig ? `faltan ${miles(r.falta)} para ${esc(r.sig)}` : 'rango máximo'}</span></div><div class="track" role="img" aria-label="Progreso al próximo rango"><i style="width:${r.pct * 100}%"></i></div></div>
   <section class="modos" aria-label="Modos de juego">
     <button class="modo principal" id="m-sesion" ${cola.length ? '' : 'disabled'}><b>Sesión del día</b><span>${cola.length ? `${cola.length} caso${cola.length > 1 ? 's' : ''} completo${cola.length > 1 ? 's' : ''}: ${cola.filter(id => prog[id]).length} para repasar y ${cola.filter(id => !prog[id]).length} nuevo${cola.filter(id => !prog[id]).length === 1 ? '' : 's'}` : proximo ? `Nada pendiente. Próximo repaso: ${fecha(proximo.vence)}` : 'Nada pendiente'}</span></button>
-    <button class="modo" id="m-ruleta" style="--c:var(--iodine)"><b>Ruleta</b><span>7 coronas, 3 vidas. Récord: ${miles(juego.record.ruleta)}</span></button>
+    <button class="modo" id="m-ruleta" style="--c:var(--iodine)"><b>Ruleta</b><span>${TIPOS.length} coronas, 3 vidas. Récord: ${miles(juego.record.ruleta)}</span></button>
     <button class="modo" id="m-contrarreloj" style="--c:var(--t-dos)"><b>Contrarreloj</b><span>90 segundos. Récord: ${miles(juego.record.contrarreloj)}</span></button>
     <button class="modo" id="m-errores" style="--c:var(--bad)" ${errores ? '' : 'disabled'}><b>Mis errores</b><span>${errores ? `${errores} pregunta${errores > 1 ? 's' : ''} para corregir` : 'Sin errores pendientes'}</span></button>
     <button class="modo" id="m-rapido" style="--c:var(--t-dx)"><b>Pregunta rápida</b><span>10 preguntas sueltas, sin reloj</span></button>
+    <button class="modo" id="m-calculos" style="--c:var(--t-cal)"><b>Cálculos</b><span>10 cuentas: hidratación, dosis por peso y puntajes</span></button>
+    <button class="modo" id="m-eponimos" style="--c:var(--t-tec)"><b>Epónimos</b><span>10 técnicas y maniobras con nombre propio</span></button>
   </section>
   <section class="panel" aria-labelledby="t-tipo"><h2 id="t-tipo">Aciertos por tipo de paso</h2>${barrasTipo()}</section>
   <details class="panel"><summary>Repasar un tema <span class="badge">${ICONO.corona} ${temasCoronados}/${Object.keys(porTema).length}</span></summary>
@@ -340,6 +356,8 @@ function inicio() {
   $('#m-contrarreloj').onclick = () => nuevaPartida('contrarreloj');
   $('#m-errores').onclick = () => errores && nuevaPartida('errores');
   $('#m-rapido').onclick = () => nuevaPartida('rapido');
+  $('#m-calculos').onclick = () => nuevaPartida('calculos');
+  $('#m-eponimos').onclick = () => nuevaPartida('eponimos');
   document.querySelectorAll('.tema').forEach(b => b.onclick = () => empezarCasos(mezclar(CASOS.filter(c => c.tema === b.dataset.tema)).map(c => c.id), b.dataset.tema));
   $('#l-marcas').onclick = () => ir('marcas');
   $('#l-logros').onclick = () => ir('logros');
@@ -349,21 +367,30 @@ function inicio() {
 /* ---------- Hoja de un paso (compartida por todos los modos) ---------- */
 function hojaPaso(c, k, est) {
   const p = c.pasos[k], r = est.resp, clave = c.id + '#' + (k + 1);
-  if (!est.orden) est.orden = mezclar(p.opciones.map((t, i) => ({ t, i })));
-  const ops = est.orden.map(o => {
+  if (!est.orden && !esCalculo(p)) est.orden = mezclar(p.opciones.map((t, i) => ({ t, i })));
+  const ops = esCalculo(p) ? `<form class="calc" id="f-calc" autocomplete="off"><div class="calc-fila"><input id="i-calc" type="text" inputmode="decimal" enterkeyhint="done" aria-label="Tu resultado${p.unidad ? ' en ' + esc(p.unidad) : ''}" placeholder="Tu resultado" value="${r && est.escrito != null ? esc(numero(est.escrito)) : ''}" class="${r ? (r.i === 0 ? 'ok' : 'no') : ''}" ${r ? 'disabled' : ''}>${p.unidad ? `<span class="unidad">${esc(p.unidad)}</span>` : ''}</div>${r ? '' : '<button class="btn" id="b-calc">Responder</button><p class="msg" id="msg-calc" hidden>Escribí un número.</p>'}</form>` : est.orden.map(o => {
     let cl = 'op' + (p.tipo === 'Dosis' ? ' dosis' : '');
     if (r) { if (o.i === 0) cl += ' ok'; else if (o.i === r.i) cl += ' no' }
     return `<button class="${cl}" data-i="${o.i}" ${r ? 'disabled' : ''}>${esc(o.t)}</button>`;
   }).join('');
+  const margen = esCalculo(p) && p.margen ? ` (se acepta de ${numero(p.respuesta - p.margen)} a ${numero(p.respuesta + p.margen)})` : '';
   const marcada = juego.marcas.some(m => m.clave === clave);
-  const titulo = !r ? '' : r.i === 0 ? 'Correcto.' : (r.i === null ? 'Se terminó el tiempo. ' : '') + 'La respuesta es: ' + esc(p.opciones[0]);
+  const titulo = !r ? '' : r.i === 0 ? 'Correcto.' : (r.i === null ? 'Se terminó el tiempo. ' : '') + 'La respuesta es: ' + esc(respuestaDe(p)) + esc(margen);
   const fb = r ? `<div class="feedback ${r.i === 0 ? '' : 'no'}"><strong>${titulo}</strong>${r.puntos ? `<span class="pts">+${miles(r.puntos)} puntos</span>` : ''}<p>${esc(p.explicacion)}</p><p class="fuente">${esc(p.fuente)}</p>
     <div class="marca">${marcada ? '<span class="msg">Marcada como dudosa. Aparece en «Preguntas marcadas».</span>' : `<button class="link" id="b-marcar">Marcar como dudosa</button><div id="form-marca" hidden><textarea id="t-marca" placeholder="Qué te parece mal o dudoso (opcional)"></textarea><button class="btn sec" id="b-guardar-marca">Guardar marca</button></div>`}</div></div>` : '';
   return `<section class="hoja" style="--tipo:${varTipo(p.tipo)}"><div class="margen" aria-hidden="true">${esc(p.tipo)}</div><div class="hoja-body">
-    <p class="eyebrow">Paso ${k + 1} de ${c.pasos.length} · ${esc(p.tipo)}</p><h3>${esc(p.pregunta)}</h3><div class="ops">${ops}</div>${fb}</div></section>`;
+    <p class="eyebrow">Paso ${k + 1} de ${c.pasos.length} · ${esc(p.tipo)}</p><h3>${esc(p.pregunta)}</h3>${esCalculo(p) ? ops : `<div class="ops">${ops}</div>`}${fb}</div></section>`;
 }
 function enlazarPaso(c, k, alResponder) {
   document.querySelectorAll('.op:not([disabled])').forEach(b => b.onclick = () => alResponder(+b.dataset.i));
+  const fc = $('#f-calc'), p = c.pasos[k];
+  if (fc && !$('#i-calc').disabled) fc.onsubmit = ev => {
+    ev.preventDefault();
+    const n = leerNumero($('#i-calc').value);
+    if (n === null) { $('#msg-calc').hidden = false; $('#i-calc').focus(); return }
+    estado.escrito = n;
+    alResponder(Math.abs(n - p.respuesta) <= (p.margen || 0) + 1e-9 ? 0 : -1);
+  };
   const bm = $('#b-marcar');
   if (bm) bm.onclick = () => { $('#form-marca').hidden = false; bm.hidden = true; $('#t-marca').focus() };
   const bg = $('#b-guardar-marca');
@@ -393,7 +420,7 @@ function pantallaCaso() {
     estado.resp = { i, puntos: pts }; pintar(); bajar();
   });
   if (estado.resp) $('#b-sig').onclick = () => {
-    estado.resp = null; estado.orden = null;
+    estado.resp = null; estado.orden = null; estado.escrito = null;
     if (estado.paso + 1 < c.pasos.length) { estado.paso++; pintar(); window.scrollTo(0, 0) } else terminarCaso(c);
   };
 }
@@ -417,7 +444,7 @@ function pantallaCierre() {
   $('#app').innerHTML = `
   <header class="top"><div><p class="eyebrow">${esc(estado.etiqueta)} · caso ${estado.i + 1} de ${estado.cola.length}</p><h2>${esc(c.titulo)}</h2></div></header>
   <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b>${r.ok}/${r.n}</b><span>pasos correctos</span></div><div class="stat"><b>${miles(r.ok * 100 + r.bonus)}</b><span>puntos${r.bonus ? ' (con bonus por caso perfecto)' : ''}</span></div></div>
-    <ul class="res-list">${c.pasos.map((p, k) => `<li><span class="m ${estado.res[k] ? 'ok' : 'no'}">${estado.res[k] ? '✓' : '✗'}</span><span>${esc(p.tipo)}: ${esc(p.opciones[0])}</span></li>`).join('')}</ul>
+    <ul class="res-list">${c.pasos.map((p, k) => `<li><span class="m ${estado.res[k] ? 'ok' : 'no'}">${estado.res[k] ? '✓' : '✗'}</span><span>${esc(p.tipo)}: ${esc(respuestaDe(p))}</span></li>`).join('')}</ul>
     <p class="next-review">Vuelve ${INTERVALOS[r.nivelN] === 0 ? 'hoy' : INTERVALOS[r.nivelN] === 1 ? 'mañana' : 'en ' + INTERVALOS[r.nivelN] + ' días (' + fecha(r.vence) + ')'}</p>
   </section>
   <div class="row">${quedan ? '<button class="btn" id="b-otro">Siguiente caso</button>' : ''}<button class="btn ${quedan ? 'sec' : ''}" id="b-ini">Volver al inicio</button></div>`;
@@ -426,9 +453,10 @@ function pantallaCierre() {
 }
 
 /* ---------- Modos de preguntas sueltas ---------- */
-function elegir(tipo) {
-  let cand = PASOS.filter(x => (!tipo || x.p.tipo === tipo) && !estado.usados.includes(x.clave));
-  if (!cand.length) cand = PASOS.filter(x => !tipo || x.p.tipo === tipo);
+function elegir(tipo, filtro) {
+  const sirve = x => (!tipo || x.p.tipo === tipo) && (!filtro || filtro(x));
+  let cand = PASOS.filter(x => sirve(x) && !estado.usados.includes(x.clave));
+  if (!cand.length) cand = PASOS.filter(sirve);
   // Primero las que fallaste, después las nunca vistas, después el resto, con algo de azar
   const peso = x => { const r = juego.pasos[x.clave]; return (r ? (r.ultimo === false ? 0 : 2) : 1) + Math.random() * 1.6 };
   return cand.map(x => [peso(x), x.clave]).sort((a, b) => a[0] - b[0])[0][1];
@@ -438,9 +466,9 @@ function nuevaPartida(modo) {
   if (modo === 'ruleta') Object.assign(base, { pantalla: 'ruleta', vidas: RULETA.vidas, coronas: [], medidor: 0, giro: 0 });
   if (modo === 'contrarreloj') Object.assign(base, { pantalla: 'pregunta', restante: CONTRARRELOJ.ms, finEn: null });
   if (modo === 'errores') Object.assign(base, { pantalla: 'pregunta', cola: mezclar(clavesConError()).slice(0, 15), i: 0 });
-  if (modo === 'rapido') Object.assign(base, { pantalla: 'pregunta', cola: [], i: 0 });
+  if (modo === 'rapido' || FILTROS[modo]) Object.assign(base, { pantalla: 'pregunta', cola: [], i: 0 });
   estado = base;
-  if (modo === 'rapido') { for (let n = 0; n < 10; n++) { const k = elegir(null); estado.cola.push(k); estado.usados.push(k) } estado.usados = [] }
+  if (modo === 'rapido' || FILTROS[modo]) { for (let n = 0; n < 10; n++) { const k = elegir(null, FILTROS[modo]); if (!estado.cola.includes(k)) estado.cola.push(k); estado.usados.push(k) } estado.usados = [] }
   if (modo === 'contrarreloj') estado.clave = elegir(null);
   if (estado.cola) estado.clave = estado.cola[0];
   pintar(); window.scrollTo(0, 0);
@@ -459,14 +487,14 @@ function pantallaPregunta() {
   const x = POR_CLAVE[estado.clave];
   if (!x) { juego.enCurso = null; return ir('inicio') }
   const { c, k, p } = x, e = estado, conReloj = e.modo === 'ruleta' && juego.ajustes.tiempo > 0;
-  const previos = c.pasos.slice(0, k);
+  const previos = c.eponimos ? [] : c.pasos.slice(0, k); // en los epónimos, las respuestas anteriores no aportan contexto
   $('#app').innerHTML = `
   <header class="top"><div><p class="eyebrow">${esc(MODOS_JUEGO[e.modo])}</p><h2>${esc(c.titulo)}</h2></div><button class="badge" id="b-salir" style="border:0">Pausa</button></header>
   ${hud()}
   ${e.esCorona ? `<p class="corona-aviso">${ICONO.corona} Pregunta corona: ${esc(p.tipo)}</p>` : ''}
   ${conReloj && !e.resp ? `<div class="timer" role="img" aria-label="Tiempo restante"><i id="barra-tiempo" style="width:100%"></i></div>` : ''}
   <article class="vineta" style="border-top-color:${varTipo(p.tipo)}"><p><span class="chip-tipo" style="--tipo:${varTipo(p.tipo)}">${esc(p.tipo)}</span></p><p class="eyebrow">${esc(c.tema)} · ${c.anio}.º año</p><p>${esc(c.vineta)}</p>
-    ${previos.length ? `<div><p class="eyebrow">Ya resuelto en este caso</p><ul class="contexto">${previos.map(q => `<li>${esc(q.tipo)}: <b>${esc(q.opciones[0])}</b></li>`).join('')}</ul></div>` : ''}</article>
+    ${previos.length ? `<div><p class="eyebrow">Ya resuelto en este caso</p><ul class="contexto">${previos.map(q => `<li>${esc(q.tipo)}: <b>${esc(respuestaDe(q))}</b></li>`).join('')}</ul></div>` : ''}</article>
   ${hojaPaso(c, k, e)}
   ${e.resp ? `<button class="btn" id="b-sig">${textoSiguiente()}</button>` : ''}`;
   $('#b-salir').onclick = () => { if (e.modo === 'contrarreloj' && e.finEn && !e.resp) e.restante = Math.max(0, e.finEn - ahora()); e.finEn = null; e.deadline = null; juego.enCurso = e; ir('inicio') };
@@ -507,7 +535,7 @@ function responder(i) {
   if (ok) {
     e.aciertos++; e.racha++;
     const mult = 1 + Math.min(e.racha - 1, 4) * 0.25;
-    const base = e.modo === 'errores' || e.modo === 'rapido' ? 50 : 100;
+    const base = e.modo === 'ruleta' || e.modo === 'contrarreloj' ? 100 : 50;
     const extraTiempo = e.modo === 'ruleta' && e.deadline ? Math.ceil(Math.max(0, e.deadline - ahora()) / 1000) * 5 : 0;
     pts = Math.round(base * mult + extraTiempo + (e.esCorona ? RULETA.corona : 0));
   } else e.racha = 0;
@@ -523,7 +551,7 @@ function responder(i) {
 }
 function siguiente() {
   const e = estado;
-  e.resp = null; e.orden = null; e.esCorona = false; e.deadline = null;
+  e.resp = null; e.orden = null; e.escrito = null; e.esCorona = false; e.deadline = null;
   if (e.modo === 'ruleta') {
     if (e.coronas.length === RULETA.coronas) return terminarJuego('gano');
     if (e.vidas <= 0) return terminarJuego('vidas');
@@ -543,7 +571,7 @@ function siguiente() {
 function rueda() {
   const n = TIPOS.length, seg = 360 / n, R = 140, C = 150;
   const punto = (a, r) => { const rad = (a - 90) * Math.PI / 180; return [C + r * Math.cos(rad), C + r * Math.sin(rad)] };
-  return `<svg class="rueda" id="rueda" viewBox="0 0 300 300" style="transform:rotate(${estado.giro}deg)" role="img" aria-label="Ruleta con los 7 tipos de paso">
+  return `<svg class="rueda" id="rueda" viewBox="0 0 300 300" style="transform:rotate(${estado.giro}deg)" role="img" aria-label="Ruleta con los ${n} tipos de paso">
     ${TIPOS.map((t, i) => { const [x1, y1] = punto(i * seg, R), [x2, y2] = punto((i + 1) * seg, R), [tx, ty] = punto((i + 0.5) * seg, R * 0.62);
       return `<path d="M${C},${C} L${x1.toFixed(1)},${y1.toFixed(1)} A${R},${R} 0 0,1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${varTipo(t)}" stroke="var(--sheet)" stroke-width="2"/>
       <text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" fill="var(--sheet)" font-size="13" font-weight="700" text-anchor="middle" dominant-baseline="middle" transform="rotate(${(((i + 0.5) * seg) + (((i + 0.5) * seg) > 90 && ((i + 0.5) * seg) < 270 ? 180 : 0)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})">${esc(CORTO[t])}</text>` }).join('')}
@@ -595,7 +623,7 @@ function terminarJuego(motivo) {
 }
 function pantallaFin() {
   const e = estado;
-  const titulo = { gano: '¡Ganaste las siete coronas!', vidas: 'Te quedaste sin vidas', tiempo: 'Se terminó el tiempo', fin: 'Terminaste' }[e.motivo];
+  const titulo = { gano: '¡Ganaste todas las coronas!', vidas: 'Te quedaste sin vidas', tiempo: 'Se terminó el tiempo', fin: 'Terminaste' }[e.motivo];
   $('#app').innerHTML = `
   <header class="top"><div><p class="eyebrow">${esc(MODOS_JUEGO[e.modo])}</p><h1>${titulo}</h1></div></header>
   <section class="panel"><div class="stats" style="grid-template-columns:1fr 1fr">
@@ -612,7 +640,7 @@ function pantallaFin() {
 /* ---------- Preguntas marcadas ---------- */
 function textoMarcas() {
   return `Preguntas marcadas en Pase de sala (${juego.marcas.length}), ${new Date().toLocaleDateString('es-AR')}\nCada código es «id del caso#número de paso»; el caso está en fuente/casos-*.js.\n\n` +
-    juego.marcas.map((m, n) => { const x = POR_CLAVE[m.clave]; return `${n + 1}. ${m.clave}${x ? ` (${x.p.tipo})` : ''}\n   Pregunta: ${x ? x.p.pregunta : 'paso no encontrado'}\n   Respuesta del juego: ${x ? x.p.opciones[0] : '-'}\n   Comentario: ${m.comentario || '(sin comentario)'}` }).join('\n\n');
+    juego.marcas.map((m, n) => { const x = POR_CLAVE[m.clave]; return `${n + 1}. ${m.clave}${x ? ` (${x.p.tipo})` : ''}\n   Pregunta: ${x ? x.p.pregunta : 'paso no encontrado'}\n   Respuesta del juego: ${x ? respuestaDe(x.p) : '-'}\n   Comentario: ${m.comentario || '(sin comentario)'}` }).join('\n\n');
 }
 function pantallaMarcas() {
   $('#app').innerHTML = `
